@@ -1,0 +1,22 @@
+Last table change time   : 0:05:40 ago
+Number of table inserts  : 14
+Number of table deletes  : 0
+Number of table drops    : 0
+Number of table age-outs : 0
+
+Port          Neighbor Device ID       Neighbor Port ID    TTL
+---------- ------------------------ ---------------------- ---
+Et1           spine1                   Ethernet2           120
+Et2           spine2                   Ethernet2           120
+Et3           leaf1a                   Ethernet3           120
+Et4           leaf1a                   Ethernet4           120
+Et5           client1                  aac1.abb1.b573      120
+Ma0           client3                  0242.ac64.640a      120
+Ma0           client1                  0242.ac64.6408      120
+Ma0           client4                  0242.ac64.640b      120
+Ma0           client2                  0242.ac64.6409      120
+Ma0           leaf2a                   Management0         120
+Ma0           spine2                   Management0         120
+Ma0           spine1                   Management0         120
+Ma0           leaf2b                   Management0         120
+Ma0           leaf1a                   Management0         120
