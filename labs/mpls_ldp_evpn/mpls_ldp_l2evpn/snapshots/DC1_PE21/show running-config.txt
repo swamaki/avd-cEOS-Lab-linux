@@ -3,7 +3,7 @@
 !
 no aaa root
 !
-username admin privilege 15 role network-admin secret sha512 $6$./Ch.MNsXGRcY5wt$QklgZxg4OKG3H/kM1Wd2hCYONccN8pZ/XEWhV2wMoAZYw8DBk3fleGTfqyfU5/VPyDnUKRPuVHKV9Tt3WpJ1D1
+username admin privilege 15 role network-admin secret sha512 $6$s1ikDPEEk/lV31kh$pGRhb44jv.pFgAuEJqblRiTBLd2titN98pl3Hln7Hgo/TAqpU3iNApCXDbZMLD0iNgSFGMcH3laFC1thfB6LK1
 !
 transceiver qsfp default-mode 4x10G
 !
@@ -43,7 +43,7 @@ interface Management0
    description oob_management
    vrf MGMT
    ip address 172.100.100.6/24
-   ipv6 address 2001:172:100:100::2/80
+   ipv6 address 2001:172:100:100::5/80
 !
 no ip routing
 no ip routing vrf MGMT

@@ -28,7 +28,7 @@ Management0     172.100.100.2/24     up         up              1500
 ## show lldp neighbors
 
 ```
-Last table change time   : 0:18:31 ago
+Last table change time   : 0:07:55 ago
 Number of table inserts  : 13
 Number of table deletes  : 0
 Number of table drops    : 0
@@ -40,13 +40,13 @@ Et1           pe11                     Ethernet1           120
 Et2           pe12                     Ethernet1           120
 Et3           pe21                     Ethernet1           120
 Et4           pe22                     Ethernet1           120
-Ma0           client4                  0242.ac64.640b      120
 Ma0           client1                  0242.ac64.6408      120
 Ma0           client3                  0242.ac64.640a      120
 Ma0           client2                  0242.ac64.6409      120
-Ma0           p2                       Management0         120
 Ma0           pe21                     Management0         120
+Ma0           client4                  0242.ac64.640b      120
 Ma0           pe22                     Management0         120
+Ma0           p2                       Management0         120
 Ma0           pe11                     Management0         120
 Ma0           pe12                     Management0         120
 ```
@@ -58,7 +58,7 @@ Ma0           pe12                     Management0         120
 !
 no aaa root
 !
-username admin privilege 15 role network-admin secret sha512 $6$INOhB.wBfeWsE8oV$NA22Aa3hMc0OWlsfccD71xOcyI1o93GJH1pnKWg3cSMvLBUdzlWUeMETv6kgoc/GUG98QstIv29lqoJEV3.o50
+username admin privilege 15 role network-admin secret sha512 $6$OG/v5KzpdHd8pGo1$Vql7B5pGnRXDZIm/eNJquT0nxYYOrTgvT8H/aSbsTgoHNAy7houD1pdjSgh7aDn/WgKA6girwCucDKlcDKuWK1
 !
 transceiver qsfp default-mode 4x10G
 !
@@ -98,7 +98,7 @@ interface Management0
    description oob_management
    vrf MGMT
    ip address 172.100.100.2/24
-   ipv6 address 2001:172:100:100::3/80
+   ipv6 address 2001:172:100:100::a/80
 !
 no ip routing
 no ip routing vrf MGMT
@@ -128,7 +128,7 @@ Image optimization: None
 cEOS tools version: (unknown)
 Kernel version: 6.2.0-39-generic
 
-Uptime: 20 minutes
+Uptime: 10 minutes
 Total memory: 63882152 kB
-Free memory: 54462392 kB
+Free memory: 54467680 kB
 ```

@@ -28,7 +28,7 @@ Management0     172.100.100.6/24     up         up              1500
 ## show lldp neighbors
 
 ```
-Last table change time   : 0:18:31 ago
+Last table change time   : 0:07:55 ago
 Number of table inserts  : 13
 Number of table deletes  : 0
 Number of table drops    : 0
@@ -38,15 +38,15 @@ Port          Neighbor Device ID       Neighbor Port ID    TTL
 ---------- ------------------------ ---------------------- ---
 Et1           p1                       Ethernet3           120
 Et2           p2                       Ethernet3           120
-Et3           client3                  aac1.abdc.5224      120
-Et4           client4                  aac1.ab86.abce      120
-Ma0           client3                  0242.ac64.640a      120
-Ma0           client2                  0242.ac64.6409      120
+Et3           client3                  aac1.abfd.151a      120
+Et4           client4                  aac1.ab59.d5a7      120
 Ma0           client4                  0242.ac64.640b      120
 Ma0           client1                  0242.ac64.6408      120
+Ma0           client3                  0242.ac64.640a      120
+Ma0           client2                  0242.ac64.6409      120
 Ma0           p1                       Management0         120
-Ma0           p2                       Management0         120
 Ma0           pe22                     Management0         120
+Ma0           p2                       Management0         120
 Ma0           pe11                     Management0         120
 Ma0           pe12                     Management0         120
 ```
@@ -58,7 +58,7 @@ Ma0           pe12                     Management0         120
 !
 no aaa root
 !
-username admin privilege 15 role network-admin secret sha512 $6$./Ch.MNsXGRcY5wt$QklgZxg4OKG3H/kM1Wd2hCYONccN8pZ/XEWhV2wMoAZYw8DBk3fleGTfqyfU5/VPyDnUKRPuVHKV9Tt3WpJ1D1
+username admin privilege 15 role network-admin secret sha512 $6$s1ikDPEEk/lV31kh$pGRhb44jv.pFgAuEJqblRiTBLd2titN98pl3Hln7Hgo/TAqpU3iNApCXDbZMLD0iNgSFGMcH3laFC1thfB6LK1
 !
 transceiver qsfp default-mode 4x10G
 !
@@ -98,7 +98,7 @@ interface Management0
    description oob_management
    vrf MGMT
    ip address 172.100.100.6/24
-   ipv6 address 2001:172:100:100::2/80
+   ipv6 address 2001:172:100:100::5/80
 !
 no ip routing
 no ip routing vrf MGMT
@@ -128,7 +128,7 @@ Image optimization: None
 cEOS tools version: (unknown)
 Kernel version: 6.2.0-39-generic
 
-Uptime: 20 minutes
+Uptime: 10 minutes
 Total memory: 63882152 kB
-Free memory: 54465416 kB
+Free memory: 54479776 kB
 ```

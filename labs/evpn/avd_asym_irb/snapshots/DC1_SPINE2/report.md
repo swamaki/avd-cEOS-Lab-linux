@@ -28,7 +28,7 @@ Management0     172.100.100.3/24     up         up              1500
 ## show lldp neighbors
 
 ```
-Last table change time   : 0:05:40 ago
+Last table change time   : 0:06:30 ago
 Number of table inserts  : 13
 Number of table deletes  : 0
 Number of table drops    : 0
@@ -40,15 +40,15 @@ Et1           leaf1a                   Ethernet2           120
 Et2           leaf1b                   Ethernet2           120
 Et3           leaf2a                   Ethernet2           120
 Et4           leaf2b                   Ethernet2           120
-Ma0           client4                  0242.ac64.640b      120
 Ma0           client2                  0242.ac64.6409      120
-Ma0           client3                  0242.ac64.640a      120
+Ma0           client4                  0242.ac64.640b      120
 Ma0           client1                  0242.ac64.6408      120
-Ma0           spine1                   Management0         120
-Ma0           leaf2a                   Management0         120
-Ma0           leaf1b                   Management0         120
+Ma0           client3                  0242.ac64.640a      120
 Ma0           leaf2b                   Management0         120
 Ma0           leaf1a                   Management0         120
+Ma0           spine1                   Management0         120
+Ma0           leaf1b                   Management0         120
+Ma0           leaf2a                   Management0         120
 ```
 ## show running-config
 
@@ -58,7 +58,7 @@ Ma0           leaf1a                   Management0         120
 !
 no aaa root
 !
-username admin privilege 15 role network-admin secret sha512 $6$2qNpBoT4qLyaOHQF$TLbK6MhBN4IQCh6nlYW81TL07I0WsgPLrnY26FUE9ovPItpux6AamCYbhSTyMS3Pldq75.yt6adsTG1J/FdSb0
+username admin privilege 15 role network-admin secret sha512 $6$qPcg9KPcBGsLVy4B$HDvjyp0lZyR5cdgM4LH737H3hv32/qXWGS1QMEkyoXJjBJGnw.brpgRV6WuRejXW1ujYbTcaOh1k8Co6glEer0
 !
 transceiver qsfp default-mode 4x10G
 !
@@ -98,7 +98,7 @@ interface Management0
    description oob_management
    vrf MGMT
    ip address 172.100.100.3/24
-   ipv6 address 2001:172:100:100::b/80
+   ipv6 address 2001:172:100:100::5/80
 !
 no ip routing
 no ip routing vrf MGMT
@@ -128,7 +128,7 @@ Image optimization: None
 cEOS tools version: (unknown)
 Kernel version: 6.2.0-39-generic
 
-Uptime: 7 minutes
+Uptime: 9 minutes
 Total memory: 63882152 kB
-Free memory: 54475664 kB
+Free memory: 54488264 kB
 ```

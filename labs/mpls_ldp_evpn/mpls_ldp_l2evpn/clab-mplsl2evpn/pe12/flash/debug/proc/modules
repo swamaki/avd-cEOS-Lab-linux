@@ -85,7 +85,7 @@ x86_pkg_temp_thermal 20480 0 - Live 0xffffffffc326f000
 intel_powerclamp 24576 0 - Live 0xffffffffc3276000
 coretemp 24576 0 - Live 0xffffffffc3268000
 rtl8723be 176128 0 - Live 0xffffffffc323c000
-kvm_intel 503808 0 - Live 0xffffffffc31c0000
+kvm_intel 503808 22 - Live 0xffffffffc31c0000
 snd_compress 28672 2 snd_soc_avs,snd_soc_core, Live 0xffffffffc31b8000
 kvm 1347584 1 kvm_intel, Live 0xffffffffc306e000
 input_leds 16384 0 - Live 0xffffffffc3024000

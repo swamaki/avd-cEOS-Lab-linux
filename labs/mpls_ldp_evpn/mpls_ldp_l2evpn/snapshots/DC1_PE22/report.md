@@ -28,7 +28,7 @@ Management0     172.100.100.7/24     up         up              1500
 ## show lldp neighbors
 
 ```
-Last table change time   : 0:18:35 ago
+Last table change time   : 0:07:58 ago
 Number of table inserts  : 11
 Number of table deletes  : 0
 Number of table drops    : 0
@@ -38,13 +38,13 @@ Port          Neighbor Device ID       Neighbor Port ID    TTL
 ---------- ------------------------ ---------------------- ---
 Et1           p1                       Ethernet4           120
 Et2           p2                       Ethernet4           120
+Ma0           pe21                     Management0         120
 Ma0           client4                  0242.ac64.640b      120
 Ma0           client1                  0242.ac64.6408      120
-Ma0           pe21                     Management0         120
-Ma0           p1                       Management0         120
-Ma0           p2                       Management0         120
 Ma0           client3                  0242.ac64.640a      120
 Ma0           client2                  0242.ac64.6409      120
+Ma0           p1                       Management0         120
+Ma0           p2                       Management0         120
 Ma0           pe11                     Management0         120
 Ma0           pe12                     Management0         120
 ```
@@ -56,7 +56,7 @@ Ma0           pe12                     Management0         120
 !
 no aaa root
 !
-username admin privilege 15 role network-admin secret sha512 $6$hXbJDrXOuzlikKQa$kTizfK1oVofC7WNu4IV4zzBY7tU/RYDTqpQGjYyt2WMYqm.9pqXjVvZ9GAJFRFSdrPW68Wwd5J43W5WV6gV2.0
+username admin privilege 15 role network-admin secret sha512 $6$n8RMBMLnyGLuoV.l$lwzc2kfI25eR45Iyt9IAxi.Fq8tpECS0MiKBdBOaWvgC6OFQ2QY9FeIhyRmcjxSf6KVjpM0ghNqM6Bm0t99Bt1
 !
 transceiver qsfp default-mode 4x10G
 !
@@ -96,7 +96,7 @@ interface Management0
    description oob_management
    vrf MGMT
    ip address 172.100.100.7/24
-   ipv6 address 2001:172:100:100::4/80
+   ipv6 address 2001:172:100:100::2/80
 !
 no ip routing
 no ip routing vrf MGMT
@@ -126,7 +126,7 @@ Image optimization: None
 cEOS tools version: (unknown)
 Kernel version: 6.2.0-39-generic
 
-Uptime: 20 minutes
+Uptime: 10 minutes
 Total memory: 63882152 kB
-Free memory: 54488636 kB
+Free memory: 54485080 kB
 ```

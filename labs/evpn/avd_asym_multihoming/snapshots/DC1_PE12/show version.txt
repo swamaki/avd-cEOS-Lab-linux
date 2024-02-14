@@ -14,6 +14,6 @@ Image optimization: None
 cEOS tools version: (unknown)
 Kernel version: 6.2.0-39-generic
 
-Uptime: 14 minutes
+Uptime: 42 minutes
 Total memory: 63882152 kB
-Free memory: 54554644 kB
+Free memory: 31287248 kB
