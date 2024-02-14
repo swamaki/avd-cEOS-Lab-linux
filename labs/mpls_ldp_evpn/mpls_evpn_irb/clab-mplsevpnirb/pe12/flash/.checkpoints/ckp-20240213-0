@@ -1,0 +1,55 @@
+! The checkpoint file saved at Tue Feb 13 10:58:17 2024 by admin
+! device: pe12 (cEOSLab, EOS-4.30.5M-35156751.4305M (engineering build))
+!
+no aaa root
+!
+username admin privilege 15 role network-admin secret sha512 $6$yq5dZ3Vcul1lY43c$3kMdAsZeTZbjshbcypnDLT2kIvh4zX1mXVX9BRtWSk8BNiPU41pJp4u2XZ473JC.KnfPlB04nFGC3eLolYCXk0
+!
+transceiver qsfp default-mode 4x10G
+!
+service routing protocols model multi-agent
+!
+hostname pe12
+!
+spanning-tree mode mstp
+!
+system l1
+   unsupported speed action error
+   unsupported error-correction action error
+!
+vrf instance MGMT
+!
+management api http-commands
+   protocol https ssl profile eAPI
+   no shutdown
+   !
+   vrf MGMT
+      no shutdown
+!
+management security
+   ssl profile eAPI
+      cipher-list HIGH:!eNULL:!aNULL:!MD5:!ADH:!ANULL
+      certificate eAPI.crt key eAPI.key
+!
+interface Ethernet1
+!
+interface Ethernet2
+!
+interface Ethernet3
+!
+interface Ethernet4
+!
+interface Management0
+   description oob_management
+   vrf MGMT
+   ip address 172.100.100.5/24
+   ipv6 address 2001:172:100:100::6/80
+!
+no ip routing
+no ip routing vrf MGMT
+!
+ip route vrf MGMT 0.0.0.0/0 172.100.100.1
+!
+ipv6 route vrf MGMT ::/0 2001:172:100:100::1
+!
+end
