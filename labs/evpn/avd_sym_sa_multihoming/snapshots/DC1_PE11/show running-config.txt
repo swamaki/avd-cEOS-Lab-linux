@@ -1,9 +1,9 @@
 ! Command: show running-config
-! device: pe11 (cEOSLab, EOS-4.30.5M-35156751.4305M (engineering build))
+! device: pe11 (cEOSLab, EOS-4.30.1F-32315456.4301F (engineering build))
 !
 no aaa root
 !
-username admin privilege 15 role network-admin secret sha512 $6$dQVQGXRxdbjW/O8i$fEIRguXQHYiDG2OOsl3EWYn6QRM4kq.06TBgDxtmijwaYDZiuCdZapB/i71P6lg2FtAjEvr2nwDEHz8.rE7V.0
+username admin privilege 15 role network-admin secret sha512 $6$MX7a3bK33wVxrLZ9$ba863znVagnqDZivxjaUxpX5Xg6mnyFdr0j7S4Ht/ykZQ5j6kujm6YliBpoiigKcL3xkHdIW0BT.C6V1iFxA80
 !
 transceiver qsfp default-mode 4x10G
 !
@@ -43,7 +43,7 @@ interface Management0
    description oob_management
    vrf MGMT
    ip address 172.100.100.4/24
-   ipv6 address 2001:172:100:100::3/80
+   ipv6 address 2001:172:100:100::7/80
 !
 no ip routing
 no ip routing vrf MGMT

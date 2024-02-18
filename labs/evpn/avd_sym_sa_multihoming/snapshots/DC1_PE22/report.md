@@ -28,8 +28,8 @@ Management0     172.100.100.7/24     up         up              1500
 ## show lldp neighbors
 
 ```
-Last table change time   : 0:08:59 ago
-Number of table inserts  : 13
+Last table change time   : 0:06:04 ago
+Number of table inserts  : 11
 Number of table deletes  : 0
 Number of table drops    : 0
 Number of table age-outs : 0
@@ -38,27 +38,25 @@ Port          Neighbor Device ID       Neighbor Port ID    TTL
 ---------- ------------------------ ---------------------- ---
 Et1           spine1                   Ethernet4           120
 Et2           spine2                   Ethernet4           120
-Et3           client3                  aac1.aba4.d5ff      120
-Et4           client4                  aac1.abdc.dce7      120
+Ma0           client4                  0242.ac64.640b      120
+Ma0           client2                  0242.ac64.6409      120
 Ma0           client1                  0242.ac64.6408      120
 Ma0           client3                  0242.ac64.640a      120
-Ma0           client2                  0242.ac64.6409      120
-Ma0           client4                  0242.ac64.640b      120
-Ma0           spine2                   Management0         120
-Ma0           pe12                     Management0         120
-Ma0           spine1                   Management0         120
 Ma0           pe11                     Management0         120
+Ma0           spine2                   Management0         120
 Ma0           pe21                     Management0         120
+Ma0           spine1                   Management0         120
+Ma0           pe12                     Management0         120
 ```
 ## show running-config
 
 ```
 ! Command: show running-config
-! device: pe22 (cEOSLab, EOS-4.30.5M-35156751.4305M (engineering build))
+! device: pe22 (cEOSLab, EOS-4.30.1F-32315456.4301F (engineering build))
 !
 no aaa root
 !
-username admin privilege 15 role network-admin secret sha512 $6$/6QWp8HpyfiPOq3E$4BHPrS4.jaYYLW32jVMh2rh5rAETzjS/XWSzQBDYDvePs6SXvbxe.K9fiVzKTKJ5mca9AuPYuIdDwZEt.ojYA.
+username admin privilege 15 role network-admin secret sha512 $6$CU51GIcGXtVNafrR$CtAui244mgAvRKWQ/Jrnqj2x5PJmfOEA1U4R.xM3YoTpl37hCQfKX2/QiyL46yo/2rgKMX/YH6amOuqHMhkL3.
 !
 transceiver qsfp default-mode 4x10G
 !
@@ -114,21 +112,21 @@ end
 ```
 Arista cEOSLab
 Hardware version: 
-Serial number: F0265D492E509918D612D455923BF2C2
-Hardware MAC address: 001c.7340.91e1
-System MAC address: 001c.7340.91e1
+Serial number: A650847184101ECC7A55D01B7EF44A5C
+Hardware MAC address: 001c.73b4.db7a
+System MAC address: 001c.73b4.db7a
 
-Software image version: 4.30.5M-35156751.4305M (engineering build)
+Software image version: 4.30.1F-32315456.4301F (engineering build)
 Architecture: i686
-Internal build version: 4.30.5M-35156751.4305M
-Internal build ID: 10f74693-bb17-4752-b2b8-a0cd835c8624
+Internal build version: 4.30.1F-32315456.4301F
+Internal build ID: a0825eb6-897f-404c-a17e-15c2ce3c387b
 Image format version: 1.0
 Image optimization: None
 
 cEOS tools version: (unknown)
 Kernel version: 6.2.0-39-generic
 
-Uptime: 10 minutes
+Uptime: 7 minutes
 Total memory: 63882152 kB
-Free memory: 31369804 kB
+Free memory: 31504008 kB
 ```

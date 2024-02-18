@@ -1,9 +1,9 @@
 ! Command: show running-config
-! device: spine2 (cEOSLab, EOS-4.30.5M-35156751.4305M (engineering build))
+! device: spine2 (cEOSLab, EOS-4.30.1F-32315456.4301F (engineering build))
 !
 no aaa root
 !
-username admin privilege 15 role network-admin secret sha512 $6$PytprGmuT1ejZjJs$MtD3ZaDV3zd63dPSYEr7z8tNKzazRYP3E3EtqTk/DxTgt/sMGLaTXUThEJaqvdy2rCP9qlPND7Kqnp.UjH6X5/
+username admin privilege 15 role network-admin secret sha512 $6$/yUIr8YUyUmLO5dr$HOyfom.a5XLgp0J3FHSEijvHOHxeyEPZH9oAeFAEUM2iG8fGhVFD/2XzK2AIoDp2h.YxyZlsQOAGdLGqxX6Ql/
 !
 transceiver qsfp default-mode 4x10G
 !
@@ -43,7 +43,7 @@ interface Management0
    description oob_management
    vrf MGMT
    ip address 172.100.100.3/24
-   ipv6 address 2001:172:100:100::7/80
+   ipv6 address 2001:172:100:100::2/80
 !
 no ip routing
 no ip routing vrf MGMT

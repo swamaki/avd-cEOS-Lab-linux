@@ -1,5 +1,5 @@
-! Startup-config last modified at Wed Feb 14 16:45:28 2024 by admin
-! device: DC1-PE22 (cEOSLab, EOS-4.30.5M-35156751.4305M (engineering build))
+! Startup-config last modified at Fri Feb 16 08:42:23 2024 by admin
+! device: DC1-PE22 (cEOSLab, EOS-4.30.1F-32315456.4301F (engineering build))
 !
 no aaa root
 !

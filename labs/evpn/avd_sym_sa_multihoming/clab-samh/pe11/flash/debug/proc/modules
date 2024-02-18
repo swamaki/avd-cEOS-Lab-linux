@@ -1,3 +1,4 @@
+team_mode_roundrobin 16384 0 - Live 0xffffffffc37ca000
 ipvlan 45056 0 - Live 0xffffffffc37be000
 cpuid 16384 0 - Live 0xffffffffc37b9000
 team_mode_activebackup 16384 4 - Live 0xffffffffc3791000
@@ -29,7 +30,7 @@ iptable_mangle 16384 0 - Live 0xffffffffc370f000
 iptable_raw 16384 0 - Live 0xffffffffc370a000
 bpfilter 16384 0 - Live 0xffffffffc3705000
 team_mode_loadbalance 24576 0 - Live 0xffffffffc36fe000
-team 61440 2 team_mode_activebackup,team_mode_loadbalance, Live 0xffffffffc36ee000
+team 61440 3 team_mode_roundrobin,team_mode_activebackup,team_mode_loadbalance, Live 0xffffffffc36ee000
 8021q 45056 0 - Live 0xffffffffc36e2000
 garp 20480 1 8021q, Live 0xffffffffc36dc000
 mrp 20480 1 8021q, Live 0xffffffffc36d6000
@@ -173,7 +174,7 @@ hid_logitech_dj 32768 0 - Live 0xffffffffc0304000
 hid_generic 16384 0 - Live 0xffffffffc02f1000
 usbhid 73728 2 hid_logitech_hidpp,hid_logitech_dj, Live 0xffffffffc0484000
 uas 28672 0 - Live 0xffffffffc02fc000
-usb_storage 86016 1 uas, Live 0xffffffffc03f8000
+usb_storage 86016 2 uas, Live 0xffffffffc03f8000
 hid 176128 4 hid_logitech_hidpp,hid_logitech_dj,hid_generic,usbhid, Live 0xffffffffc0458000
 crc32_pclmul 16384 0 - Live 0xffffffffc0453000
 psmouse 212992 0 - Live 0xffffffffc040e000

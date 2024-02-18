@@ -1,9 +1,9 @@
 ! Command: show running-config
-! device: spine1 (cEOSLab, EOS-4.30.5M-35156751.4305M (engineering build))
+! device: spine1 (cEOSLab, EOS-4.30.1F-32315456.4301F (engineering build))
 !
 no aaa root
 !
-username admin privilege 15 role network-admin secret sha512 $6$X57vB5LkMd9XHpjf$9Ia66J0EmbyKlgHUlq1X8vw5fmE1LTTcUlNcpIdWN0cxKZs3ow53LXn0t7lkQKBZRdjl/IuS3AuRXBeGA2HcA.
+username admin privilege 15 role network-admin secret sha512 $6$nBZ99MevCGnNj0vZ$.1y4YojPfL8VmUSWFBxBDq1gOIl/OXzcLliaAf70WZ4zklSwzX2jmsg6pF.JqPYoDwGp8jSoFSZmHKHxlmvTX.
 !
 transceiver qsfp default-mode 4x10G
 !

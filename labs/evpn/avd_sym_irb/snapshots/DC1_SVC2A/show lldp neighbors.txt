@@ -1,4 +1,4 @@
-Last table change time   : 0:09:36 ago
+Last table change time   : 0:07:21 ago
 Number of table inserts  : 17
 Number of table deletes  : 0
 Number of table drops    : 0
@@ -12,14 +12,14 @@ Et3           svc2b                    Ethernet3           120
 Et4           svc2b                    Ethernet4           120
 Et5           l2leaf2a                 Ethernet1           120
 Et6           l2leaf2b                 Ethernet1           120
+Ma0           l2leaf2a                 Management0         120
 Ma0           client1                  0242.ac64.640a      120
 Ma0           client3                  0242.ac64.640c      120
-Ma0           client2                  0242.ac64.640b      120
 Ma0           client4                  0242.ac64.640d      120
-Ma0           spine2                   Management0         120
-Ma0           l2leaf2a                 Management0         120
-Ma0           svc2b                    Management0         120
+Ma0           client2                  0242.ac64.640b      120
 Ma0           spine1                   Management0         120
-Ma0           leaf1b                   Management0         120
 Ma0           l2leaf2b                 Management0         120
+Ma0           leaf1b                   Management0         120
+Ma0           spine2                   Management0         120
+Ma0           svc2b                    Management0         120
 Ma0           leaf1a                   Management0         120

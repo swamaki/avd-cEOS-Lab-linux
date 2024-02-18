@@ -28,7 +28,7 @@ Management0     172.100.100.5/24     up         up              1500
 ## show lldp neighbors
 
 ```
-Last table change time   : 0:08:55 ago
+Last table change time   : 0:05:58 ago
 Number of table inserts  : 11
 Number of table deletes  : 0
 Number of table drops    : 0
@@ -38,25 +38,25 @@ Port          Neighbor Device ID       Neighbor Port ID    TTL
 ---------- ------------------------ ---------------------- ---
 Et1           spine1                   Ethernet2           120
 Et2           spine2                   Ethernet2           120
+Ma0           client4                  0242.ac64.640b      120
+Ma0           client2                  0242.ac64.6409      120
 Ma0           client1                  0242.ac64.6408      120
 Ma0           client3                  0242.ac64.640a      120
-Ma0           client2                  0242.ac64.6409      120
-Ma0           client4                  0242.ac64.640b      120
+Ma0           pe11                     Management0         120
 Ma0           spine2                   Management0         120
+Ma0           pe21                     Management0         120
 Ma0           pe22                     Management0         120
 Ma0           spine1                   Management0         120
-Ma0           pe11                     Management0         120
-Ma0           pe21                     Management0         120
 ```
 ## show running-config
 
 ```
 ! Command: show running-config
-! device: pe12 (cEOSLab, EOS-4.30.5M-35156751.4305M (engineering build))
+! device: pe12 (cEOSLab, EOS-4.30.1F-32315456.4301F (engineering build))
 !
 no aaa root
 !
-username admin privilege 15 role network-admin secret sha512 $6$pRyFM3Co76Fz1NHX$b8G6ZAiAESC1EvMRUTN1QKz0sG75thh775SmgwnYhADBJU1rf8Jo52v7Cs0.cXLd0XY4XONrnKWZRI3xBT/B60
+username admin privilege 15 role network-admin secret sha512 $6$Ahmr5if4rJdeaDo2$K0.Pi88X2xIFU9VVVrw.x8uyMShaT1i50ovchpTRIU1CxzI1YxM4e8h2J/81dBFOFyuo0HZKA5.DbbKrOkwhC1
 !
 transceiver qsfp default-mode 4x10G
 !
@@ -96,7 +96,7 @@ interface Management0
    description oob_management
    vrf MGMT
    ip address 172.100.100.5/24
-   ipv6 address 2001:172:100:100::2/80
+   ipv6 address 2001:172:100:100::b/80
 !
 no ip routing
 no ip routing vrf MGMT
@@ -112,21 +112,21 @@ end
 ```
 Arista cEOSLab
 Hardware version: 
-Serial number: BC8E5A6BECB8675D69BAFEAFA7DC488C
-Hardware MAC address: 001c.73e5.a2f5
-System MAC address: 001c.73e5.a2f5
+Serial number: 60628EC92587CD1D976739888B1AB97D
+Hardware MAC address: 001c.7393.f181
+System MAC address: 001c.7393.f181
 
-Software image version: 4.30.5M-35156751.4305M (engineering build)
+Software image version: 4.30.1F-32315456.4301F (engineering build)
 Architecture: i686
-Internal build version: 4.30.5M-35156751.4305M
-Internal build ID: 10f74693-bb17-4752-b2b8-a0cd835c8624
+Internal build version: 4.30.1F-32315456.4301F
+Internal build ID: a0825eb6-897f-404c-a17e-15c2ce3c387b
 Image format version: 1.0
 Image optimization: None
 
 cEOS tools version: (unknown)
 Kernel version: 6.2.0-39-generic
 
-Uptime: 10 minutes
+Uptime: 7 minutes
 Total memory: 63882152 kB
-Free memory: 31255860 kB
+Free memory: 31384236 kB
 ```

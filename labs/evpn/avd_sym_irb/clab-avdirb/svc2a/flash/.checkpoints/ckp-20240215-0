@@ -1,0 +1,59 @@
+! The checkpoint file saved at Thu Feb 15 19:00:58 2024 by admin
+! device: svc2a (cEOSLab, EOS-4.30.5M-35156751.4305M (engineering build))
+!
+no aaa root
+!
+username admin privilege 15 role network-admin secret sha512 $6$pskabn0lEuUEI7o6$3gCrSUyoGpIarnl5lBTxUWDttwADiGHYb7e/DSzluIK0PQxqYev6MC0IYWTp1QgGNjki9MI3z2BRPORpb8/d6/
+!
+transceiver qsfp default-mode 4x10G
+!
+service routing protocols model multi-agent
+!
+hostname svc2a
+!
+spanning-tree mode mstp
+!
+system l1
+   unsupported speed action error
+   unsupported error-correction action error
+!
+vrf instance MGMT
+!
+management api http-commands
+   protocol https ssl profile eAPI
+   no shutdown
+   !
+   vrf MGMT
+      no shutdown
+!
+management security
+   ssl profile eAPI
+      cipher-list HIGH:!eNULL:!aNULL:!MD5:!ADH:!ANULL
+      certificate eAPI.crt key eAPI.key
+!
+interface Ethernet1
+!
+interface Ethernet2
+!
+interface Ethernet3
+!
+interface Ethernet4
+!
+interface Ethernet5
+!
+interface Ethernet6
+!
+interface Management0
+   description oob_management
+   vrf MGMT
+   ip address 172.100.100.6/24
+   ipv6 address 2001:172:100:100::6/80
+!
+no ip routing
+no ip routing vrf MGMT
+!
+ip route vrf MGMT 0.0.0.0/0 172.100.100.1
+!
+ipv6 route vrf MGMT ::/0 2001:172:100:100::1
+!
+end

@@ -30,11 +30,11 @@ Management0     172.100.100.8/24     up         up              1500
 ## show lldp neighbors
 
 ```
-Last table change time   : 0:09:31 ago
-Number of table inserts  : 17
-Number of table deletes  : 0
+Last table change time   : 0:05:53 ago
+Number of table inserts  : 18
+Number of table deletes  : 1
 Number of table drops    : 0
-Number of table age-outs : 0
+Number of table age-outs : 1
 
 Port          Neighbor Device ID       Neighbor Port ID    TTL
 ---------- ------------------------ ---------------------- ---
@@ -42,18 +42,18 @@ Et1           svc2a                    Ethernet5           120
 Et2           svc2b                    Ethernet5           120
 Et3           l2leaf2b                 Ethernet3           120
 Et4           l2leaf2b                 Ethernet4           120
-Et5           client3                  aac1.ab3f.e576      120
-Et6           client4                  aac1.ab97.f597      120
-Ma0           client2                  0242.ac64.640b      120
+Et5           client3                  aac1.ab8e.cbbe      120
+Et6           client4                  aac1.abdc.57cf      120
 Ma0           client4                  0242.ac64.640d      120
 Ma0           client1                  0242.ac64.640a      120
 Ma0           client3                  0242.ac64.640c      120
-Ma0           spine2                   Management0         120
-Ma0           svc2a                    Management0         120
-Ma0           svc2b                    Management0         120
+Ma0           client2                  0242.ac64.640b      120
 Ma0           spine1                   Management0         120
-Ma0           leaf1b                   Management0         120
 Ma0           l2leaf2b                 Management0         120
+Ma0           leaf1b                   Management0         120
+Ma0           spine2                   Management0         120
+Ma0           svc2b                    Management0         120
+Ma0           svc2a                    Management0         120
 Ma0           leaf1a                   Management0         120
 ```
 ## show running-config
@@ -64,7 +64,7 @@ Ma0           leaf1a                   Management0         120
 !
 no aaa root
 !
-username admin privilege 15 role network-admin secret sha512 $6$hteBPm8YsyggSJ.X$iSrVgpuzppauNXWI.3LFgmhBbhyrJL4MKUYHt3whNk.Sb944p5qCeea79PX07vfyCb3GJI3HPlbF7YFY//tKL1
+username admin privilege 15 role network-admin secret sha512 $6$s.SN.ir/h3DtZbCg$TTdlyzZgCmYmxtBP1mBN/IWG7griF2zcDlRUi1eIQcrxhdLYART7ke9h//TCc8CXAP/6H.CKftbcrFw/EZ9nM.
 !
 transceiver qsfp default-mode 4x10G
 !
@@ -108,7 +108,7 @@ interface Management0
    description oob_management
    vrf MGMT
    ip address 172.100.100.8/24
-   ipv6 address 2001:172:100:100::3/80
+   ipv6 address 2001:172:100:100::b/80
 !
 no ip routing
 no ip routing vrf MGMT
@@ -138,7 +138,7 @@ Image optimization: None
 cEOS tools version: (unknown)
 Kernel version: 6.2.0-39-generic
 
-Uptime: 12 minutes
+Uptime: 10 minutes
 Total memory: 63882152 kB
-Free memory: 25304992 kB
+Free memory: 25230208 kB
 ```

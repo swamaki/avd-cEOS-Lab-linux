@@ -1,6 +1,7 @@
+team_mode_roundrobin 16384 0 - Live 0xffffffffc37ca000
 ipvlan 45056 0 - Live 0xffffffffc37be000
 cpuid 16384 0 - Live 0xffffffffc37b9000
-team_mode_activebackup 16384 1 - Live 0xffffffffc3791000
+team_mode_activebackup 16384 4 - Live 0xffffffffc3791000
 vxlan 118784 0 - Live 0xffffffffc379b000
 ip6_udp_tunnel 16384 1 vxlan, Live 0xffffffffc3796000
 udp_tunnel 28672 1 vxlan, Live 0xffffffffc3789000
@@ -29,7 +30,7 @@ iptable_mangle 16384 0 - Live 0xffffffffc370f000
 iptable_raw 16384 0 - Live 0xffffffffc370a000
 bpfilter 16384 0 - Live 0xffffffffc3705000
 team_mode_loadbalance 24576 0 - Live 0xffffffffc36fe000
-team 61440 2 team_mode_activebackup,team_mode_loadbalance, Live 0xffffffffc36ee000
+team 61440 3 team_mode_roundrobin,team_mode_activebackup,team_mode_loadbalance, Live 0xffffffffc36ee000
 8021q 45056 0 - Live 0xffffffffc36e2000
 garp 20480 1 8021q, Live 0xffffffffc36dc000
 mrp 20480 1 8021q, Live 0xffffffffc36d6000
