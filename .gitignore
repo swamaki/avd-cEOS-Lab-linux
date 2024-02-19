@@ -1,6 +1,6 @@
-labs/evpn/avd_asym_irb/clab-avdasymirb
-labs/evpn/avd_asym_multihoming/clab-aamh
-labs/evpn/avd_central_any_gw/clab-avdcentralgw
-labs/evpn/avd_sym_irb/clab-avdirb
-labs/evpn/avd_sym_irb_ibgp/clab-avdirb
-labs/evpn/avd_sym_sa_multihoming/clab-samh
+labs/evpn/avd_asym_irb/clab-avdasymirb/
+labs/evpn/avd_asym_multihoming/clab-aamh/
+labs/evpn/avd_central_any_gw/clab-avdcentralgw/
+labs/evpn/avd_sym_irb/clab-avdirb/
+labs/evpn/avd_sym_irb_ibgp/clab-avdirb/
+labs/evpn/avd_sym_sa_multihoming/clab-samh/
