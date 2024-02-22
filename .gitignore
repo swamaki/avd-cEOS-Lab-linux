@@ -52,10 +52,8 @@ labs/evpn/avd_sym_sa_multihoming/snapshots/
 labs/mpls_ldp_evpn/mpls_evpn_irb/snapshots/
 labs/mpls_ldp_evpn/mpls_ldp_l2evpn/snapshots/
 
+._.DS_Store
+.DS_Store
 
-# .DS_Store
-# .env
-# __pycache__/
-# device_info/1_output_notes.txt
-# device_info/1_show_version_output.txt
-# device_info/outputs/
+labs/._.DS_Store
+labs/.DS_Store
