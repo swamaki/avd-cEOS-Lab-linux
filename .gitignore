@@ -1,6 +1,19 @@
+labs/avd_labs/avd_campus_fabric/clab-campusfabric/
+
 labs/evpn/avd_asym_irb/clab-avdasymirb/
 labs/evpn/avd_asym_multihoming/clab-aamh/
 labs/evpn/avd_central_any_gw/clab-avdcentralgw/
 labs/evpn/avd_sym_irb/clab-avdirb/
 labs/evpn/avd_sym_irb_ibgp/clab-avdirb/
 labs/evpn/avd_sym_sa_multihoming/clab-samh/
+
+labs/mpls_ldp_evpn/mpls_evpn_irb/clab-mplsevpnirb/
+labs/mpls_ldp_evpn/mpls_ldp_l2evpn/clab-mplsl2evpn/
+
+
+# .DS_Store
+# .env
+# __pycache__/
+# device_info/1_output_notes.txt
+# device_info/1_show_version_output.txt
+# device_info/outputs/

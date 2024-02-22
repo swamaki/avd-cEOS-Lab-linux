@@ -1,0 +1,62 @@
+! Command: show running-config
+! device: leaf3a (cEOSLab, EOS-4.30.5M-35156751.4305M (engineering build))
+!
+no aaa root
+!
+username admin privilege 15 role network-admin nopassword
+username ansible privilege 15 role network-admin secret sha512 $6$CUqy/xSwQ4eFnrYK$qMAWYjiBDjorFXuau8CjmhHQqBnmMP2wvnDic9s0be9OMIL8IMnDcqWocTYhnxuQrIMZOcA2UBWX6uPuSQX5X/
+!
+transceiver qsfp default-mode 4x10G
+!
+service routing protocols model multi-agent
+!
+hostname leaf3a
+!
+spanning-tree mode mstp
+!
+system l1
+   unsupported speed action error
+   unsupported error-correction action error
+!
+vrf instance MGMT
+!
+management api http-commands
+   protocol https ssl profile eAPI
+   no shutdown
+   !
+   vrf MGMT
+      no shutdown
+!
+management security
+   ssl profile eAPI
+      cipher-list HIGH:!eNULL:!aNULL:!MD5:!ADH:!ANULL
+      certificate eAPI.crt key eAPI.key
+!
+interface Ethernet1
+!
+interface Ethernet2
+!
+interface Ethernet3
+!
+interface Ethernet4
+!
+interface Ethernet5
+!
+interface Ethernet23
+!
+interface Ethernet24
+!
+interface Management0
+   description oob_management
+   vrf MGMT
+   ip address 172.16.2.104/24
+   ipv6 address 2001:172:16:2::b/80
+!
+no ip routing
+no ip routing vrf MGMT
+!
+ip route vrf MGMT 0.0.0.0/0 172.16.2.1
+!
+ipv6 route vrf MGMT ::/0 2001:172:16:2::1
+!
+end

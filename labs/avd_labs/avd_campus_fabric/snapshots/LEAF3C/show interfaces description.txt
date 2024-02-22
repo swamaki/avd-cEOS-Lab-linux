@@ -1,0 +1,4 @@
+Interface                      Status         Protocol           Description
+Et1                            up             up                 
+Et2                            up             up                 
+Ma0                            up             up

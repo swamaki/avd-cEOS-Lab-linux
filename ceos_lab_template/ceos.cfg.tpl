@@ -1,5 +1,6 @@
 hostname {{ .ShortName }}
-username admin privilege 15 secret admin
+username admin privilege 15 role network-admin nopassword
+username ansible privilege 15 role network-admin secret ansible
 !
 service routing protocols model multi-agent
 !
