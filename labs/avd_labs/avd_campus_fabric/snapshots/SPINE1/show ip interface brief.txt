@@ -1,4 +1,0 @@
-Address
-Interface       IP Address          Status      Protocol         MTU    Owner  
---------------- ------------------- ----------- ------------- --------- -------
-Management0     172.16.2.11/24      up          up              1500

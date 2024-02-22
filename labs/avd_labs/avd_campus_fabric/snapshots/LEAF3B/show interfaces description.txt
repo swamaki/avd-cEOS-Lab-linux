@@ -1,9 +1,0 @@
-Interface                      Status         Protocol           Description
-Et1                            up             up                 
-Et2                            up             up                 
-Et3                            up             up                 
-Et4                            up             up                 
-Et5                            up             up                 
-Et23                           up             up                 
-Et24                           up             up                 
-Ma0                            up             up

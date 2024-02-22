@@ -11,6 +11,48 @@ labs/mpls_ldp_evpn/mpls_evpn_irb/clab-mplsevpnirb/
 labs/mpls_ldp_evpn/mpls_ldp_l2evpn/clab-mplsl2evpn/
 
 
+labs/avd_labs/avd_campus_fabric/config_backup/
+labs/evpn/avd_asym_irb/config_backup/
+labs/evpn/avd_asym_multihoming/config_backup/
+labs/evpn/avd_central_any_gw/config_backup/
+labs/evpn/avd_sym_irb/config_backup/
+labs/evpn/avd_sym_irb_ibgp/config_backup/
+labs/evpn/avd_sym_sa_multihoming/config_backup/
+labs/mpls_ldp_evpn/mpls_evpn_irb/config_backup/
+labs/mpls_ldp_evpn/mpls_ldp_l2evpn/config_backup/
+
+
+labs/avd_labs/avd_campus_fabric/documentation/
+labs/evpn/avd_asym_irb/documentation/
+labs/evpn/avd_asym_multihoming/documentation/
+labs/evpn/avd_central_any_gw/documentation/
+labs/evpn/avd_sym_irb/documentation/
+labs/evpn/avd_sym_irb_ibgp/documentation/
+labs/evpn/avd_sym_sa_multihoming/documentation/
+labs/mpls_ldp_evpn/mpls_evpn_irb/documentation/
+labs/mpls_ldp_evpn/mpls_ldp_l2evpn/documentation/
+
+labs/avd_labs/avd_campus_fabric/reports/
+labs/evpn/avd_asym_irb/reports/
+labs/evpn/avd_asym_multihoming/reports/
+labs/evpn/avd_central_any_gw/reports/
+labs/evpn/avd_sym_irb/reports/
+labs/evpn/avd_sym_irb_ibgp/reports/
+labs/evpn/avd_sym_sa_multihoming/reports/
+labs/mpls_ldp_evpn/mpls_evpn_irb/reports/
+labs/mpls_ldp_evpn/mpls_ldp_l2evpn/reports/
+
+labs/avd_labs/avd_campus_fabric/snapshots/
+labs/evpn/avd_asym_irb/snapshots/
+labs/evpn/avd_asym_multihoming/snapshots/
+labs/evpn/avd_central_any_gw/snapshots/
+labs/evpn/avd_sym_irb/snapshots/
+labs/evpn/avd_sym_irb_ibgp/snapshots/
+labs/evpn/avd_sym_sa_multihoming/snapshots/
+labs/mpls_ldp_evpn/mpls_evpn_irb/snapshots/
+labs/mpls_ldp_evpn/mpls_ldp_l2evpn/snapshots/
+
+
 # .DS_Store
 # .env
 # __pycache__/
