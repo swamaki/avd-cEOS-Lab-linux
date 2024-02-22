@@ -1,0 +1,593 @@
+{
+  "name": "avdasymirb",
+  "type": "clab",
+  "clab": {
+    "config": {
+      "prefix": "clab",
+      "mgmt": {
+        "network": "ceos_clab",
+        "bridge": "br-130add7b65d8",
+        "ipv4-subnet": "172.16.2.0/24",
+        "ipv4-gw": "172.16.2.1",
+        "ipv6-subnet": "2001:172:100:100::/80",
+        "ipv6-gw": "2001:172:100:100::1",
+        "mtu": 1500,
+        "external-access": true
+      }
+    }
+  },
+  "nodes": {
+    "client1": {
+      "index": "0",
+      "shortname": "client1",
+      "longname": "clab-avdasymirb-client1",
+      "fqdn": "client1.avdasymirb.io",
+      "group": "",
+      "labdir": "/home/stephenamaki/Downloads/AVD/avd-cEOS-Lab-linux/labs/evpn/avd_testing/clab-avdasymirb/client1",
+      "kind": "linux",
+      "image": "alpine-host",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.16.2.241",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "2001:172:100:100::b",
+      "mgmt-ipv6-prefix-length": 80,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-130add7b65d8",
+        "clab-node-group": "",
+        "clab-node-kind": "linux",
+        "clab-node-lab-dir": "/home/stephenamaki/Downloads/AVD/avd-cEOS-Lab-linux/labs/evpn/avd_testing/clab-avdasymirb/client1",
+        "clab-node-name": "client1",
+        "clab-node-type": "",
+        "clab-topo-file": "/home/stephenamaki/Downloads/AVD/avd-cEOS-Lab-linux/labs/evpn/avd_testing/topology.yaml",
+        "containerlab": "avdasymirb"
+      },
+      "port-bindings": [
+      ]
+    },
+    "client2": {
+      "index": "1",
+      "shortname": "client2",
+      "longname": "clab-avdasymirb-client2",
+      "fqdn": "client2.avdasymirb.io",
+      "group": "",
+      "labdir": "/home/stephenamaki/Downloads/AVD/avd-cEOS-Lab-linux/labs/evpn/avd_testing/clab-avdasymirb/client2",
+      "kind": "linux",
+      "image": "alpine-host",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.16.2.242",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "2001:172:100:100::9",
+      "mgmt-ipv6-prefix-length": 80,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-130add7b65d8",
+        "clab-node-group": "",
+        "clab-node-kind": "linux",
+        "clab-node-lab-dir": "/home/stephenamaki/Downloads/AVD/avd-cEOS-Lab-linux/labs/evpn/avd_testing/clab-avdasymirb/client2",
+        "clab-node-name": "client2",
+        "clab-node-type": "",
+        "clab-topo-file": "/home/stephenamaki/Downloads/AVD/avd-cEOS-Lab-linux/labs/evpn/avd_testing/topology.yaml",
+        "containerlab": "avdasymirb"
+      },
+      "port-bindings": [
+      ]
+    },
+    "client3": {
+      "index": "2",
+      "shortname": "client3",
+      "longname": "clab-avdasymirb-client3",
+      "fqdn": "client3.avdasymirb.io",
+      "group": "",
+      "labdir": "/home/stephenamaki/Downloads/AVD/avd-cEOS-Lab-linux/labs/evpn/avd_testing/clab-avdasymirb/client3",
+      "kind": "linux",
+      "image": "alpine-host",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.16.2.243",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "2001:172:100:100::a",
+      "mgmt-ipv6-prefix-length": 80,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-130add7b65d8",
+        "clab-node-group": "",
+        "clab-node-kind": "linux",
+        "clab-node-lab-dir": "/home/stephenamaki/Downloads/AVD/avd-cEOS-Lab-linux/labs/evpn/avd_testing/clab-avdasymirb/client3",
+        "clab-node-name": "client3",
+        "clab-node-type": "",
+        "clab-topo-file": "/home/stephenamaki/Downloads/AVD/avd-cEOS-Lab-linux/labs/evpn/avd_testing/topology.yaml",
+        "containerlab": "avdasymirb"
+      },
+      "port-bindings": [
+      ]
+    },
+    "client4": {
+      "index": "3",
+      "shortname": "client4",
+      "longname": "clab-avdasymirb-client4",
+      "fqdn": "client4.avdasymirb.io",
+      "group": "",
+      "labdir": "/home/stephenamaki/Downloads/AVD/avd-cEOS-Lab-linux/labs/evpn/avd_testing/clab-avdasymirb/client4",
+      "kind": "linux",
+      "image": "alpine-host",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.16.2.244",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "2001:172:100:100::8",
+      "mgmt-ipv6-prefix-length": 80,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-130add7b65d8",
+        "clab-node-group": "",
+        "clab-node-kind": "linux",
+        "clab-node-lab-dir": "/home/stephenamaki/Downloads/AVD/avd-cEOS-Lab-linux/labs/evpn/avd_testing/clab-avdasymirb/client4",
+        "clab-node-name": "client4",
+        "clab-node-type": "",
+        "clab-topo-file": "/home/stephenamaki/Downloads/AVD/avd-cEOS-Lab-linux/labs/evpn/avd_testing/topology.yaml",
+        "containerlab": "avdasymirb"
+      },
+      "port-bindings": [
+      ]
+    },
+    "leaf1a": {
+      "index": "4",
+      "shortname": "leaf1a",
+      "longname": "clab-avdasymirb-leaf1a",
+      "fqdn": "leaf1a.avdasymirb.io",
+      "group": "",
+      "labdir": "/home/stephenamaki/Downloads/AVD/avd-cEOS-Lab-linux/labs/evpn/avd_testing/clab-avdasymirb/leaf1a",
+      "kind": "ceos",
+      "image": "ceosimage:4.30.5M",
+      "mgmt-net": "",
+      "mgmt-intf": "Management0",
+      "mgmt-ipv4-address": "172.16.2.101",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "2001:172:100:100::4",
+      "mgmt-ipv6-prefix-length": 80,
+      "mac-address": "00:1c:73:06:2d:3c",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-130add7b65d8",
+        "clab-node-group": "",
+        "clab-node-kind": "ceos",
+        "clab-node-lab-dir": "/home/stephenamaki/Downloads/AVD/avd-cEOS-Lab-linux/labs/evpn/avd_testing/clab-avdasymirb/leaf1a",
+        "clab-node-name": "leaf1a",
+        "clab-node-type": "",
+        "clab-topo-file": "/home/stephenamaki/Downloads/AVD/avd-cEOS-Lab-linux/labs/evpn/avd_testing/topology.yaml",
+        "containerlab": "avdasymirb"
+      },
+      "port-bindings": [
+      ]
+    },
+    "leaf1b": {
+      "index": "5",
+      "shortname": "leaf1b",
+      "longname": "clab-avdasymirb-leaf1b",
+      "fqdn": "leaf1b.avdasymirb.io",
+      "group": "",
+      "labdir": "/home/stephenamaki/Downloads/AVD/avd-cEOS-Lab-linux/labs/evpn/avd_testing/clab-avdasymirb/leaf1b",
+      "kind": "ceos",
+      "image": "ceosimage:4.30.5M",
+      "mgmt-net": "",
+      "mgmt-intf": "Management0",
+      "mgmt-ipv4-address": "172.16.2.102",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "2001:172:100:100::2",
+      "mgmt-ipv6-prefix-length": 80,
+      "mac-address": "00:1c:73:ab:93:f2",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-130add7b65d8",
+        "clab-node-group": "",
+        "clab-node-kind": "ceos",
+        "clab-node-lab-dir": "/home/stephenamaki/Downloads/AVD/avd-cEOS-Lab-linux/labs/evpn/avd_testing/clab-avdasymirb/leaf1b",
+        "clab-node-name": "leaf1b",
+        "clab-node-type": "",
+        "clab-topo-file": "/home/stephenamaki/Downloads/AVD/avd-cEOS-Lab-linux/labs/evpn/avd_testing/topology.yaml",
+        "containerlab": "avdasymirb"
+      },
+      "port-bindings": [
+      ]
+    },
+    "leaf2a": {
+      "index": "6",
+      "shortname": "leaf2a",
+      "longname": "clab-avdasymirb-leaf2a",
+      "fqdn": "leaf2a.avdasymirb.io",
+      "group": "",
+      "labdir": "/home/stephenamaki/Downloads/AVD/avd-cEOS-Lab-linux/labs/evpn/avd_testing/clab-avdasymirb/leaf2a",
+      "kind": "ceos",
+      "image": "ceosimage:4.30.5M",
+      "mgmt-net": "",
+      "mgmt-intf": "Management0",
+      "mgmt-ipv4-address": "172.16.2.103",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "2001:172:100:100::3",
+      "mgmt-ipv6-prefix-length": 80,
+      "mac-address": "00:1c:73:b4:e3:c6",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-130add7b65d8",
+        "clab-node-group": "",
+        "clab-node-kind": "ceos",
+        "clab-node-lab-dir": "/home/stephenamaki/Downloads/AVD/avd-cEOS-Lab-linux/labs/evpn/avd_testing/clab-avdasymirb/leaf2a",
+        "clab-node-name": "leaf2a",
+        "clab-node-type": "",
+        "clab-topo-file": "/home/stephenamaki/Downloads/AVD/avd-cEOS-Lab-linux/labs/evpn/avd_testing/topology.yaml",
+        "containerlab": "avdasymirb"
+      },
+      "port-bindings": [
+      ]
+    },
+    "leaf2b": {
+      "index": "7",
+      "shortname": "leaf2b",
+      "longname": "clab-avdasymirb-leaf2b",
+      "fqdn": "leaf2b.avdasymirb.io",
+      "group": "",
+      "labdir": "/home/stephenamaki/Downloads/AVD/avd-cEOS-Lab-linux/labs/evpn/avd_testing/clab-avdasymirb/leaf2b",
+      "kind": "ceos",
+      "image": "ceosimage:4.30.5M",
+      "mgmt-net": "",
+      "mgmt-intf": "Management0",
+      "mgmt-ipv4-address": "172.16.2.104",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "2001:172:100:100::6",
+      "mgmt-ipv6-prefix-length": 80,
+      "mac-address": "00:1c:73:2b:cc:f8",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-130add7b65d8",
+        "clab-node-group": "",
+        "clab-node-kind": "ceos",
+        "clab-node-lab-dir": "/home/stephenamaki/Downloads/AVD/avd-cEOS-Lab-linux/labs/evpn/avd_testing/clab-avdasymirb/leaf2b",
+        "clab-node-name": "leaf2b",
+        "clab-node-type": "",
+        "clab-topo-file": "/home/stephenamaki/Downloads/AVD/avd-cEOS-Lab-linux/labs/evpn/avd_testing/topology.yaml",
+        "containerlab": "avdasymirb"
+      },
+      "port-bindings": [
+      ]
+    },
+    "spine1": {
+      "index": "8",
+      "shortname": "spine1",
+      "longname": "clab-avdasymirb-spine1",
+      "fqdn": "spine1.avdasymirb.io",
+      "group": "",
+      "labdir": "/home/stephenamaki/Downloads/AVD/avd-cEOS-Lab-linux/labs/evpn/avd_testing/clab-avdasymirb/spine1",
+      "kind": "ceos",
+      "image": "ceosimage:4.30.5M",
+      "mgmt-net": "",
+      "mgmt-intf": "Management0",
+      "mgmt-ipv4-address": "172.16.2.11",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "2001:172:100:100::5",
+      "mgmt-ipv6-prefix-length": 80,
+      "mac-address": "00:1c:73:4d:2e:b1",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-130add7b65d8",
+        "clab-node-group": "",
+        "clab-node-kind": "ceos",
+        "clab-node-lab-dir": "/home/stephenamaki/Downloads/AVD/avd-cEOS-Lab-linux/labs/evpn/avd_testing/clab-avdasymirb/spine1",
+        "clab-node-name": "spine1",
+        "clab-node-type": "",
+        "clab-topo-file": "/home/stephenamaki/Downloads/AVD/avd-cEOS-Lab-linux/labs/evpn/avd_testing/topology.yaml",
+        "containerlab": "avdasymirb"
+      },
+      "port-bindings": [
+      ]
+    },
+    "spine2": {
+      "index": "9",
+      "shortname": "spine2",
+      "longname": "clab-avdasymirb-spine2",
+      "fqdn": "spine2.avdasymirb.io",
+      "group": "",
+      "labdir": "/home/stephenamaki/Downloads/AVD/avd-cEOS-Lab-linux/labs/evpn/avd_testing/clab-avdasymirb/spine2",
+      "kind": "ceos",
+      "image": "ceosimage:4.30.5M",
+      "mgmt-net": "",
+      "mgmt-intf": "Management0",
+      "mgmt-ipv4-address": "172.16.2.12",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "2001:172:100:100::7",
+      "mgmt-ipv6-prefix-length": 80,
+      "mac-address": "00:1c:73:21:d7:a9",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-130add7b65d8",
+        "clab-node-group": "",
+        "clab-node-kind": "ceos",
+        "clab-node-lab-dir": "/home/stephenamaki/Downloads/AVD/avd-cEOS-Lab-linux/labs/evpn/avd_testing/clab-avdasymirb/spine2",
+        "clab-node-name": "spine2",
+        "clab-node-type": "",
+        "clab-topo-file": "/home/stephenamaki/Downloads/AVD/avd-cEOS-Lab-linux/labs/evpn/avd_testing/topology.yaml",
+        "containerlab": "avdasymirb"
+      },
+      "port-bindings": [
+      ]
+    }
+  },
+  "links": [
+    {
+      "a": {
+        "node": "leaf1a",
+        "interface": "eth1",
+        "mac": "aa:c1:ab:89:b4:ba",
+        "peer": "z"
+      },
+      "z": {
+        "node": "spine1",
+        "interface": "eth1",
+        "mac": "aa:c1:ab:1a:d9:19",
+        "peer": "a"
+      }
+    },
+    {
+      "a": {
+        "node": "leaf1b",
+        "interface": "eth1",
+        "mac": "aa:c1:ab:37:83:5c",
+        "peer": "z"
+      },
+      "z": {
+        "node": "spine1",
+        "interface": "eth2",
+        "mac": "aa:c1:ab:96:26:fe",
+        "peer": "a"
+      }
+    },
+    {
+      "a": {
+        "node": "leaf2a",
+        "interface": "eth1",
+        "mac": "aa:c1:ab:7b:1b:68",
+        "peer": "z"
+      },
+      "z": {
+        "node": "spine1",
+        "interface": "eth3",
+        "mac": "aa:c1:ab:10:c8:f0",
+        "peer": "a"
+      }
+    },
+    {
+      "a": {
+        "node": "leaf2b",
+        "interface": "eth1",
+        "mac": "aa:c1:ab:93:5b:ca",
+        "peer": "z"
+      },
+      "z": {
+        "node": "spine1",
+        "interface": "eth4",
+        "mac": "aa:c1:ab:62:70:b5",
+        "peer": "a"
+      }
+    },
+    {
+      "a": {
+        "node": "leaf1a",
+        "interface": "eth2",
+        "mac": "aa:c1:ab:be:1a:8e",
+        "peer": "z"
+      },
+      "z": {
+        "node": "spine2",
+        "interface": "eth1",
+        "mac": "aa:c1:ab:2f:a0:a7",
+        "peer": "a"
+      }
+    },
+    {
+      "a": {
+        "node": "leaf1b",
+        "interface": "eth2",
+        "mac": "aa:c1:ab:74:5f:13",
+        "peer": "z"
+      },
+      "z": {
+        "node": "spine2",
+        "interface": "eth2",
+        "mac": "aa:c1:ab:fa:f7:12",
+        "peer": "a"
+      }
+    },
+    {
+      "a": {
+        "node": "leaf2a",
+        "interface": "eth2",
+        "mac": "aa:c1:ab:a1:5d:6d",
+        "peer": "z"
+      },
+      "z": {
+        "node": "spine2",
+        "interface": "eth3",
+        "mac": "aa:c1:ab:ca:b0:ca",
+        "peer": "a"
+      }
+    },
+    {
+      "a": {
+        "node": "leaf2b",
+        "interface": "eth2",
+        "mac": "aa:c1:ab:9e:4a:d4",
+        "peer": "z"
+      },
+      "z": {
+        "node": "spine2",
+        "interface": "eth4",
+        "mac": "aa:c1:ab:ed:88:ac",
+        "peer": "a"
+      }
+    },
+    {
+      "a": {
+        "node": "leaf1a",
+        "interface": "eth3",
+        "mac": "aa:c1:ab:60:bf:56",
+        "peer": "z"
+      },
+      "z": {
+        "node": "leaf1b",
+        "interface": "eth3",
+        "mac": "aa:c1:ab:12:a1:19",
+        "peer": "a"
+      }
+    },
+    {
+      "a": {
+        "node": "leaf1a",
+        "interface": "eth4",
+        "mac": "aa:c1:ab:ed:ad:77",
+        "peer": "z"
+      },
+      "z": {
+        "node": "leaf1b",
+        "interface": "eth4",
+        "mac": "aa:c1:ab:d5:71:8b",
+        "peer": "a"
+      }
+    },
+    {
+      "a": {
+        "node": "leaf2a",
+        "interface": "eth3",
+        "mac": "aa:c1:ab:f4:05:a8",
+        "peer": "z"
+      },
+      "z": {
+        "node": "leaf2b",
+        "interface": "eth3",
+        "mac": "aa:c1:ab:21:59:e4",
+        "peer": "a"
+      }
+    },
+    {
+      "a": {
+        "node": "leaf2a",
+        "interface": "eth4",
+        "mac": "aa:c1:ab:cc:ff:62",
+        "peer": "z"
+      },
+      "z": {
+        "node": "leaf2b",
+        "interface": "eth4",
+        "mac": "aa:c1:ab:53:fd:37",
+        "peer": "a"
+      }
+    },
+    {
+      "a": {
+        "node": "leaf1a",
+        "interface": "eth5",
+        "mac": "aa:c1:ab:21:7b:65",
+        "peer": "z"
+      },
+      "z": {
+        "node": "client1",
+        "interface": "eth1",
+        "mac": "aa:c1:ab:19:95:e8",
+        "peer": "a"
+      }
+    },
+    {
+      "a": {
+        "node": "leaf1b",
+        "interface": "eth5",
+        "mac": "aa:c1:ab:63:4b:6d",
+        "peer": "z"
+      },
+      "z": {
+        "node": "client1",
+        "interface": "eth2",
+        "mac": "aa:c1:ab:53:b1:76",
+        "peer": "a"
+      }
+    },
+    {
+      "a": {
+        "node": "leaf1a",
+        "interface": "eth6",
+        "mac": "aa:c1:ab:b9:c5:ac",
+        "peer": "z"
+      },
+      "z": {
+        "node": "client2",
+        "interface": "eth1",
+        "mac": "aa:c1:ab:2d:7b:ee",
+        "peer": "a"
+      }
+    },
+    {
+      "a": {
+        "node": "leaf1b",
+        "interface": "eth6",
+        "mac": "aa:c1:ab:08:fd:42",
+        "peer": "z"
+      },
+      "z": {
+        "node": "client2",
+        "interface": "eth2",
+        "mac": "aa:c1:ab:98:70:e6",
+        "peer": "a"
+      }
+    },
+    {
+      "a": {
+        "node": "leaf2a",
+        "interface": "eth5",
+        "mac": "aa:c1:ab:6f:6e:df",
+        "peer": "z"
+      },
+      "z": {
+        "node": "client3",
+        "interface": "eth1",
+        "mac": "aa:c1:ab:7a:5c:76",
+        "peer": "a"
+      }
+    },
+    {
+      "a": {
+        "node": "leaf2b",
+        "interface": "eth5",
+        "mac": "aa:c1:ab:ae:7b:a0",
+        "peer": "z"
+      },
+      "z": {
+        "node": "client3",
+        "interface": "eth2",
+        "mac": "aa:c1:ab:f1:30:39",
+        "peer": "a"
+      }
+    },
+    {
+      "a": {
+        "node": "leaf2a",
+        "interface": "eth6",
+        "mac": "aa:c1:ab:82:76:4c",
+        "peer": "z"
+      },
+      "z": {
+        "node": "client4",
+        "interface": "eth1",
+        "mac": "aa:c1:ab:65:01:9f",
+        "peer": "a"
+      }
+    },
+    {
+      "a": {
+        "node": "leaf2b",
+        "interface": "eth6",
+        "mac": "aa:c1:ab:e8:8c:bf",
+        "peer": "z"
+      },
+      "z": {
+        "node": "client4",
+        "interface": "eth2",
+        "mac": "aa:c1:ab:e4:12:1b",
+        "peer": "a"
+      }
+    }
+  ]
+}

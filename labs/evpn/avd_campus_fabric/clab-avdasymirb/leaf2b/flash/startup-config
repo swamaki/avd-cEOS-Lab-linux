@@ -1,0 +1,60 @@
+! Startup-config last modified at Wed Feb 21 22:37:35 2024 by root
+! device: leaf2b (cEOSLab, EOS-4.30.5M-35156751.4305M (engineering build))
+!
+no aaa root
+!
+username admin privilege 15 role network-admin secret sha512 $6$WXrSydCbxZQCT7WJ$0gC//5kDR77QAxvujLdS0OfWH3osLgxCzM3cpmZKNH7oGl93gMO8QrDJ71a/ye4BE4CBU2qY5MQ6aZKdLdOtE/
+username ansible privilege 15 secret sha512 $6$ZaP9opPjTHk3SxFe$fEYWTUcVqskojs9Iz59nFeRKK6cj.9thb3IIzS/VWm7g3XNkaDKmL8GBKNmAKdoOOJh.CnCFBNCg7qR6n4.xD1
+!
+transceiver qsfp default-mode 4x10G
+!
+service routing protocols model multi-agent
+!
+hostname leaf2b
+!
+spanning-tree mode mstp
+!
+system l1
+   unsupported speed action error
+   unsupported error-correction action error
+!
+vrf instance MGMT
+!
+management api http-commands
+   protocol https ssl profile eAPI
+   no shutdown
+   !
+   vrf MGMT
+      no shutdown
+!
+management security
+   ssl profile eAPI
+      cipher-list HIGH:!eNULL:!aNULL:!MD5:!ADH:!ANULL
+      certificate eAPI.crt key eAPI.key
+!
+interface Ethernet1
+!
+interface Ethernet2
+!
+interface Ethernet3
+!
+interface Ethernet4
+!
+interface Ethernet5
+!
+interface Ethernet6
+!
+interface Management0
+   description oob_management
+   vrf MGMT
+   ip address 172.16.2.104/24
+   ipv6 address 2001:172:100:100::6/80
+!
+no ip routing
+no ip routing vrf MGMT
+!
+ip route vrf MGMT 0.0.0.0/0 172.16.2.1
+!
+ipv6 route vrf MGMT ::/0 2001:172:100:100::1
+!
+end

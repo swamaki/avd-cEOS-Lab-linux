@@ -1,0 +1,92 @@
+name: avdasymirb
+
+topology:
+  kinds:
+    ceos:
+      startup-config: ../../../ceos_lab_template/ceos.cfg.tpl
+      image: ceosimage:4.30.5M
+      exec:
+        - sleep 10
+        - FastCli -p 15 -c 'security pki key generate rsa 4096 eAPI.key'
+        - FastCli -p 15 -c 'security pki certificate generate self-signed eAPI.crt key eAPI.key generate rsa 4096 validity 30000 parameters common-name eAPI'
+    linux:
+      image: alpine-host
+  nodes:
+    spine1:
+      kind: ceos
+      mgmt-ipv4: 172.16.2.11
+    spine2:
+      kind: ceos
+      mgmt-ipv4: 172.16.2.12
+    leaf1a:
+      kind: ceos
+      mgmt-ipv4: 172.16.2.101
+    leaf1b:
+      kind: ceos
+      mgmt-ipv4: 172.16.2.102
+    leaf2a:
+      kind: ceos
+      mgmt-ipv4: 172.16.2.103
+    leaf3a:
+      kind: ceos
+      mgmt-ipv4: 172.16.2.104
+    leaf3b:
+      kind: ceos
+      mgmt-ipv4: 172.16.2.105
+    leaf3c:
+      kind: ceos
+      mgmt-ipv4: 172.16.2.106
+    leaf3d:
+      kind: ceos
+      mgmt-ipv4: 172.16.2.107
+    leaf3e:
+      kind: ceos
+      mgmt-ipv4: 172.16.2.108
+    # client1:
+    #   kind: linux
+    #   mgmt-ipv4: 172.16.2.241
+    #   env:
+    #     TMODE: lacp
+    # client2:
+    #   kind: linux
+    #   mgmt-ipv4: 172.16.2.242
+    #   env:
+    #     TMODE: lacp
+    # client3:
+    #   kind: linux
+    #   mgmt-ipv4: 172.16.2.243
+    #   env:
+    #     TMODE: lacp
+    # client4:
+    #   kind: linux
+    #   mgmt-ipv4: 172.16.2.244
+    #   env:
+    #     TMODE: lacp
+  
+  links:
+    - endpoints: ["spine1:eth55/1", "spine2:eth55/1"]
+    - endpoints: ["spine1:eth56/1", "spine2:eth56/1"]
+    - endpoints: ["leaf1a:eth51", "spine1:eth1"]
+    - endpoints: ["leaf1b:eth51", "spine2:eth1"]
+    - endpoints: ["leaf1a:eth53", "leaf1b:eth53"]
+    - endpoints: ["leaf1a:eth54", "leaf1b:eth54"]
+    - endpoints: ["leaf2a:eth1/1", "spine1:eth49/1"]
+    - endpoints: ["leaf2a:eth1/3", "spine2:eth49/1"]
+    - endpoints: ["leaf3a:eth97/1", "spine1:eth50/1"]
+    - endpoints: ["leaf3a:eth97/2", "spine2:eth50/1"]
+    - endpoints: ["leaf3b:eth97/1", "spine1:eth51/1"]
+    - endpoints: ["leaf3b:eth97/2", "spine2:eth51/1"]
+    - endpoints: ["leaf3a:eth98/3", "leaf3b:eth98/3"]
+    - endpoints: ["leaf3a:eth98/4", "leaf3b:eth98/4"]
+    - endpoints: ["leaf3c:eth97/1", "leaf3a:eth97/3"]
+    - endpoints: ["leaf3c:eth97/2", "leaf3b:eth97/3"]
+    - endpoints: ["leaf3d:eth97/1", "leaf3a:eth97/4"]
+    - endpoints: ["leaf3d:eth97/2", "leaf3b:eth97/4"]
+    - endpoints: ["leaf3e:eth97/1", "leaf3a:eth98/1"]
+    - endpoints: ["leaf3e:eth97/2", "leaf3b:eth98/1"]
+
+
+mgmt:
+  network: ceos_clab                
+  ipv4-subnet: 172.16.2.0/24       
+  ipv6-subnet: 2001:172:16:2::/80
