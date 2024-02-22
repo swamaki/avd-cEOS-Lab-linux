@@ -1,0 +1,63 @@
+---
+local_users:
+  # Define a new user, which is called "ansible"
+  - name: ansible
+    privilege: 15
+    role: network-admin
+    # Password set to "ansible". Same string as the device generates when configuring a username.
+    sha512_password: "$6$7u4j1rkb3VELgcZE$EJt2Qff8kd/TapRoci0XaIZsL4tFzgq1YZBLD9c6f/knXzvcYY0NcMKndZeCv0T268knGKhOEwZAxqKjlMm920"
+  - name: admin
+    privilege: 15
+    role: network-admin
+    no_password: true
+  # - name: admin2
+  #   privilege: 15
+  #   role: network-admin
+  #   no_password: true
+
+# AAA Authorization
+aaa_authorization:
+  exec:
+    default: local
+name_servers:
+  - 1.1.1.1
+  - 8.8.8.8
+
+ntp:
+  servers:
+  - name: time.google.com
+    preferred: true
+    vrf: MGMT
+    iburst: true
+
+service_routing_protocols_model: multi-agent
+
+custom_structured_configuration_spanning_tree:
+  mode: mstp
+
+ip_routing: true
+
+# hardcoding management0 for cEOS lab compatibility (default: Management1)
+mgmt_interface: Management0
+mgmt_gateway: 172.16.2.1
+mgmt_interface_vrf: MGMT
+
+# Management eAPI | Required for this Lab
+custom_structured_configuration_management_api_http:
+  https_ssl_profile: eAPI
+
+# Management security required for SSL profile with strong ciphers
+custom_structured_configuration_management_security:
+  ssl_profiles:
+    - name: eAPI
+      certificate:
+        file: eAPI.crt
+        key: eAPI.key
+      cipher_list: 'HIGH:!eNULL:!aNULL:!MD5:!ADH:!ANULL'
+
+# Management GNMI | Optional
+#management_api_gnmi:
+#  enable_vrfs:
+#    MGMT:
+#  octa: true
+#  provider: eos-native

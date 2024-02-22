@@ -1,0 +1,306 @@
+hostname: DC1_PE21
+metadata:
+  platform: cEOS-LAB
+is_deployed: true
+router_bgp:
+  as: '65103'
+  router_id: 192.168.255.5
+  distance:
+    external_routes: 20
+    internal_routes: 200
+    local_routes: 200
+  bgp:
+    default:
+      ipv4_unicast: false
+  maximum_paths:
+    paths: 4
+    ecmp: 4
+  peer_groups:
+  - name: IPv4-UNDERLAY-PEERS
+    type: ipv4
+    password: AQQvKeimxJu+uGQ/yYvv9w==
+    maximum_routes: 12000
+    send_community: all
+  - name: EVPN-OVERLAY-PEERS
+    type: evpn
+    update_source: Loopback0
+    bfd: true
+    password: q+VNViP5i4rVjW1cxFv2wA==
+    send_community: all
+    maximum_routes: 0
+    ebgp_multihop: 3
+  address_family_ipv4:
+    peer_groups:
+    - name: IPv4-UNDERLAY-PEERS
+      activate: true
+    - name: EVPN-OVERLAY-PEERS
+      activate: false
+  redistribute_routes:
+  - source_protocol: connected
+    route_map: RM-CONN-2-BGP
+  neighbors:
+  - ip_address: 172.31.255.8
+    peer_group: IPv4-UNDERLAY-PEERS
+    remote_as: '65001'
+    peer: DC1_SPINE1
+    description: DC1_SPINE1_Ethernet3
+  - ip_address: 172.31.255.10
+    peer_group: IPv4-UNDERLAY-PEERS
+    remote_as: '65001'
+    peer: DC1_SPINE2
+    description: DC1_SPINE2_Ethernet3
+  - ip_address: 192.168.255.1
+    peer_group: EVPN-OVERLAY-PEERS
+    peer: DC1_SPINE1
+    description: DC1_SPINE1
+    remote_as: '65001'
+  - ip_address: 192.168.255.2
+    peer_group: EVPN-OVERLAY-PEERS
+    peer: DC1_SPINE2
+    description: DC1_SPINE2
+    remote_as: '65001'
+  address_family_evpn:
+    peer_groups:
+    - name: EVPN-OVERLAY-PEERS
+      activate: true
+  address_family_rtc:
+    peer_groups:
+    - name: EVPN-OVERLAY-PEERS
+      activate: true
+  vrfs:
+  - name: Tenant_A_OP_Zone
+    router_id: 192.168.255.5
+    rd: 192.168.255.5:10
+    route_targets:
+      import:
+      - address_family: evpn
+        route_targets:
+        - '10:10'
+      export:
+      - address_family: evpn
+        route_targets:
+        - '10:10'
+    redistribute_routes:
+    - source_protocol: connected
+  vlans:
+  - id: 112
+    tenant: Tenant_A
+    rd: 192.168.255.5:10112
+    route_targets:
+      both:
+      - 10112:10112
+    redistribute_routes:
+    - learned
+  - id: 113
+    tenant: Tenant_A
+    rd: 192.168.255.5:10113
+    route_targets:
+      both:
+      - 10113:10113
+    redistribute_routes:
+    - learned
+static_routes:
+- vrf: MGMT
+  destination_address_prefix: 0.0.0.0/0
+  gateway: 172.16.2.1
+service_routing_protocols_model: multi-agent
+ip_routing: true
+vlan_internal_order:
+  allocation: ascending
+  range:
+    beginning: 1006
+    ending: 1199
+ip_name_servers:
+- ip_address: 1.1.1.1
+  vrf: MGMT
+- ip_address: 8.8.8.8
+  vrf: MGMT
+spanning_tree:
+  mode: mstp
+  mst_instances:
+  - id: '0'
+    priority: 4096
+local_users:
+- name: admin
+  privilege: 15
+  role: network-admin
+  no_password: true
+- name: ansible
+  privilege: 15
+  role: network-admin
+  sha512_password: $6$7u4j1rkb3VELgcZE$EJt2Qff8kd/TapRoci0XaIZsL4tFzgq1YZBLD9c6f/knXzvcYY0NcMKndZeCv0T268knGKhOEwZAxqKjlMm920
+vrfs:
+- name: MGMT
+  ip_routing: false
+- name: Tenant_A_OP_Zone
+  tenant: Tenant_A
+  ip_routing: true
+management_interfaces:
+- name: Management0
+  description: oob_management
+  shutdown: false
+  vrf: MGMT
+  ip_address: 172.16.2.103/24
+  gateway: 172.16.2.1
+  type: oob
+management_api_http:
+  enable_vrfs:
+  - name: MGMT
+  enable_https: true
+  https_ssl_profile: eAPI
+eos_cli: "!\nrouter bgp 65103\n!\nvlan 112\n  designated-forwarder election preference rule high\n!\nvlan 113\n  designated-forwarder
+  election preference rule low\n!\n"
+ethernet_interfaces:
+- name: Ethernet1
+  peer: DC1_SPINE1
+  peer_interface: Ethernet3
+  peer_type: spine
+  description: P2P_LINK_TO_DC1_SPINE1_Ethernet3
+  shutdown: false
+  mtu: 9214
+  type: routed
+  ip_address: 172.31.255.9/31
+- name: Ethernet2
+  peer: DC1_SPINE2
+  peer_interface: Ethernet3
+  peer_type: spine
+  description: P2P_LINK_TO_DC1_SPINE2_Ethernet3
+  shutdown: false
+  mtu: 9214
+  type: routed
+  ip_address: 172.31.255.11/31
+- name: Ethernet3
+  peer: server03
+  peer_interface: Eth1
+  peer_type: server
+  port_profile: Tenant_A_pod2_clientA
+  description: server03_Eth1
+  shutdown: false
+  type: port-channel-member
+  channel_group:
+    id: 3
+    mode: 'on'
+- name: Ethernet4
+  peer: server04
+  peer_interface: Eth1
+  peer_type: server
+  port_profile: Tenant_A_pod2_clientB
+  description: server04_Eth1
+  shutdown: false
+  type: port-channel-member
+  channel_group:
+    id: 4
+    mode: 'on'
+loopback_interfaces:
+- name: Loopback0
+  description: EVPN_Overlay_Peering
+  shutdown: false
+  ip_address: 192.168.255.5/32
+- name: Loopback1
+  description: VTEP_VXLAN_Tunnel_Source
+  shutdown: false
+  ip_address: 192.168.254.5/32
+- name: Loopback100
+  description: Tenant_A_OP_Zone_VTEP_DIAGNOSTICS
+  shutdown: false
+  vrf: Tenant_A_OP_Zone
+  ip_address: 10.255.1.5/32
+prefix_lists:
+- name: PL-LOOPBACKS-EVPN-OVERLAY
+  sequence_numbers:
+  - sequence: 10
+    action: permit 192.168.255.0/24 eq 32
+  - sequence: 20
+    action: permit 192.168.254.0/24 eq 32
+route_maps:
+- name: RM-CONN-2-BGP
+  sequence_numbers:
+  - sequence: 10
+    type: permit
+    match:
+    - ip address prefix-list PL-LOOPBACKS-EVPN-OVERLAY
+router_bfd:
+  multihop:
+    interval: 300
+    min_rx: 300
+    multiplier: 3
+vlans:
+- id: 112
+  name: Tenant_A_OP_Zone_3
+  tenant: Tenant_A
+- id: 113
+  name: Tenant_A_OP_Zone_4
+  tenant: Tenant_A
+ip_igmp_snooping:
+  globally_enabled: true
+ip_virtual_router_mac_address: 00:00:00:00:00:01
+vlan_interfaces:
+- name: Vlan112
+  tenant: Tenant_A
+  tags:
+  - opzone_pod2
+  description: Tenant_A_OP_Zone_3
+  shutdown: false
+  ip_address_virtual: 10.1.12.1/24
+  vrf: Tenant_A_OP_Zone
+- name: Vlan113
+  tenant: Tenant_A
+  tags:
+  - opzone_pod2
+  description: Tenant_A_OP_Zone_4
+  shutdown: false
+  ip_address_virtual: 10.1.13.1/24
+  vrf: Tenant_A_OP_Zone
+vxlan_interface:
+  Vxlan1:
+    description: DC1_PE21_VTEP
+    vxlan:
+      udp_port: 4789
+      source_interface: Loopback1
+      vlans:
+      - id: 112
+        vni: 10112
+      - id: 113
+        vni: 10113
+      vrfs:
+      - name: Tenant_A_OP_Zone
+        vni: 10
+virtual_source_nat_vrfs:
+- name: Tenant_A_OP_Zone
+  ip_address: 10.255.1.5
+port_channel_interfaces:
+- name: Port-Channel3
+  description: server03_PortChannel3
+  type: switched
+  shutdown: false
+  mode: trunk
+  vlans: '112'
+  spanning_tree_portfast: edge
+  evpn_ethernet_segment:
+    identifier: 0000:0000:0201:0202:0033
+    route_target: 02:01:02:02:00:33
+    redundancy: single-active
+    designated_forwarder_election:
+      algorithm: preference
+      preference_value: 200
+- name: Port-Channel4
+  description: server04_PortChannel4
+  type: switched
+  shutdown: false
+  mode: trunk
+  vlans: '113'
+  spanning_tree_portfast: edge
+  evpn_ethernet_segment:
+    identifier: 0000:0000:0201:0202:0044
+    route_target: 02:01:02:02:00:44
+    redundancy: single-active
+    designated_forwarder_election:
+      algorithm: preference
+      preference_value: 200
+management_security:
+  ssl_profiles:
+  - name: eAPI
+    certificate:
+      file: eAPI.crt
+      key: eAPI.key
+    cipher_list: HIGH:!eNULL:!aNULL:!MD5:!ADH:!ANULL
