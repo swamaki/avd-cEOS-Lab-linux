@@ -67,6 +67,10 @@ ntp:
       vrf: MGMT
 spanning_tree:
   mode: none
+# AAA Authorization
+aaa_authorization:
+  exec:
+    default: local
 local_users:
 - name: admin
   privilege: 15

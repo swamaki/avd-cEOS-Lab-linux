@@ -20,6 +20,10 @@ ip_name_servers:
   vrf: MGMT
 spanning_tree:
   mode: mstp
+# AAA Authorization
+aaa_authorization:
+  exec:
+    default: local
 local_users:
 - name: admin
   privilege: 15
