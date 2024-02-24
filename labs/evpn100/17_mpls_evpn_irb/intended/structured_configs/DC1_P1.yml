@@ -68,10 +68,14 @@ ntp:
 spanning_tree:
   mode: none
 local_users:
-  admin:
-    privilege: 15
-    role: network-admin
-    sha512_password: $6$7GTxsrRjnwheeKfR$zhJ8qycVjAJz41rf5JRSfWIzp93IL5WL7sMS/Taz1yfShz.MAnoajCf7R2n1/EZW7PN5QA3Huayl0lVQesBYN1
+- name: admin
+  privilege: 15
+  role: network-admin
+  no_password: true
+- name: ansible
+  privilege: 15
+  role: network-admin
+  sha512_password: $6$7u4j1rkb3VELgcZE$EJt2Qff8kd/TapRoci0XaIZsL4tFzgq1YZBLD9c6f/knXzvcYY0NcMKndZeCv0T268knGKhOEwZAxqKjlMm920
 vrfs:
   MGMT:
     ip_routing: false
@@ -87,7 +91,7 @@ management_api_http:
   enable_vrfs:
     MGMT: {}
   enable_https: true
-  https_ssl_profile: eAPI
+  # https_ssl_profile: eAPI
 loopback_interfaces:
   Loopback0:
     description: EVPN_Overlay_Peering
@@ -194,10 +198,10 @@ mpls:
   ldp:
     router_id: interface Loopback0
     shutdown: false
-management_security:
-  ssl_profiles:
-    - name: eAPI
-      certificate:
-        file: eAPI.crt
-        key: eAPI.key
-      cipher_list: 'HIGH:!eNULL:!aNULL:!MD5:!ADH:!ANULL'
+# management_security:
+#   ssl_profiles:
+#     - name: eAPI
+#       certificate:
+#         file: eAPI.crt
+#         key: eAPI.key
+#       cipher_list: 'HIGH:!eNULL:!aNULL:!MD5:!ADH:!ANULL'
