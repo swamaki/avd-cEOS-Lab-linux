@@ -8,12 +8,42 @@ labs/.DS_Store
 
 #=====================================================
 
+labs/avd_labs/11_single_dc_l3ls/clab-singledcl3ls/
+labs/avd_labs/11_single_dc_l3ls/config_backup/
+labs/avd_labs/11_single_dc_l3ls/documentation/
+labs/avd_labs/11_single_dc_l3ls/reports/
+labs/avd_labs/11_single_dc_l3ls/snapshots/
 
-labs/avd_labs/avd_campus_fabric/clab-campusfabric/
-labs/avd_labs/avd_campus_fabric/config_backup/
-labs/avd_labs/avd_campus_fabric/documentation/
-labs/avd_labs/avd_campus_fabric/reports/
-labs/avd_labs/avd_campus_fabric/snapshots/
+labs/avd_labs/12_dual_dc_l3ls/clab-dualdcl3ls/
+labs/avd_labs/12_dual_dc_l3ls/config_backup/
+labs/avd_labs/12_dual_dc_l3ls/documentation/
+labs/avd_labs/12_dual_dc_l3ls/reports/
+labs/avd_labs/12_dual_dc_l3ls/snapshots/
+
+labs/avd_labs/13_isis_ldp_ipvpn/clab-isisldp/
+labs/avd_labs/13_isis_ldp_ipvpn/config_backup/
+labs/avd_labs/13_isis_ldp_ipvpn/documentation/
+labs/avd_labs/13_isis_ldp_ipvpn/reports/
+labs/avd_labs/13_isis_ldp_ipvpn/snapshots/
+
+labs/avd_labs/14_l2ls_fabric/clab-l2lsfabric/
+labs/avd_labs/14_l2ls_fabric/config_backup/
+labs/avd_labs/14_l2ls_fabric/documentation/
+labs/avd_labs/14_l2ls_fabric/reports/
+labs/avd_labs/14_l2ls_fabric/snapshots/
+
+labs/avd_labs/15_l2ls_fabric_no_fw/clab-l2lsfabric/
+labs/avd_labs/15_l2ls_fabric_no_fw/config_backup/
+labs/avd_labs/15_l2ls_fabric_no_fw/documentation/
+labs/avd_labs/15_l2ls_fabric_no_fw/reports/
+labs/avd_labs/15_l2ls_fabric_no_fw/snapshots/
+
+
+labs/avd_labs/16_campus_fabric/clab-campusfabric/
+labs/avd_labs/16_campus_fabric/config_backup/
+labs/avd_labs/16_campus_fabric/documentation/
+labs/avd_labs/16_campus_fabric/reports/
+labs/avd_labs/16_campus_fabric/snapshots/
 
 #=====================================================
 

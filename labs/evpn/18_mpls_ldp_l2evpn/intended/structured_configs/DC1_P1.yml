@@ -95,7 +95,7 @@ management_api_http:
   enable_vrfs:
     MGMT: {}
   enable_https: true
-  https_ssl_profile: eAPI
+  # https_ssl_profile: eAPI
 loopback_interfaces:
   Loopback0:
     description: EVPN_Overlay_Peering
@@ -202,10 +202,10 @@ mpls:
   ldp:
     router_id: interface Loopback0
     shutdown: false
-management_security:
-  ssl_profiles:
-    - name: eAPI
-      certificate:
-        file: eAPI.crt
-        key: eAPI.key
-      cipher_list: 'HIGH:!eNULL:!aNULL:!MD5:!ADH:!ANULL'
+# management_security:
+#   ssl_profiles:
+#     - name: eAPI
+#       certificate:
+#         file: eAPI.crt
+#         key: eAPI.key
+#       cipher_list: 'HIGH:!eNULL:!aNULL:!MD5:!ADH:!ANULL'

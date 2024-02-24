@@ -28,18 +28,18 @@ mgmt_interface: Management0
 mgmt_gateway: 172.100.100.1
 mgmt_interface_vrf: MGMT
 
-# Management eAPI | Required for this Lab
-custom_structured_configuration_management_api_http:
-  https_ssl_profile: eAPI
+# # Management eAPI | Required for this Lab
+# custom_structured_configuration_management_api_http:
+#   https_ssl_profile: eAPI
 
-# Management security required for SSL profile with strong ciphers
-custom_structured_configuration_management_security:
-  ssl_profiles:
-    - name: eAPI
-      certificate:
-        file: eAPI.crt
-        key: eAPI.key
-      cipher_list: 'HIGH:!eNULL:!aNULL:!MD5:!ADH:!ANULL'
+# # Management security required for SSL profile with strong ciphers
+# custom_structured_configuration_management_security:
+#   ssl_profiles:
+#     - name: eAPI
+#       certificate:
+#         file: eAPI.crt
+#         key: eAPI.key
+#       cipher_list: 'HIGH:!eNULL:!aNULL:!MD5:!ADH:!ANULL'
 
 # Management GNMI | Optional
 #management_api_gnmi:

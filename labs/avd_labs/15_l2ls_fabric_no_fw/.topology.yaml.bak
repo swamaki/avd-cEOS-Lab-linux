@@ -1,0 +1,70 @@
+name: l2lsfabric
+
+topology:
+  kinds:
+    ceos:
+      startup-config: ../../../ceos_lab_template/ceos.cfg.tpl
+      image: ceosimage:4.30.5M
+      # exec:
+      #   - sleep 10
+      #   - FastCli -p 15 -c 'security pki key generate rsa 4096 eAPI.key'
+      #   - FastCli -p 15 -c 'security pki certificate generate self-signed eAPI.crt key eAPI.key generate rsa 4096 validity 30000 parameters common-name eAPI'
+    linux:
+      image: alpine-host
+  nodes:
+    spine1:
+      kind: ceos
+      mgmt-ipv4: 172.16.2.11
+    spine2:
+      kind: ceos
+      mgmt-ipv4: 172.16.2.12
+    leaf1:
+      kind: ceos
+      mgmt-ipv4: 172.16.2.101
+    leaf2:
+      kind: ceos
+      mgmt-ipv4: 172.16.2.102
+    leaf3:
+      kind: ceos
+      mgmt-ipv4: 172.16.2.103
+    leaf4:
+      kind: ceos
+      mgmt-ipv4: 172.16.2.104
+    host_a:
+      kind: ceos
+      mgmt-ipv4: 172.16.2.241
+    host_b:
+      kind: ceos
+      mgmt-ipv4: 172.16.2.242
+    host_c:
+      kind: ceos
+      mgmt-ipv4: 172.16.2.243
+    host_d:
+      kind: ceos
+      mgmt-ipv4: 172.16.2.244
+  
+  links:
+    - endpoints: ["spine1:eth47", "spine2:eth47"]
+    - endpoints: ["spine1:eth48", "spine2:eth48"]
+    - endpoints: ["leaf1:eth1", "spine1:eth1"]
+    - endpoints: ["leaf1:eth2", "spine2:eth1"]
+    - endpoints: ["leaf2:eth1", "spine1:eth2"]
+    - endpoints: ["leaf2:eth2", "spine2:eth2"]
+    - endpoints: ["leaf3:eth1", "spine1:eth3"]
+    - endpoints: ["leaf3:eth2", "spine2:eth3"]
+    - endpoints: ["leaf4:eth1", "spine1:eth4"]
+    - endpoints: ["leaf4:eth2", "spine2:eth4"]
+    - endpoints: ["leaf1:eth47", "leaf2:eth47"]
+    - endpoints: ["leaf1:eth48", "leaf2:eth48"]
+    - endpoints: ["leaf3:eth47", "leaf4:eth47"]
+    - endpoints: ["leaf3:eth48", "leaf4:eth48"]
+    - endpoints: ["host_a:eth1", "leaf1:eth3"]
+    - endpoints: ["host_b:eth1", "leaf2:eth3"]
+    - endpoints: ["host_c:eth1", "leaf3:eth3"]
+    - endpoints: ["host_d:eth1", "leaf4:eth3"]
+
+
+mgmt:
+  network: ceos_clab                
+  ipv4-subnet: 172.16.2.0/24       
+  ipv6-subnet: 2001:172:16:2::/80

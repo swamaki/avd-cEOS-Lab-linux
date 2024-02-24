@@ -35,17 +35,6 @@ all:
                     client4:
                       ansible_host: 172.16.2.244
 
-          vars:
-            ansible_connection: httpapi
-            ansible_httpapi_use_ssl: true
-            ansible_httpapi_validate_certs: false
-            ansible_user: ansible
-            ansible_password: ansible
-            ansible_become: true
-            ansible_become_method: enable
-            ansible_network_os: eos
-            ansible_httpapi_port: 443
-            ansible_python_interpreter: $(which python3)
         DC1_NETWORK_SERVICES:
           children:
             DC1_PES:

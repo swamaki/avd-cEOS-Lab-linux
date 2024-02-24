@@ -4,6 +4,8 @@ username ansible privilege 15 role network-admin secret ansible
 !
 service routing protocols model multi-agent
 !
+aaa authorization exec default local
+!
 vrf instance MGMT
 !
 interface Management0
@@ -15,13 +17,8 @@ interface Management0
 {{ if .MgmtIPv4Gateway }}ip route vrf MGMT 0.0.0.0/0 {{ .MgmtIPv4Gateway }}{{end}}
 {{ if .MgmtIPv6Gateway }}ipv6 route vrf MGMT ::0/0 {{ .MgmtIPv6Gateway }}{{end}}
 !
-management security
-   ssl profile eAPI
-      cipher-list HIGH:!eNULL:!aNULL:!MD5:!ADH:!ANULL
-      certificate eAPI.crt key eAPI.key
-!
 management api http-commands
-   protocol https ssl profile eAPI
+   protocol https
    no shutdown
    !
    vrf MGMT

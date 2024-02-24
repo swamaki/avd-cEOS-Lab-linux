@@ -46,6 +46,7 @@ all:
             ansible_network_os: eos
             ansible_httpapi_port: 443
             ansible_python_interpreter: $(which python3)
+            ansible_httpapi_ciphers: AES256-SHA:DHE-RSA-AES256-SHA:AES128-SHA:DHE-RSA-AES128-SHA
         DC1_TENANTS_NETWORKS:
           children:
             DC1_PES:
