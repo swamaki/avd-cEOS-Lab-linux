@@ -57,6 +57,7 @@ leaf:
           uplink_switch_interfaces: [Ethernet1]
     - group: IDF2
       platform: cEOS-LAB
+      # platform: 720XP
       mlag: false
       filter:
         tags: [ "210", "220", "230" ]
