@@ -1,0 +1,47 @@
+---
+all:
+  children:
+    FABRIC:
+      children:
+        WAN1:
+          children:
+            WAN1_P_ROUTERS:
+              hosts:
+                p1:
+                  ansible_host: 172.16.2.11
+                p2:
+                  ansible_host: 172.16.2.12
+                p3:
+                  ansible_host: 172.16.2.13
+                p4:
+                  ansible_host: 172.16.2.14
+            WAN1_PE_ROUTERS:
+              hosts:
+                pe1:
+                  ansible_host: 172.16.2.101
+                pe2:
+                  ansible_host: 172.16.2.102
+                pe3:
+                  ansible_host: 172.16.2.103
+            WAN1_RR_ROUTERS:
+              hosts:
+                rr1:
+                  ansible_host: 172.16.2.151
+                rr2:
+                  ansible_host: 172.16.2.152
+            WAN1_MISC:
+              hosts:
+                customer1_CPE1:
+                  ansible_host: 172.16.2.241
+                customer1_CPE2:
+                  ansible_host: 172.16.2.242
+                customer2_CPE1:
+                  ansible_host: 172.16.2.243
+                customer2_CPE2:
+                  ansible_host: 172.16.2.244
+                ethernet_agg:
+                  ansible_host: 172.16.2.245
+
+        NETWORK_SERVICES:
+          children:
+            WAN1_PE_ROUTERS:

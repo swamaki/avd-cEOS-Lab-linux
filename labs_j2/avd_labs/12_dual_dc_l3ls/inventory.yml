@@ -1,0 +1,92 @@
+---
+# inventory.yml
+all:
+  children:
+    FABRIC:
+      children:
+        DC1:
+          children:
+            DC1_SPINES:
+              hosts:
+                dc1-spine1:
+                  ansible_host: 172.16.2.11
+                dc1-spine2:
+                  ansible_host: 172.16.2.12
+            DC1_L3_LEAVES:
+              hosts:
+                dc1-leaf1a:
+                  ansible_host: 172.16.2.101
+                dc1-leaf1b:
+                  ansible_host: 172.16.2.102
+                dc1-leaf2a:
+                  ansible_host: 172.16.2.103
+                dc1-leaf2b:
+                  ansible_host: 172.16.2.104
+            DC1_L2_LEAVES:
+              hosts:
+                dc1-leaf1c:
+                  ansible_host: 172.16.2.151
+                dc1-leaf2c:
+                  ansible_host: 172.16.2.152
+            DC1_SERVERS:
+              children:
+                DC1_LEAF1_SERVERS:
+                  hosts:
+                    dc1-leaf1-server1:
+                      ansible_host: 172.16.2.241
+                DC1_LEAF2_SERVERS:
+                  hosts:
+                    dc1-leaf2-server1:
+                      ansible_host: 172.16.2.242
+
+        DC2:
+          children:
+            DC2_SPINES:
+              hosts:
+                dc2-spine1:
+                  ansible_host: 172.16.2.21
+                dc2-spine2:
+                  ansible_host: 172.16.2.22
+            DC2_L3_LEAVES:
+              hosts:
+                dc2-leaf1a:
+                  ansible_host: 172.16.2.111
+                dc2-leaf1b:
+                  ansible_host: 172.16.2.112
+                dc2-leaf2a:
+                  ansible_host: 172.16.2.113
+                dc2-leaf2b:
+                  ansible_host: 172.16.2.114
+            DC2_L2_LEAVES:
+              hosts:
+                dc2-leaf1c:
+                  ansible_host: 172.16.2.161
+                dc2-leaf2c:
+                  ansible_host: 172.16.2.162
+            DC2_SERVERS:
+              children:
+                DC2_LEAF1_SERVERS:
+                  hosts:
+                    dc2-leaf1-server1:
+                      ansible_host: 172.16.2.243
+                DC2_LEAF2_SERVERS:
+                  hosts:
+                    dc2-leaf2-server1:
+                      ansible_host: 172.16.2.244
+
+    NETWORK_SERVICES:
+      children:
+        DC1_L3_LEAVES:
+        DC1_L2_LEAVES:
+        DC2_L3_LEAVES:
+        DC2_L2_LEAVES:
+    CONNECTED_ENDPOINTS:
+      children:
+        DC1_L3_LEAVES:
+        DC1_L2_LEAVES:
+        DC2_L3_LEAVES:
+        DC2_L2_LEAVES:
+    SERVERS:
+      children:
+        DC1_SERVERS:
+        DC2_SERVERS:

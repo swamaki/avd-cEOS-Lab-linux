@@ -1,0 +1,58 @@
+all:
+  children:
+    AVD_LAB:
+      children:
+        DC1_FABRIC:
+          children:
+            DC1_SPINES:
+              hosts:
+                DC1_SPINE1:
+                  ansible_host: 172.16.2.11
+                DC1_SPINE2:
+                  ansible_host: 172.16.2.12
+            DC1_L3_LEAFS:
+              children:
+                DC1_LEAF1:
+                  hosts:
+                    DC1_LEAF1A:
+                      ansible_host: 172.16.2.101
+                    DC1_LEAF1B:
+                      ansible_host: 172.16.2.102
+                DC1_SVC2:
+                  hosts:
+                    DC1_SVC2A:
+                      ansible_host: 172.16.2.103
+                    DC1_SVC2B:
+                      ansible_host: 172.16.2.104
+            DC1_L2_LEAFS:
+              children:
+                DC1_L2_LEAF:
+                  hosts:
+                    DC1_L2_LEAF2A:
+                      ansible_host: 172.16.2.105
+                    DC1_L2_LEAF2B:
+                      ansible_host: 172.16.2.106
+            DC1_CLIENTS:
+              children:
+                DC1_LEAF1_CLIENTS:
+                  hosts:
+                    client1:
+                      ansible_host: 172.16.2.241
+                    client2:
+                      ansible_host: 172.16.2.242
+                DC1_LEAF2_CLIENTS:
+                  hosts:
+                    client3:
+                      ansible_host: 172.16.2.243
+                    client4:
+                      ansible_host: 172.16.2.244
+        DC1_NETWORK_SERVICES:
+          children:
+            DC1_L3_LEAFS:
+            DC1_L2_LEAFS:
+
+        DC1_CONNECTED_ENDPOINTS:
+          children:
+            DC1_L3_LEAFS:
+            DC1_L2_LEAFS:
+                
