@@ -1,0 +1,16 @@
+hostname: dc1-leaf2-server1
+# static_route_default_gw: 10.1.10.1
+mgmt_ip_address: 172.16.2.242/24
+Po1_description: Portchannel_Uplinks_TO_dc1-leaf2a_dc1-leaf2b
+eth1_description: Portchannel_Uplinks_TO_dc1-leaf2a
+eth2_description: Portchannel_Uplinks_TO_dc1-leaf2b
+eth3_description: dc1-leaf2-server1_iLO
+eth3_ip_address: 10.10.11.106/24
+vlan11_description: VRF10_VLAN11
+vlan11_ip_address: 10.10.11.102/24
+vlan12_description: VRF10_VLAN12
+vlan12_ip_address: 10.10.12.102/24
+vlan21_description: VRF11_VLAN21
+vlan21_ip_address: 10.10.21.102/24
+vlan22_description: VRF11_VLAN22
+vlan22_ip_address: 10.10.22.102/24

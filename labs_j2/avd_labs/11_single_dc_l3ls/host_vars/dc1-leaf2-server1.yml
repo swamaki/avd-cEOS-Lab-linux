@@ -1,9 +1,0 @@
-hostname: dc1-leaf2-server1
-static_route_default_gw: 10.1.11.1
-mgmt_ip_address: 172.16.2.242/24
-Po1_description: Portchannel_Uplinks_TO_DC1_LEAF1A_DC1_LEAF1B
-Po1_SubInt_vlan: 111
-Po1_SubInt_description: Portchannel_Uplinks_TO_DC1_LEAF1A_DC1_LEAF1B - dot1q VLAN 111
-Po1_SubInt_ip_address: 10.1.11.102/24
-eth1_description: Portchannel_Uplinks_TO_DC1_LEAF1A
-eth2_description: Portchannel_Uplinks_TO_DC1_LEAF1B
