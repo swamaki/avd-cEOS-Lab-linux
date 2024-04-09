@@ -1,4 +1,4 @@
-name: singledcl3ls
+name: evpn_vxlan
 
 topology:
   kinds:
