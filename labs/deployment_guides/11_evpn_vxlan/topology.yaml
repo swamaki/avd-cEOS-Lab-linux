@@ -32,13 +32,13 @@ topology:
       mgmt-ipv4: 172.16.2.104
     A-SVC1B:
       kind: ceos
-      mgmt-ipv4: 172.16.2.106
+      mgmt-ipv4: 172.16.2.105
     A-BL1A:
       kind: ceos
-      mgmt-ipv4: 172.16.2.107
+      mgmt-ipv4: 172.16.2.106
     A-BL1B:
       kind: ceos
-      mgmt-ipv4: 172.16.2.108
+      mgmt-ipv4: 172.16.2.107
     
     HostA:
       kind: ceos
