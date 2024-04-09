@@ -1,0 +1,91 @@
+name: singledcl3ls
+
+topology:
+  kinds:
+    ceos:
+      startup-config: ../../../ceos_lab_template/ceos.cfg.tpl
+      image: ceosimage:4.30.5M
+      # exec:
+      #   - sleep 10
+      #   - FastCli -p 15 -c 'security pki key generate rsa 4096 eAPI.key'
+      #   - FastCli -p 15 -c 'security pki certificate generate self-signed eAPI.crt key eAPI.key generate rsa 4096 validity 30000 parameters common-name eAPI'
+    linux:
+      image: alpine-host
+  nodes:
+    A-SPINE1:
+      kind: ceos
+      mgmt-ipv4: 172.16.2.11
+    A-SPINE2:
+      kind: ceos
+      mgmt-ipv4: 172.16.2.12
+    A-LEAF1A:
+      kind: ceos
+      mgmt-ipv4: 172.16.2.101
+    A-LEAF2A:
+      kind: ceos
+      mgmt-ipv4: 172.16.2.102
+    A-LEAF2B:
+      kind: ceos
+      mgmt-ipv4: 172.16.2.103
+    A-SVC1A:
+      kind: ceos
+      mgmt-ipv4: 172.16.2.104
+    A-SVC1B:
+      kind: ceos
+      mgmt-ipv4: 172.16.2.106
+    A-BL1A:
+      kind: ceos
+      mgmt-ipv4: 172.16.2.107
+    A-BL1B:
+      kind: ceos
+      mgmt-ipv4: 172.16.2.108
+    
+    HostA:
+      kind: ceos
+      mgmt-ipv4: 172.16.2.241
+    HostB:
+      kind: ceos
+      mgmt-ipv4: 172.16.2.242
+    HostC:
+      kind: ceos
+      mgmt-ipv4: 172.16.2.243
+    HostD:
+      kind: ceos
+      mgmt-ipv4: 172.16.2.244
+
+  
+  links:
+    - endpoints: ["A-SPINE1:eth1", "A-LEAF1A:eth1"]
+    - endpoints: ["A-SPINE1:eth2", "A-LEAF2A:eth1"]
+    - endpoints: ["A-SPINE1:eth3", "A-LEAF2B:eth1"]
+    - endpoints: ["A-SPINE1:eth4", "A-SVC1A:eth1"]
+    - endpoints: ["A-SPINE1:eth5", "A-SVC1B:eth1"]
+    - endpoints: ["A-SPINE1:eth6", "A-BL1A:eth1"]
+    - endpoints: ["A-SPINE1:eth7", "A-BL1B:eth1"]
+
+    - endpoints: ["A-SPINE2:eth1", "A-LEAF1A:eth2"]
+    - endpoints: ["A-SPINE2:eth2", "A-LEAF2A:eth2"]
+    - endpoints: ["A-SPINE2:eth3", "A-LEAF2B:eth2"]
+    - endpoints: ["A-SPINE2:eth4", "A-SVC1A:eth2"]
+    - endpoints: ["A-SPINE2:eth5", "A-SVC1B:eth2"]
+    - endpoints: ["A-SPINE2:eth6", "A-BL1A:eth2"]
+    - endpoints: ["A-SPINE2:eth7", "A-BL1B:eth2"]
+
+    - endpoints: ["A-LEAF2A:eth5", "A-LEAF2B:eth5"]
+    - endpoints: ["A-LEAF2A:eth6", "A-LEAF2B:eth6"]
+    - endpoints: ["A-SVC1A:eth5", "A-SVC1B:eth5"]
+    - endpoints: ["A-SVC1A:eth6", "A-SVC1B:eth6"]
+    - endpoints: ["A-BL1A:eth5", "A-BL1B:eth5"]
+    - endpoints: ["A-BL1A:eth6", "A-BL1B:eth6"]
+  
+    - endpoints: ["HostA:eth1", "A-LEAF1A:eth3"]
+    - endpoints: ["HostB:eth1", "A-LEAF2A:eth3"]
+    - endpoints: ["HostB:eth2", "A-LEAF2B:eth3"]
+    - endpoints: ["HostC:eth1", "A-LEAF2A:eth4"]
+    - endpoints: ["HostC:eth2", "A-LEAF2B:eth4"]
+    - endpoints: ["HostD:eth1", "A-LEAF1A:eth4"]
+
+mgmt:
+  network: ceos_clab                
+  ipv4-subnet: 172.16.2.0/24       
+  ipv6-subnet: 2001:172:16:2::/80
