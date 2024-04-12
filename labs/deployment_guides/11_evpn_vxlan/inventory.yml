@@ -20,7 +20,7 @@ all:
             SPINES:
               hosts:
                 A-SPINE1:
-                  ansible_host: 172.16.2.11           
+                  ansible_host: 172.16.2.11
                 A-SPINE2:
                   ansible_host: 172.16.2.12
             LEAFS:
@@ -30,11 +30,16 @@ all:
                 A-LEAF2A:
                   ansible_host: 172.16.2.102
                 A-LEAF2B:
-                  ansible_host: 172.16.2.103                  
+                  ansible_host: 172.16.2.103
                 A-SVC1A:
                   ansible_host: 172.16.2.104
                 A-SVC1B:
-                  ansible_host: 172.16.2.106               
+                  ansible_host: 172.16.2.105
+                A-BL1A:
+                  ansible_host: 172.16.2.106
+                A-BL1B:
+                  ansible_host: 172.16.2.107
+                               
             SERVERS:
               hosts:
                 HostA:
