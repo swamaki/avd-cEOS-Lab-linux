@@ -1,0 +1,17 @@
+hostname: A-SPINE1
+mgmt_ip_address: 172.16.1.11/24
+eth1_description: A-LEAF1A_Ethernet1
+eth1_ip_address: 10.101.201.201/24
+eth2_description: A-LEAF2A_Ethernet1
+eth2_ip_address: 10.102.201.201/24
+eth3_description: A-LEAF2B_Ethernet1
+eth3_ip_address: 10.103.201.201/24
+eth4_description: A-SVC1A_Ethernet1
+eth4_ip_address: 10.104.201.201/24
+eth5_description: A-SVC1B_Ethernet1
+eth5_ip_address: 10.105.201.201/24
+eth6_description: A-BL1A_Ethernet1
+eth6_ip_address: 10.106.201.201/24
+eth7_description: A-BL1B_Ethernet1
+eth7_ip_address: 10.107.201.201/24
+lo0_ip_address: 1.1.1.201

@@ -1,0 +1,30 @@
+management_interfaces:
+  - name: Management1
+    description: oob_management
+    shutdown: false
+    vrf: MGMT
+    ip_address: {{ mgmt_ip_address }}
+    gateway: 172.16.1.1
+    type: oob
+ethernet_interfaces:
+  - name: Ethernet1
+    description: {{ eth1_description }}
+    type: port-channel-member
+    shutdown: false
+    channel_group:
+      id: 1
+      mode: active
+  - name: Ethernet2
+    description: {{ eth2_description }}
+    type: port-channel-member
+    shutdown: false
+    channel_group:
+      id: 1
+      mode: active
+port_channel_interfaces:
+  - name: Port-Channel1
+    description: {{ Po1_description }}
+    type: routed
+    shutdown: false
+    ip_address: {{ po1_ip_address }}
+

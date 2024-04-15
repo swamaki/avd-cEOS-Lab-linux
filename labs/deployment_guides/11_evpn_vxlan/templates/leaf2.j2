@@ -1,0 +1,327 @@
+hostname: {{ hostname }} 
+metadata:
+  platform: cEOS-LAB
+is_deployed: true
+static_routes:
+- vrf: MGMT
+  destination_address_prefix: 0.0.0.0/0
+  gateway: 172.16.2.1
+service_routing_protocols_model: multi-agent
+ip_routing: true
+
+daemon_terminattr:
+  smashexcludes: ale,flexCounter,hardware,kni,pulse,strata
+  cvaddrs:
+    # - 172.16.1.3:9910
+    - apiserver.cv-staging.corp.arista.io:443
+  cvauth:
+    method: token-secure
+    token_file: /tmp/cv-onboarding-token
+  cvvrf: MGMT
+  # ingestexclude: /Sysdb/cell/1/agent,/Sysdb/cell/2/agent
+  disable_aaa: true
+
+vlan_internal_order:
+  allocation: ascending
+  range:
+    beginning: 1006
+    ending: 1199
+
+ip_name_servers:
+- ip_address: 1.1.1.1
+  vrf: MGMT
+- ip_address: 8.8.8.8
+  vrf: MGMT
+spanning_tree:
+  mode: mstp
+local_users:
+- name: admin
+  privilege: 15
+  role: network-admin
+  no_password: true
+- name: ansible
+  privilege: 15
+  role: network-admin
+  sha512_password: $6$7u4j1rkb3VELgcZE$EJt2Qff8kd/TapRoci0XaIZsL4tFzgq1YZBLD9c6f/knXzvcYY0NcMKndZeCv0T268knGKhOEwZAxqKjlMm920
+vrfs:
+- name: MGMT
+  ip_routing: false
+- name: A
+  ip_routing: true
+management_interfaces:
+- name: Management0
+  description: oob_management
+  shutdown: false
+  vrf: MGMT
+  ip_address: {{ mgmt_ip_address }}
+  gateway: 172.16.2.1
+  type: oob
+management_api_http:
+  enable_vrfs:
+  - name: MGMT
+  enable_https: true
+
+sflow:
+  sample: 1000
+  polling_interval: 20
+  destinations:
+    - destination: 127.0.0.1
+  source_interface: Loopback0
+  run: true
+
+vlans:
+- id: 10
+  name: Ten
+- id: 30
+  name: Thirty
+- id: 4000
+  name: MLAG_iBGP_VRF_A
+- id: 4093
+  name: MLAG_iBGP
+- id: 4094
+  name: MLAGPEER
+  trunk_groups:
+  - MLAGPEER
+
+vlan_interfaces:
+- name: Vlan10
+  description: Ten
+  shutdown: false
+  vrf: A
+  ip_virtual_router_addresses:
+  - {{ vlan10_ip_address }}
+- name: Vlan30
+  description: Thirty
+  shutdown: false
+  vrf: A
+  ip_virtual_router_addresses:
+  - {{ vlan30_ip_address }}
+- name: Vlan4000
+  description: MLAG_iBGP_VRF_A
+  shutdown: false
+  vrf: A
+  ip_address: {{ vlan4000_ip_address }}
+- name: Vlan4093
+  description: MLAG_iBGP
+  shutdown: false
+  ip_address: {{ vlan4093_ip_address }}
+- name: Vlan4094
+  description: MLAGPEER
+  shutdown: false
+  ip_address: {{ vlan4094_ip_address }}
+
+
+ethernet_interfaces:
+- name: Ethernet1
+  description: {{ eth1_description }}
+  shutdown: false
+  type: routed
+  ip_address: {{ eth1_ip_address }}
+- name: Ethernet2
+  description: {{ eth2_description }}
+  shutdown: false
+  type: routed
+  ip_address: {{ eth2_ip_address }}
+- name: Ethernet3
+  description: {{ eth3_description }}
+  type: port-channel-member
+  shutdown: false
+  channel_group:
+    id: 11
+    mode: active
+- name: Ethernet4
+  description: {{ eth4_description }}
+  type: port-channel-member
+  shutdown: false
+  channel_group:
+    id: 12
+    mode: active
+- name: Ethernet5
+  description: {{ eth5_description }}
+  type: port-channel-member
+  shutdown: false
+  channel_group:
+    id: 1000
+    mode: active
+- name: Ethernet6
+  description: {{ eth6_description }}
+  type: port-channel-member
+  shutdown: false
+  channel_group:
+    id: 1000
+    mode: active
+port_channel_interfaces:
+- name: Port-Channel1000
+  description:  MLAG PEER-LINK
+  type: switched
+  shutdown: false
+  mode: trunk
+  trunk_groups:
+  - MLAGPEER
+- name: Port-Channel11
+  description: MLAG-HostB
+  type: switched
+  shutdown: false
+  mode: access 
+  vlans: 10
+  mlag: 11
+- name: Port-Channel12
+  description: MLAG-HostC
+  type: switched
+  shutdown: false
+  mode: access 
+  vlans: 30
+  mlag: 12
+loopback_interfaces:
+- name: Loopback0
+  description: EVPN Peering Source
+  shutdown: false
+  ip_address: {{ lo0_ip_address }}/32
+- name: Loopback1
+  description:  VXLAN Tunnel Source
+  shutdown: false
+  ip_address: {{ lo1_ip_address }}/32
+- name: Loopback223
+  description: EVPN Peering Source
+  shutdown: false
+  vrf: A
+  ip_address: {{ lo223_ip_address }}/32
+
+ip_virtual_router_mac_address: 00:1c:73:aa:bb:cc
+virtual_source_nat_vrfs:
+- name: A
+  ip_address: {{ lo223_ip_address }}
+
+vxlan_interface:
+  Vxlan1:
+    vxlan:
+      udp_port: 4789
+      source_interface: Loopback1
+      virtual_router_encapsulation_mac_address: mlag-system-id
+      vlans:
+      - id: 10
+        vni: 10010
+      - id: 30
+        vni: 10030
+      vrfs:
+      - name: A
+        vni: 50001
+mlag_configuration:
+  domain_id: 1000
+  local_interface: Vlan4094
+  peer_address: {{ mlag_peer_address }}
+  peer_link: Port-Channel1000
+  reload_delay_mlag: '780'
+  reload_delay_non_mlag: '1020'
+
+prefix_lists:
+- name: PL-LOOPBACKS
+  sequence_numbers:
+  - sequence: 10
+    action: permit 1.1.1.0/24 le 32
+  - sequence: 20
+    action: permit 2.2.2.0/24 le 32
+- name: PL-P2P-UNDERLAY
+  sequence_numbers:
+  - sequence: 10
+    action: permit 10.0.0.0/8 le 31
+route_maps:
+- name: RM-CONN-2-BGP
+  sequence_numbers:
+  - sequence: 10
+    type: permit
+    match:
+    - ip address prefix-list PL-LOOPBACKS
+  - sequence: 20
+    type: permit
+    match:
+    - ip address prefix-list PL-P2P-UNDERLAY
+
+  
+router_bfd:
+  multihop:
+    interval: 300
+    min_rx: 300
+    multiplier: 3
+
+router_bgp:
+  as: '65102'
+  router_id: {{ lo0_ip_address }}
+  bgp:
+    default:
+      ipv4_unicast: false
+
+  peer_groups:
+  - name: EVPN-OVERLAY-PEERS
+    type: evpn
+    update_source: Loopback0
+    remote_as: '65001'
+    bfd: true
+    password: Q4fqtbqcZ7oQuKfuWtNGRQ==
+    send_community: all
+    maximum_routes: 0
+    ebgp_multihop: 3    
+  - name: IPv4-UNDERLAY-PEERS
+    type: ipv4
+    remote_as: '65001'
+    password: 7x4B4rnJhZB438m9+BrBfQ==
+    maximum_routes: 12000
+    send_community: all
+  - name: MLAG-IPv4-UNDERLAY-PEER
+    type: ipv4
+    remote_as: '65102'
+    password: 7x4B4rnJhZB438m9+BrBfQ==
+    maximum_routes: 12000
+    send_community: all
+    next_hop_self: true
+  neighbors:
+  - ip_address: {{ spine1_overlay_address }}
+    peer_group: EVPN-OVERLAY-PEERS
+  - ip_address: {{ spine2_overlay_address }}
+    peer_group: EVPN-OVERLAY-PEERS
+  - ip_address: {{ spine1_underlay_address }}
+    peer_group: IPv4-UNDERLAY-PEERS
+  - ip_address: {{ spine2_underlay_address }}
+    peer_group: IPv4-UNDERLAY-PEERS
+  - ip_address: {{ mlag_underlay_peer_address }}
+    peer_group: MLAG-IPv4-UNDERLAY-PEER
+  address_family_evpn:
+    peer_groups:
+    - name: EVPN-OVERLAY-PEERS
+      activate: true
+  address_family_ipv4:
+    peer_groups:
+    - name: IPv4-UNDERLAY-PEERS
+      activate: true
+    - name: MLAG-IPv4-UNDERLAY-PEER
+      activate: true
+  redistribute_routes:
+  - source_protocol: connected
+    route_map: RM-CONN-2-BGP
+  vrfs:
+  - name: A
+    rd: {{ rd }}
+    route_targets:
+      import:
+      - address_family: evpn
+        route_targets:
+        - '1:1'
+      export:
+      - address_family: evpn
+        route_targets:
+        - '1:1'
+    redistribute_routes:
+    - source_protocol: connected
+    neighbors:
+    - ip_address: {{ leaf2_peer_address }}
+      peer_group: MLAG-IPv4-UNDERLAY-PEER
+
+  vlan_aware_bundles:
+    TENANT-A:
+      rd: {{ rd }} 
+      route_targets:
+        both:
+          - {{ rt }} 
+      redistribute_routes:
+        - learned
+      vlan: 10-49
