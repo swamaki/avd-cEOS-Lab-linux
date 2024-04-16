@@ -1,5 +1,5 @@
 hostname: A-SPINE1
-mgmt_ip_address: 172.16.1.11/24
+mgmt_ip_address: 172.16.2.11/24
 eth1_description: A-LEAF1A_Ethernet1
 eth1_ip_address: 10.101.201.201/24
 eth2_description: A-LEAF2A_Ethernet1

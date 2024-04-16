@@ -107,13 +107,15 @@ ethernet_interfaces:
   description: {{ eth3_description }}
   type: switched
   shutdown: false
-  vlan: 10
-  sspanning_tree_portfast: edge
+  mode: access
+  vlans: 10
+  spanning_tree_portfast: edge
 - name: Ethernet4
   description: {{ eth4_description }}
   type: switched
   shutdown: false
-  vlan: 50
+  mode: access
+  vlans: 50
   spanning_tree_portfast: edge
 
 loopback_interfaces:
@@ -195,6 +197,9 @@ router_bgp:
   bgp:
     default:
       ipv4_unicast: false
+  maximum_paths:
+    paths: 4
+    ecmp: 4
 
   peer_groups:
   - name: EVPN-OVERLAY-PEERS
@@ -235,61 +240,45 @@ router_bgp:
   vrfs:
   - name: A
     rd: {{ rd_vrf_a }}
-    route_targets:
-      import:
-      - address_family: evpn
-        route_targets:
-        - '1:1'
-      export:
-      - address_family: evpn
-        route_targets:
-        - '1:1'
-    - name: B
-    rd: {{ rd_vrf_b }}
-    route_targets:
-      import:
-      - address_family: evpn
-        route_targets:
-        - '2:2'
-      export:
-      - address_family: evpn
-        route_targets:
-        - '2:2'
     redistribute_routes:
     - source_protocol: connected
-    neighbors:
-    - ip_address: {{ leaf2_peer_address }}
-      peer_group: MLAG-IPv4-UNDERLAY-PEER
+    route_targets:
+      import:
+      - address_family: evpn
+        route_targets:
+        - '1:1'
+      export:
+      - address_family: evpn
+        route_targets:
+        - '1:1'
+  - name: B
+    rd: {{ rd_vrf_b }}
+    redistribute_routes:
+    - source_protocol: connected
+    route_targets:
+      import:
+      - address_family: evpn
+        route_targets:
+        - '2:2'
+      export:
+      - address_family: evpn
+        route_targets:
+        - '2:2'
 
   vlan_aware_bundles:
     TENANT-A:
       rd: {{ rd_vrf_a }} 
       route_targets:
         both:
-          - {{ rt_vrf_a }} 
+          - '{{ rt_vrf_a }}' 
       redistribute_routes:
         - learned
       vlan: 10-49
     TENANT-B:
-      rd: {{ rd_vrf_b }} 
+      rd: {{ rd_vrf_b }}
       route_targets:
         both:
-          - {{ rt_vrf_b }} 
+          - '{{ rt_vrf_b }}'
       redistribute_routes:
         - learned
-      vlan: 10-49
-
-
-   !
-   vrf A
-      rd 1.1.1.101:1
-      route-target import evpn 1:1
-      route-target export evpn 1:1
-      redistribute connected
-   !
-   vrf B
-      rd 1.1.1.101:2
-      route-target import evpn 2:2
-      route-target export evpn 2:2
-      redistribute connected
-!
+      vlan: 50-69

@@ -9,14 +9,60 @@
         src: templates/spines.j2
         dest: intended/structured_configs/{{ hostname }}.yml
 
+- name: LEAF1 Config Generation
+  hosts: LEAF1
+  gather_facts: false
+  tasks:
+    - name: Building Leaf configs using jinja2
+      ansible.builtin.template:
+        src: templates/leaf1.j2
+        dest: intended/structured_configs/{{ hostname }}.yml
+
+- name: LEAF2 Config Generation
+  hosts: LEAF2
+  gather_facts: false
+  tasks:
+    - name: Building SpiLeafne configs using jinja2
+      ansible.builtin.template:
+        src: templates/leaf2.j2
+        dest: intended/structured_configs/{{ hostname }}.yml
+
+- name: Other Leaf Config Generation
+  hosts: LEAF_SERVICES
+  gather_facts: false
+  tasks:
+    - name: Building Leaf configs using jinja2
+      ansible.builtin.template:
+        src: templates/leaf_others.j2
+        dest: intended/structured_configs/{{ hostname }}.yml
+
+- name: Hosts Config Generation
+  hosts: HOST_DEVICES_1
+  gather_facts: false
+  tasks:
+    - name: Building Hosts configs using jinja2
+      ansible.builtin.template:
+        src: templates/host_devices_eth.j2
+        dest: intended/structured_configs/{{ hostname }}.yml
+
+- name: Hosts Config Generation
+  hosts: HOST_DEVICES_2
+  gather_facts: false
+  tasks:
+    - name: Building Hosts configs using jinja2
+      ansible.builtin.template:
+        src: templates/host_devices_po.j2
+        dest: intended/structured_configs/{{ hostname }}.yml
+
 - name: Run AVD # (1)!
-  hosts: SPINES
+  hosts: FABRIC
+  # hosts: SPINES, LEAF1, LEAF2, LEAF_SERVICES
   gather_facts: false
   tasks:
     - name: Generate Device Configurations and Documentation # (3)!
       ansible.builtin.import_role:
         name: arista.avd.eos_cli_config_gen
 
-    # - name: Deploy Configurations to Devices # (4)!
-    #   ansible.builtin.import_role:
-    #     name: arista.avd.eos_config_deploy_eapi
+    - name: Deploy Configurations to Devices # (4)!
+      ansible.builtin.import_role:
+        name: arista.avd.eos_config_deploy_eapi

@@ -1,0 +1,2 @@
+hostname: A-SVC1A
+mgmt_ip_address: 172.16.2.104/24

@@ -1,0 +1,48 @@
+! The checkpoint file saved at Tue Apr 16 08:19:35 2024 by ansible
+! device: HostB (cEOSLab, EOS-4.30.5M-35156751.4305M (engineering build))
+!
+no aaa root
+!
+username admin privilege 15 role network-admin nopassword
+username ansible privilege 15 role network-admin secret sha512 $6$TIBIxWiq02m5HouY$Tod9njIEN3vwdqE.Xed9HUF1QHmdQmWiGJYO0mUCCJGH6kZO8O8A6z/PXIzNTIjHBkTyK7VA0xFncv1LRoXf41
+!
+transceiver qsfp default-mode 4x10G
+!
+service routing protocols model multi-agent
+!
+hostname HostB
+!
+spanning-tree mode mstp
+!
+system l1
+   unsupported speed action error
+   unsupported error-correction action error
+!
+vrf instance MGMT
+!
+management api http-commands
+   no shutdown
+   !
+   vrf MGMT
+      no shutdown
+!
+aaa authorization exec default local
+!
+interface Ethernet1
+!
+interface Ethernet2
+!
+interface Management0
+   description oob_management
+   vrf MGMT
+   ip address 172.16.2.242/24
+   ipv6 address 2001:172:16:2::4/80
+!
+no ip routing
+no ip routing vrf MGMT
+!
+ip route vrf MGMT 0.0.0.0/0 172.16.2.1
+!
+ipv6 route vrf MGMT ::/0 2001:172:16:2::1
+!
+end

@@ -1,6 +1,6 @@
 hostname: HostB
-mgmt_ip_address: 172.16.1.241/24
-po1_ip_address: 10.10.10.100/24
-po1_description: LEAF2[AB]
+mgmt_ip_address: 172.16.2.242/24
 eth1_description: LEAF2[AB]
 eth2_description: LEAF2[AB]
+po1_ip_address: 10.10.10.200/24
+po1_description: LEAF2[AB]

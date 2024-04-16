@@ -164,6 +164,7 @@ port_channel_interfaces:
   shutdown: false
   mode: access 
   vlans: 10
+  spanning_tree_portfast: edge
   mlag: 11
 - name: Port-Channel12
   description: MLAG-HostC
@@ -171,6 +172,7 @@ port_channel_interfaces:
   shutdown: false
   mode: access 
   vlans: 30
+  spanning_tree_portfast: edge
   mlag: 12
 loopback_interfaces:
 - name: Loopback0
@@ -207,7 +209,7 @@ vxlan_interface:
       - name: A
         vni: 50001
 mlag_configuration:
-  domain_id: 1000
+  domain_id: '1000'
   local_interface: Vlan4094
   peer_address: {{ mlag_peer_address }}
   peer_link: Port-Channel1000
@@ -250,7 +252,9 @@ router_bgp:
   bgp:
     default:
       ipv4_unicast: false
-
+  maximum_paths:
+    paths: 4
+    ecmp: 4
   peer_groups:
   - name: EVPN-OVERLAY-PEERS
     type: evpn
@@ -300,7 +304,9 @@ router_bgp:
     route_map: RM-CONN-2-BGP
   vrfs:
   - name: A
-    rd: {{ rd }}
+    rd: {{ rd_vrf_a }}
+    redistribute_routes:
+    - source_protocol: connected
     route_targets:
       import:
       - address_family: evpn
@@ -310,18 +316,16 @@ router_bgp:
       - address_family: evpn
         route_targets:
         - '1:1'
-    redistribute_routes:
-    - source_protocol: connected
     neighbors:
-    - ip_address: {{ leaf2_peer_address }}
+    - ip_address: {{ mlag_underlay_peer_address }}
       peer_group: MLAG-IPv4-UNDERLAY-PEER
 
   vlan_aware_bundles:
     TENANT-A:
-      rd: {{ rd }} 
+      rd: {{ rd_vrf_a }} 
       route_targets:
         both:
-          - {{ rt }} 
+          - '{{ rt_vrf_a }}'
       redistribute_routes:
         - learned
       vlan: 10-49

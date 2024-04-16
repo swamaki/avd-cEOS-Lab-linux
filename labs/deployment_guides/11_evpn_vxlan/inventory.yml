@@ -24,32 +24,42 @@ all:
                 A-SPINE2:
                   ansible_host: 172.16.2.12
             LEAFS:
-              hosts:
-                A-LEAF1A:
-                  ansible_host: 172.16.2.101
-                A-LEAF2A:
-                  ansible_host: 172.16.2.102
-                A-LEAF2B:
-                  ansible_host: 172.16.2.103
-                A-SVC1A:
-                  ansible_host: 172.16.2.104
-                A-SVC1B:
-                  ansible_host: 172.16.2.105
-                A-BL1A:
-                  ansible_host: 172.16.2.106
-                A-BL1B:
-                  ansible_host: 172.16.2.107
+              children:
+                LEAF1:
+                  hosts:
+                    A-LEAF1A:
+                      ansible_host: 172.16.2.101
+                LEAF2:
+                  hosts:
+                    A-LEAF2A:
+                      ansible_host: 172.16.2.102
+                    A-LEAF2B:
+                      ansible_host: 172.16.2.103
+                LEAF_SERVICES:
+                  hosts:
+                    A-SVC1A:
+                      ansible_host: 172.16.2.104
+                    A-SVC1B:
+                      ansible_host: 172.16.2.105
+                    A-BL1A:
+                      ansible_host: 172.16.2.106
+                    A-BL1B:
+                      ansible_host: 172.16.2.107
                                
-            SERVERS:
-              hosts:
-                HostA:
-                  ansible_host: 172.16.2.241
-                HostB:
-                  ansible_host: 172.16.2.242
-                HostC:
-                  ansible_host: 172.16.2.243
-                HostD:
-                  ansible_host: 172.16.2.244
+            HOST_DEVICES:
+              children:
+                HOST_DEVICES_1:
+                  hosts:
+                    HostA:
+                      ansible_host: 172.16.2.241
+                    HostD:
+                      ansible_host: 172.16.2.244
+                HOST_DEVICES_2:
+                  hosts:
+                    HostB:
+                      ansible_host: 172.16.2.242
+                    HostC:
+                      ansible_host: 172.16.2.243
                               
 
     NETWORK_SERVICES:
