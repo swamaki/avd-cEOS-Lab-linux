@@ -34,6 +34,9 @@ ip_name_servers:
   vrf: MGMT
 spanning_tree:
   mode: mstp
+aaa_authorization:
+  exec:
+    default: local
 local_users:
 - name: admin
   privilege: 15
@@ -82,14 +85,12 @@ vlan_interfaces:
   description: Ten
   shutdown: false
   vrf: A
-  ip_virtual_router_addresses:
-  - {{ vlan10_ip_address }}
+  ip_address_virtual: {{ vlan10_ip_address }}
 - name: Vlan50
   description: Thirty
   shutdown: false
   vrf: B
-  ip_virtual_router_addresses:
-  - {{ vlan50_ip_address }}
+  ip_address_virtual: {{ vlan50_ip_address }}
 
 
 ethernet_interfaces:

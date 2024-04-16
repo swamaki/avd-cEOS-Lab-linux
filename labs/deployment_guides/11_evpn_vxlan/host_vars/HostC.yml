@@ -4,3 +4,4 @@ eth1_description: LEAF2[AB]
 eth2_description: LEAF2[AB]
 po1_ip_address: 30.30.30.100/24
 po1_description: LEAF2[AB]
+test_default_gw: 30.30.30.1

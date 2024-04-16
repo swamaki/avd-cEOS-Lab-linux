@@ -19,60 +19,60 @@ ansible_httpapi_validate_certs: false
 ansible_httpapi_ciphers: AES256-SHA:DHE-RSA-AES256-SHA:AES128-SHA:DHE-RSA-AES128-SHA
 
 
-# Local users
-local_users:
-  # Define a new user, which is called "ansible"
-  - name: ansible
-    privilege: 15
-    role: network-admin
-    # Password set to "ansible". Same string as the device generates when configuring a username.
-    sha512_password: $6$7u4j1rkb3VELgcZE$EJt2Qff8kd/TapRoci0XaIZsL4tFzgq1YZBLD9c6f/knXzvcYY0NcMKndZeCv0T268knGKhOEwZAxqKjlMm920
-  - name: admin
-    privilege: 15
-    role: network-admin
-    no_password: true
+# # Local users
+# local_users:
+#   # Define a new user, which is called "ansible"
+#   - name: ansible
+#     privilege: 15
+#     role: network-admin
+#     # Password set to "ansible". Same string as the device generates when configuring a username.
+#     sha512_password: $6$7u4j1rkb3VELgcZE$EJt2Qff8kd/TapRoci0XaIZsL4tFzgq1YZBLD9c6f/knXzvcYY0NcMKndZeCv0T268knGKhOEwZAxqKjlMm920
+#   - name: admin
+#     privilege: 15
+#     role: network-admin
+#     no_password: true
 
-# AAA Authorization
-aaa_authorization:
-  exec:
-    default: local
+# # AAA Authorization
+# aaa_authorization:
+#   exec:
+#     default: local
     
-# OOB Management network default gateway.
-mgmt_gateway: 172.16.2.1
-mgmt_interface: Management0
-mgmt_interface_vrf: MGMT
+# # OOB Management network default gateway.
+# mgmt_gateway: 172.16.2.1
+# mgmt_interface: Management0
+# mgmt_interface_vrf: MGMT
 
-# DNS Server
-name_servers:
-  - 1.1.1.1
-  - 8.8.8.8
+# # DNS Server
+# name_servers:
+#   - 1.1.1.1
+#   - 8.8.8.8
 
-ntp:
-  servers:
-  - name: time.google.com
-    preferred: true
-    vrf: MGMT
-    iburst: true
+# ntp:
+#   servers:
+#   - name: time.google.com
+#     preferred: true
+#     vrf: MGMT
+#     iburst: true
 
-service_routing_protocols_model: multi-agent
+# service_routing_protocols_model: multi-agent
 
-custom_structured_configuration_spanning_tree:
-  mode: mstp
+# custom_structured_configuration_spanning_tree:
+#   mode: mstp
 
-ip_routing: true
+# ip_routing: true
   
-# Common AVD group variables
-fabric_name: FABRIC
+# # Common AVD group variables
+# fabric_name: FABRIC
 
 
-daemon_terminattr:
-  smashexcludes: ale,flexCounter,hardware,kni,pulse,strata
-  cvaddrs:
-    # - 172.16.1.3:9910
-    - apiserver.cv-staging.corp.arista.io:443
-  cvauth:
-    method: token-secure
-    token_file: /tmp/cv-onboarding-token
-  cvvrf: MGMT
-  # ingestexclude: /Sysdb/cell/1/agent,/Sysdb/cell/2/agent
-  disable_aaa: true
+# daemon_terminattr:
+#   smashexcludes: ale,flexCounter,hardware,kni,pulse,strata
+#   cvaddrs:
+#     # - 172.16.1.3:9910
+#     - apiserver.cv-staging.corp.arista.io:443
+#   cvauth:
+#     method: token-secure
+#     token_file: /tmp/cv-onboarding-token
+#   cvvrf: MGMT
+#   # ingestexclude: /Sysdb/cell/1/agent,/Sysdb/cell/2/agent
+#   disable_aaa: true

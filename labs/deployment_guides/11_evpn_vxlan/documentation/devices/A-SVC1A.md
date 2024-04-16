@@ -5,7 +5,6 @@
 - [Management](#management)
   - [Management Interfaces](#management-interfaces)
   - [IP Name Servers](#ip-name-servers)
-  - [NTP](#ntp)
   - [Management API HTTP](#management-api-http)
 - [Authentication](#authentication)
   - [Local Users](#local-users)
@@ -71,23 +70,6 @@ interface Management0
 ```eos
 ip name-server vrf MGMT 1.1.1.1
 ip name-server vrf MGMT 8.8.8.8
-```
-
-### NTP
-
-#### NTP Summary
-
-##### NTP Servers
-
-| Server | VRF | Preferred | Burst | iBurst | Version | Min Poll | Max Poll | Local-interface | Key |
-| ------ | --- | --------- | ----- | ------ | ------- | -------- | -------- | --------------- | --- |
-| time.google.com | MGMT | True | - | True | - | - | - | - | - |
-
-#### NTP Device Configuration
-
-```eos
-!
-ntp server vrf MGMT time.google.com prefer iburst
 ```
 
 ### Management API HTTP
