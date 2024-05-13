@@ -49,11 +49,10 @@ loopback_interfaces:
   description: LSR_Router_ID
   shutdown: false
   ip_address: 10.255.0.4/32
-  mpls:
-    ldp:
-      interface: true
   isis_enable: CORE
   isis_passive: true
+  node_segment:
+    ipv4_index: 4
 router_isis:
   instance: CORE
   log_adjacency_changes: true
@@ -63,14 +62,13 @@ router_isis:
   address_family_ipv4:
     enabled: true
     maximum_paths: 4
-  mpls_ldp_sync_default: true
+  advertise:
+    passive_only: false
+  segment_routing_mpls:
+    router_id: 10.255.0.4
+    enabled: true
 mpls:
   ip: true
-  ldp:
-    interface_disabled_default: true
-    router_id: 10.255.0.4
-    shutdown: false
-    transport_address_interface: Loopback0
 ethernet_interfaces:
 - name: Ethernet2
   peer: rr2
@@ -90,9 +88,6 @@ ethernet_interfaces:
   isis_authentication_key: $1c$sTNAlR6rKSw=
   mpls:
     ip: true
-    ldp:
-      interface: true
-      igp_sync: true
 - name: Ethernet4
   peer: p3
   peer_interface: Ethernet4
@@ -111,9 +106,6 @@ ethernet_interfaces:
   isis_authentication_key: $1c$sTNAlR6rKSw=
   mpls:
     ip: true
-    ldp:
-      interface: true
-      igp_sync: true
 - name: Ethernet3
   peer: pe3
   peer_interface: Ethernet3
@@ -132,6 +124,3 @@ ethernet_interfaces:
   isis_authentication_key: $1c$sTNAlR6rKSw=
   mpls:
     ip: true
-    ldp:
-      interface: true
-      igp_sync: true

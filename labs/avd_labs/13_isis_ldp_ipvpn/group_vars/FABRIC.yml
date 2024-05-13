@@ -71,13 +71,15 @@ ntp:
 #     encryption_key_common: true
 
 design:
+  # type: <str; "l3ls-evpn" | "mpls" | "l2ls"; default="l3ls-evpn">
   type: mpls
 
 # Common AVD group variables
 fabric_name: FABRIC
 
 # Define underlay and overlay routing protocol to be used
-underlay_routing_protocol: isis-ldp
+# underlay_routing_protocol: <str; "ebgp" | "ospf" | "ospf-ldp" | "isis" | "isis-sr" | "isis-ldp" | "isis-sr-ldp" | "none"; default="ebgp">
+underlay_routing_protocol: isis-sr
 overlay_routing_protocol: ibgp
 
 # BGP peer groups passwords
