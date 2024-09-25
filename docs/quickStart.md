@@ -222,7 +222,7 @@ cd avd-cEOS-Lab/labs/evpn/avd_sym_irb
     inventory=./inventory.yaml
     gathering=explicit
     retry_files_enabled = False
-    collections_paths = ../ansible-cvp:../ansible-avd:~/.ansible/collections:/usr/share/ansible/collections
+    # collections_paths = ../ansible-cvp:../ansible-avd:~/.ansible/collections:/usr/share/ansible/collections
     jinja2_extensions =  jinja2.ext.loopcontrols,jinja2.ext.do,jinja2.ext.i18n
     duplicate_dict_key=error
     stdout_callback = yaml
