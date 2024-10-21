@@ -1,0 +1,4 @@
+
+ansible-playbook deploy.yml
+ansible-playbook deploy_eve.yml -i inventory_eve.yml --tags deploy 
+ansible-playbook deploy_clab.yml --tags deploy 
