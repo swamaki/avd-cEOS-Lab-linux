@@ -17,3 +17,15 @@ ping 10.10.10.100
 ping 10.10.10.200
 ping 30.30.30.100
 ping 50.50.50.100
+
+
+show vlan brief
+show interface vxlan1
+show vxlan flood vtep vlan 10
+show vxlan address-table vlan 10
+show mac address-table vlan 10
+show bgp evpn route-type mac-ip vni 10010
+show bgp evpn route-type mac-ip 0050.5655.543a detail
+show bgp evpn route-type imet vni 10010
+show bgp evpn route-type imet vni 10010 detail
+
