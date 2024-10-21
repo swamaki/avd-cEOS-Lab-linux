@@ -1,0 +1,70 @@
+---
+all:
+  children:
+    CLOUDVISION:
+      hosts:
+        cvp:
+          # Ansible variables used by the ansible_avd and ansible_cvp roles to push configuration to devices via CVP
+          ansible_host: 192.168.1.12
+          ansible_user: ansible
+          ansible_password: ansible
+          ansible_connection: httpapi
+          ansible_httpapi_use_ssl: true
+          ansible_httpapi_validate_certs: false
+          ansible_network_os: eos
+
+    FABRIC:
+      children:
+        DC1:
+          children:
+            SPINES:
+              hosts:
+                A-SPINE1:
+                  ansible_host: 172.16.1.11
+                A-SPINE2:
+                  ansible_host: 172.16.1.12
+            LEAFS:
+              children:
+                LEAF1:
+                  hosts:
+                    A-LEAF1A:
+                      ansible_host: 172.16.1.101
+                LEAF2:
+                  hosts:
+                    A-LEAF2A:
+                      ansible_host: 172.16.1.102
+                    A-LEAF2B:
+                      ansible_host: 172.16.1.103
+                LEAF_SERVICES:
+                  hosts:
+                    A-SVC1A:
+                      ansible_host: 172.16.1.104
+                    A-SVC1B:
+                      ansible_host: 172.16.1.105
+                    A-BL1A:
+                      ansible_host: 172.16.1.106
+                    A-BL1B:
+                      ansible_host: 172.16.1.107
+                               
+            HOST_DEVICES:
+              children:
+                HOST_DEVICES_1:
+                  hosts:
+                    HostA:
+                      ansible_host: 172.16.1.241
+                    HostD:
+                      ansible_host: 172.16.1.244
+                HOST_DEVICES_2:
+                  hosts:
+                    HostB:
+                      ansible_host: 172.16.1.242
+                    HostC:
+                      ansible_host: 172.16.1.243
+                              
+
+    NETWORK_SERVICES:
+      children:
+        LEAFS:
+    CONNECTED_ENDPOINTS:
+      children:
+        LEAFS:

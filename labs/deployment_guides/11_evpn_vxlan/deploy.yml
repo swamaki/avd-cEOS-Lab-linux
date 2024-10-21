@@ -13,7 +13,7 @@
   hosts: LEAF1
   gather_facts: false
   tasks:
-    - name: Building Leaf configs using jinja2
+    - name: Building LEAF1 configs using jinja2
       ansible.builtin.template:
         src: templates/leaf1.j2
         dest: intended/structured_configs/{{ hostname }}.yml
@@ -22,7 +22,7 @@
   hosts: LEAF2
   gather_facts: false
   tasks:
-    - name: Building SpiLeafne configs using jinja2
+    - name: Building LEAF2 configs using jinja2
       ansible.builtin.template:
         src: templates/leaf2.j2
         dest: intended/structured_configs/{{ hostname }}.yml

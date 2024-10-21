@@ -19,5 +19,6 @@ deploy: ## Complete AVD & cEOS-Lab Deployment
 .PHONY: destroy
 destroy: ## Delete cEOS-Lab Deployment and AVD generated config and documentation
 	@echo -e "\n############### \e[1;30;42mWiping nodes and deleting AVD configuration\e[0m ###############\n"
-	@sudo containerlab destroy -t topology.yaml --cleanup
+	# @sudo containerlab destroy -t topology.yaml --cleanup
+	@sudo containerlab destroy -t topology.yaml
 	@rm -rf .topology.yaml.bak config_backup/ snapshots/ reports/ documentation/ intended/
