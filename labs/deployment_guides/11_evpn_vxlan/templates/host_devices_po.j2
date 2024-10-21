@@ -94,4 +94,6 @@ port_channel_interfaces:
     type: routed
     shutdown: false
     ip_address: {{ po1_ip_address }}
+    eos_cli: |
+      mac-address router {{ po1_mac_address }}
 

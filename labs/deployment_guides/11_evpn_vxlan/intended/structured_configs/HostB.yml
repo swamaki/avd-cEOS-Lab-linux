@@ -94,4 +94,6 @@ port_channel_interfaces:
     type: routed
     shutdown: false
     ip_address: 10.10.10.200/24
+    eos_cli: |
+      mac-address router 0000.0000.bbbb
 

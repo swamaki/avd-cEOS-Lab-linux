@@ -237,6 +237,8 @@ interface Ethernet1
    no shutdown
    no switchport
    ip address 10.10.10.100/24
+   mac-address 00:00:00:00:aa:aa
+
 ```
 
 ## Routing

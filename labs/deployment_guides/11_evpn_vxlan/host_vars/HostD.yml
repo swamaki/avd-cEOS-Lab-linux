@@ -2,4 +2,5 @@ hostname: HostD
 mgmt_ip_address: 172.16.2.244/24
 eth1_ip_address: 50.50.50.100/24
 eth1_description: Host Int for Testing
+eth1_mac_address: 00:00:00:00:dd:dd
 test_default_gw: 50.50.50.1

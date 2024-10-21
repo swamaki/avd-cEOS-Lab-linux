@@ -271,6 +271,8 @@ interface Port-Channel1
    no shutdown
    no switchport
    ip address 30.30.30.100/24
+   mac-address router 0000.0000.cccc
+
 ```
 
 ## Routing

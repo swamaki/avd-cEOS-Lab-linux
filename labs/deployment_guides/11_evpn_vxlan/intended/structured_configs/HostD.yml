@@ -79,4 +79,6 @@ ethernet_interfaces:
     type: routed
     shutdown: false
     ip_address: 50.50.50.100/24
+    eos_cli: |
+      mac-address 00:00:00:00:dd:dd
 
