@@ -38,13 +38,13 @@
 
 ##### IPv4
 
-| Management Interface | description | Type | VRF | IP Address | Gateway |
+| Management Interface | Description | Type | VRF | IP Address | Gateway |
 | -------------------- | ----------- | ---- | --- | ---------- | ------- |
 | Management0 | oob_management | oob | MGMT | 172.16.2.243/24 | 172.16.2.1 |
 
 ##### IPv6
 
-| Management Interface | description | Type | VRF | IPv6 Address | IPv6 Gateway |
+| Management Interface | Description | Type | VRF | IPv6 Address | IPv6 Gateway |
 | -------------------- | ----------- | ---- | --- | ------------ | ------------ |
 | Management0 | oob_management | oob | MGMT | - | - |
 
@@ -229,6 +229,7 @@ vlan internal order ascending range 1006 1199
 | --------- | ----------- | -----| ------------- | ---------- | ----| ---- | -------- | ------ | ------- |
 | Ethernet1 | LEAF2[AB] | *routed | 1 | *30.30.30.100/24 | **default | **- | *False | **- | **- |
 | Ethernet2 | LEAF2[AB] | *routed | 1 | *30.30.30.100/24 | **default | **- | *False | **- | **- |
+
 *Inherited from Port-Channel Interface
 
 #### Ethernet Interfaces Device Configuration

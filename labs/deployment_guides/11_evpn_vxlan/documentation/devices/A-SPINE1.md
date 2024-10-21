@@ -45,13 +45,13 @@
 
 ##### IPv4
 
-| Management Interface | description | Type | VRF | IP Address | Gateway |
+| Management Interface | Description | Type | VRF | IP Address | Gateway |
 | -------------------- | ----------- | ---- | --- | ---------- | ------- |
 | Management0 | oob_management | oob | MGMT | 172.16.2.11/24 | 172.16.2.1 |
 
 ##### IPv6
 
-| Management Interface | description | Type | VRF | IPv6 Address | IPv6 Gateway |
+| Management Interface | Description | Type | VRF | IPv6 Address | IPv6 Gateway |
 | -------------------- | ----------- | ---- | --- | ------------ | ------------ |
 | Management0 | oob_management | oob | MGMT | - | - |
 
@@ -368,6 +368,8 @@ ip route vrf MGMT 0.0.0.0/0 172.16.2.1
 ```
 
 ### Router BGP
+
+ASN Notation: asplain
 
 #### Router BGP Summary
 

@@ -1,4 +1,19 @@
-
+deploy from AVD
 ansible-playbook deploy.yml
-ansible-playbook deploy_eve.yml -i inventory_eve.yml --tags deploy 
+
+deploy to lab using device configlets
 ansible-playbook deploy_clab.yml --tags deploy 
+
+deploy to eve lab using device configlets
+ansible-playbook deploy_eve.yml -i inventory_eve.yml --tags deploy 
+
+git restore .
+
+
+----
+verifications 
+
+ping 10.10.10.100
+ping 10.10.10.200
+ping 30.30.30.100
+ping 50.50.50.100
