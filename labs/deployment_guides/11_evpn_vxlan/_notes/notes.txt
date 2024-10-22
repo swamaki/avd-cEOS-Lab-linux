@@ -1,3 +1,7 @@
+
+https://github.com/aristanetworks/eos-deployment-guide-configs/tree/master
+
+
 deploy from AVD
 ansible-playbook deploy.yml
 
@@ -7,7 +11,10 @@ ansible-playbook deploy_clab.yml --tags deploy
 deploy to eve lab using device configlets
 ansible-playbook deploy_eve.yml -i inventory_eve.yml --tags deploy 
 
+----
 git restore .
+
+docker import ~/Downloads/cEOS-lab-4.32.2.1F.tar ceosimage:4.32.2.1F
 
 
 ----
@@ -18,6 +25,8 @@ ping 10.10.10.200
 ping 30.30.30.100
 ping 50.50.50.100
 
+hostA - 0050.5616.408b
+hostB - 0050.5655.543a
 
 show vlan brief
 show interface vxlan1
@@ -25,7 +34,7 @@ show vxlan flood vtep vlan 10
 show vxlan address-table vlan 10
 show mac address-table vlan 10
 show bgp evpn route-type mac-ip vni 10010
-show bgp evpn route-type mac-ip 0050.5655.543a detail
+show bgp evpn route-type mac-ip 0.0.bbbb detail
 show bgp evpn route-type imet vni 10010
 show bgp evpn route-type imet vni 10010 detail
 
