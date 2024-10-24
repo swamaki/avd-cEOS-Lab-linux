@@ -36,10 +36,15 @@ local_users:
   #   role: network-admin
   #   no_password: true
 
+
 # AAA Authorization
 aaa_authorization:
   exec:
     default: local
+
+logging:
+  monitor: "debugging"
+  
   
 name_servers:
   - 1.1.1.1

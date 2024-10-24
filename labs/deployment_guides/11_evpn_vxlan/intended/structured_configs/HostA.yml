@@ -80,5 +80,5 @@ ethernet_interfaces:
     shutdown: false
     ip_address: 10.10.10.100/24
     eos_cli: |
-      mac-address 00:00:00:00:aa:aa
+      mac-address 000.000.aaaa
 
