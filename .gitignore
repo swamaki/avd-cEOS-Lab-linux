@@ -59,48 +59,56 @@ labs/evpn/11_avd_asym_irb/config_backup/
 labs/evpn/11_avd_asym_irb/documentation/
 labs/evpn/11_avd_asym_irb/reports/
 labs/evpn/11_avd_asym_irb/snapshots/
+labs/evpn/11_avd_asym_irb/custom_anta_catalogs
 
 labs/evpn/12_avd_asym_multihoming/clab-aamh/
 labs/evpn/12_avd_asym_multihoming/config_backup/
 labs/evpn/12_avd_asym_multihoming/documentation/
 labs/evpn/12_avd_asym_multihoming/reports/
 labs/evpn/12_avd_asym_multihoming/snapshots/
+labs/evpn/12_avd_asym_multihoming/custom_anta_catalogs
 
 labs/evpn/13_avd_central_any_gw/clab-avdcentralgw/
 labs/evpn/13_avd_central_any_gw/config_backup/
 labs/evpn/13_avd_central_any_gw/documentation/
 labs/evpn/13_avd_central_any_gw/reports/
 labs/evpn/13_avd_central_any_gw/snapshots/
+labs/evpn/13_avd_central_any_gw/custom_anta_catalogs
 
 labs/evpn/14_avd_sym_irb/clab-avdirb/
 labs/evpn/14_avd_sym_irb/config_backup/
 labs/evpn/14_avd_sym_irb/documentation/
 labs/evpn/14_avd_sym_irb/reports/
 labs/evpn/14_avd_sym_irb/snapshots/
+labs/evpn/14_avd_sym_irb/custom_anta_catalogs
 
 labs/evpn/15_avd_sym_irb_ibgp/clab-avdirb/
 labs/evpn/15_avd_sym_irb_ibgp/config_backup/
 labs/evpn/15_avd_sym_irb_ibgp/documentation/
 labs/evpn/15_avd_sym_irb_ibgp/reports/
 labs/evpn/15_avd_sym_irb_ibgp/snapshots/
+labs/evpn/15_avd_sym_irb_ibgp/custom_anta_catalogs
 
 labs/evpn/16_avd_sym_sa_multihoming/clab-samh/
 labs/evpn/16_avd_sym_sa_multihoming/config_backup/
 labs/evpn/16_avd_sym_sa_multihoming/documentation/
 labs/evpn/16_avd_sym_sa_multihoming/reports/
 labs/evpn/16_avd_sym_sa_multihoming/snapshots/
+labs/evpn/16_avd_sym_sa_multihoming/custom_anta_catalogs
 
 labs/evpn/17_mpls_evpn_irb/clab-mplsevpnirb/
 labs/evpn/17_mpls_evpn_irb/config_backup/
 labs/evpn/17_mpls_evpn_irb/documentation/
 labs/evpn/17_mpls_evpn_irb/reports/
 labs/evpn/17_mpls_evpn_irb/snapshots/
+labs/evpn/17_mpls_evpn_irb/custom_anta_catalogs
 
 labs/evpn/18_mpls_ldp_l2evpn/clab-mplsl2evpn/
 labs/evpn/18_mpls_ldp_l2evpn/config_backup/
 labs/evpn/18_mpls_ldp_l2evpn/documentation/
 labs/evpn/18_mpls_ldp_l2evpn/reports/
 labs/evpn/18_mpls_ldp_l2evpn/snapshots/
+labs/evpn/18_mpls_ldp_l2evpn/custom_anta_catalogs
 
 #=====================================================
 

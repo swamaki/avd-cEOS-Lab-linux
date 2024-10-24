@@ -1,6 +1,4 @@
 hostname: DC1_PE12
-metadata:
-  platform: cEOS-LAB
 is_deployed: true
 router_bgp:
   as: '65102'
@@ -241,6 +239,8 @@ port_channel_interfaces:
     identifier: 0000:0000:0101:0102:0044
     route_target: 01:01:01:02:00:44
   lacp_id: 0101.0102.0044
+metadata:
+  platform: cEOS-LAB
 vlan_interfaces:
 - name: Vlan110
   description: Tenant_A_OP_Zone_1

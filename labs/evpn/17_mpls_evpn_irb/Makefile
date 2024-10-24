@@ -20,4 +20,4 @@ deploy: ## Complete AVD & cEOS-Lab Deployment
 destroy: ## Delete cEOS-Lab Deployment and AVD generated config and documentation
 	@echo -e "\n############### \e[1;30;42mWiping nodes and deleting AVD configuration\e[0m ###############\n"
 	@sudo containerlab destroy -t topology.yaml --cleanup
-	@rm -rf .topology.yaml.bak config_backup/ snapshots/ reports/ documentation/devices/*.md intended/configs/*.cfg
+	@rm -rf .topology.yaml.bak snapshots/ reports/ documentation/devices/*.md intended/configs/*.cfg custom_anta_catalogs/

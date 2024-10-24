@@ -23,7 +23,8 @@
     - name: deploy
       tags: [deploy]
       arista.eos.eos_config:
-        src: "./configs_eve/{{ inventory_hostname }}.cfg"
+        src: "./configs_eve/{{ inventory_hostname }}.cfg" 
+        # src: "./configs_eve_vlanbased/{{ inventory_hostname }}.cfg"
         replace: 'config'
 
 - name: Backup Device configs
