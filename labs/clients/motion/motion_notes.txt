@@ -1,0 +1,16 @@
+
+
+ping 10.10.11.1
+ping 10.10.11.101
+
+
+ping 10.20.11.1
+ping 10.20.11.111
+ping 10.10.11.111
+
+
+
+interface Vlan11
+   mac address virtual-router
+ip virtual-router mac-address 00:00:00:00:11:11
+

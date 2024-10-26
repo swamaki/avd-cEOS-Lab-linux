@@ -1,0 +1,57 @@
+---
+# Deploy these to simulate dual DCs with 2 different subnets 
+
+- name: Deploy Device configs
+  hosts: FABRIC
+  connection: local
+  gather_facts: false
+  vars:
+      # EOS Configuration Directory name
+      ansible_user: ansible
+      ansible_password: ansible
+      ansible_network_os: arista.eos.eos
+      # Configure privilege escalation
+      ansible_become: true
+      ansible_become_method: enable
+      # HTTPAPI configuration
+      ansible_connection: httpapi
+      ansible_httpapi_port: 443
+      ansible_httpapi_use_ssl: true
+      ansible_httpapi_validate_certs: false
+  tasks:
+
+    - name: deploy
+      tags: [deploy]
+      arista.eos.eos_config:
+        # src: "./configs_layer3vrf/{{ inventory_hostname }}.cfg"
+        # src: "./configs_evpn/{{ inventory_hostname }}.cfg"
+        src: "./configs_evpn_gw/{{ inventory_hostname }}.cfg"
+        replace: 'config'
+
+- name: Backup Device configs
+  hosts: FABRIC
+  connection: local
+  gather_facts: false
+  vars:
+      # EOS Configuration Directory name
+      ansible_user: ansible
+      ansible_password: ansible
+      ansible_network_os: arista.eos.eos
+      # Configure privilege escalation
+      ansible_become: true
+      ansible_become_method: enable
+      # HTTPAPI configuration
+      ansible_connection: httpapi
+      ansible_httpapi_port: 443
+      ansible_httpapi_use_ssl: true
+      ansible_httpapi_validate_certs: false
+  tasks:
+
+    - name: backup
+      tags: [backup]
+      arista.eos.eos_config:
+        backup: true
+        backup_options:
+          filename: "{{ inventory_hostname }}.cfg"
+
+

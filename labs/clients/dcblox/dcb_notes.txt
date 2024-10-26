@@ -1,0 +1,212 @@
+
+ping 10.10.11.1
+ping 10.10.11.101
+ping 10.10.11.102
+
+ping 10.20.11.1
+ping 10.20.11.103
+ping 10.20.11.104
+
+!
+interface Vlan11
+   description CUSTOMER_VRF_VLAN11
+   vrf CUSTOMER_VRF
+   ip address virtual 10.10.11.1/24
+!
+
+
+
+!
+interface Ethernet1
+   ip address 10.10.11.103/24
+!
+
+ping 10.10.11.1
+ping 10.10.11.101
+ping 10.10.11.102
+ping 10.10.11.103
+ping 10.10.11.104
+
+---------------
+!
+ip virtual-router mac-address 00:1c:73:aa:bb:cc
+!
+interface Vlan10
+ vrf forwarding A
+ ip address virtual 10.10.10.1/24
+!
+interface Vlan50
+ vrf forwarding B
+ ip address virtual 50.50.50.1/24
+!
+
+
+https://www.arista.com/en/um-eos/eos-vrrp-and-varp?searchword=eos%20varp
+
+=======================================
+
+dc1-leaf2a 
+
+!
+interface Ethernet6
+   description P2P_LINK_TO_dc2-leaf2a_Ethernet6
+   load-interval 1
+   no switchport
+   vrf CUSTOMER_VRF
+   ip address 172.100.100.0/31
+!
+router bgp 65102
+      !
+
+!
+   vrf CUSTOMER_VRF
+      rd 10.255.0.5:10
+      route-target import evpn 10:10
+      route-target export evpn 10:10
+      router-id 10.255.0.5
+      redistribute connected
+      neighbor 172.100.100.1 remote-as 65202
+      neighbor 172.100.100.1 description dc2-leaf2a
+      neighbor 172.100.100.1 maximum-routes 12000
+            address-family ipv4
+         neighbor 172.100.100.1 activate
+!
+
+-----
+dc2-leaf2a 
+
+interface Ethernet6
+   description P2P_LINK_TO_dc1-leaf2a_Ethernet6
+   load-interval 1
+   no switchport
+   vrf CUSTOMER_VRF
+   ip address 172.100.100.1/31
+!
+router  bgp 65202
+ vrf CUSTOMER_VRF
+      rd 10.255.128.15:10
+      route-target import evpn 10:10
+      route-target export evpn 10:10
+      router-id 10.255.128.15
+      neighbor 172.100.100.0 remote-as 65102
+      neighbor 172.100.100.0 description dc1-leaf2a
+      neighbor 172.100.100.0 maximum-routes 12000
+      redistribute connected
+      !
+      address-family ipv4
+         neighbor 172.100.100.0 activate
+!
+
+
+-----
+
+dc1-leaf2b
+
+interface Ethernet6
+   description P2P_LINK_TO_dc2-leaf2b_Ethernet6
+   load-interval 1
+   no switchport
+   vrf CUSTOMER_VRF
+   ip address 172.100.100.2/31
+!
+router bgp 65102
+   vrf CUSTOMER_VRF
+      rd 10.255.0.6:10
+      route-target import evpn 10:10
+      route-target export evpn 10:10
+      router-id 10.255.0.6
+      neighbor 172.100.100.3 remote-as 65202
+      neighbor 172.100.100.3 description dc2-leaf2b
+      neighbor 172.100.100.3 maximum-routes 12000
+      redistribute connected
+      !
+      address-family ipv4
+         neighbor 172.100.100.3 activate
+!
+
+-----
+dc2-leaf2b
+
+interface Ethernet6
+   description P2P_LINK_TO_dc1-leaf2b_Ethernet6
+   load-interval 1
+   no switchport
+   vrf CUSTOMER_VRF
+   ip address 172.100.100.3/31
+!
+router bgp 65202
+   vrf CUSTOMER_VRF
+      rd 10.255.128.16:10
+      route-target import evpn 10:10
+      route-target export evpn 10:10
+      router-id 10.255.128.16
+      neighbor 172.100.100.2 remote-as 65102
+      neighbor 172.100.100.2 description dc1-leaf2b
+      neighbor 172.100.100.2 maximum-routes 12000
+      redistribute connected
+      !
+      address-family ipv4
+         neighbor 172.100.100.2 activate
+!
+
+=============================================
+
+multidomain 
+
+dc1-leaf2a 
+
+
+router bgp 65102
+   !
+   vlan 11
+      rd evpn domain remote 10.255.0.5:10011
+      route-target import export evpn domain remote 10011:10011
+   !
+   address-family evpn
+      neighbor EVPN-OVERLAY-CORE domain remote
+      neighbor default next-hop-self received-evpn-routes route-type ip-prefix inter-domain
+   !
+
+------
+
+dc2-leaf2a 
+
+router bgp 65202 
+
+   vlan 11
+      rd evpn domain remote 10.255.128.15:10011
+      route-target import export evpn domain remote 10011:10011
+   !
+   address-family evpn
+      neighbor EVPN-OVERLAY-CORE domain remote
+      neighbor default next-hop-self received-evpn-routes route-type ip-prefix inter-domain
+   !
+
+=======================
+
+dc1-leaf2b
+
+
+router bgp 65102
+   vlan 11
+      rd evpn domain remote 10.255.0.6:10011
+      route-target import export evpn domain remote 10011:10011
+   !
+   address-family evpn
+      neighbor EVPN-OVERLAY-CORE domain remote
+      neighbor default next-hop-self received-evpn-routes route-type ip-prefix inter-domain
+   !
+
+------
+
+dc2-leaf2b
+
+router bgp 65202 
+   vlan 11
+      rd evpn domain remote 10.255.128.16:10011
+      route-target import export evpn domain remote 10011:10011
+   !
+   address-family evpn
+      neighbor EVPN-OVERLAY-CORE domain remote
+      neighbor default next-hop-self received-evpn-routes route-type ip-prefix inter-domain
+   !
