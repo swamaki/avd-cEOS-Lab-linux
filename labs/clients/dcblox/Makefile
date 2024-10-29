@@ -21,8 +21,8 @@ deploy: ## Complete AVD & cEOS-Lab Deployment
 
 .PHONY: destroy
 destroy: ## Delete cEOS-Lab Deployment and AVD generated config and documentation
-	@echo -e "\n############### \e[1;30;42mBacking up switch configuration to ./backup\e[0m ###############\n"
-	@ansible-playbook deploy.yml --tags backup --flush-cache
+	# @echo -e "\n############### \e[1;30;42mBacking up switch configuration to ./backup\e[0m ###############\n"
+	# @ansible-playbook deploy.yml --tags backup --flush-cache
 	
 	@echo -e "\n############### \e[1;30;42mWiping nodes and deleting AVD configuration\e[0m ###############\n"
 	@sudo containerlab destroy -t topology.yaml --cleanup
