@@ -45,11 +45,11 @@ https://www.arista.com/en/um-eos/eos-vrrp-and-varp?searchword=eos%20varp
 
 =======================================
 
-dc1-leaf2a 
+DC1_PE11 
 
 !
 interface Ethernet6
-   description P2P_LINK_TO_dc2-leaf2a_Ethernet6
+   description P2P_LINK_TO_DC2_PE21_Ethernet6
    load-interval 1
    no switchport
    vrf CUSTOMER_VRF
@@ -66,17 +66,17 @@ router bgp 65102
       router-id 10.255.0.5
       redistribute connected
       neighbor 172.100.100.1 remote-as 65202
-      neighbor 172.100.100.1 description dc2-leaf2a
+      neighbor 172.100.100.1 description DC2_PE21
       neighbor 172.100.100.1 maximum-routes 12000
             address-family ipv4
          neighbor 172.100.100.1 activate
 !
 
 -----
-dc2-leaf2a 
+DC2_PE21 
 
 interface Ethernet6
-   description P2P_LINK_TO_dc1-leaf2a_Ethernet6
+   description P2P_LINK_TO_DC1_PE11_Ethernet6
    load-interval 1
    no switchport
    vrf CUSTOMER_VRF
@@ -89,7 +89,7 @@ router  bgp 65202
       route-target export evpn 10:10
       router-id 10.255.128.15
       neighbor 172.100.100.0 remote-as 65102
-      neighbor 172.100.100.0 description dc1-leaf2a
+      neighbor 172.100.100.0 description DC1_PE11
       neighbor 172.100.100.0 maximum-routes 12000
       redistribute connected
       !
@@ -100,10 +100,10 @@ router  bgp 65202
 
 -----
 
-dc1-leaf2b
+DC1_PE12
 
 interface Ethernet6
-   description P2P_LINK_TO_dc2-leaf2b_Ethernet6
+   description P2P_LINK_TO_DC2_PE22_Ethernet6
    load-interval 1
    no switchport
    vrf CUSTOMER_VRF
@@ -116,7 +116,7 @@ router bgp 65102
       route-target export evpn 10:10
       router-id 10.255.0.6
       neighbor 172.100.100.3 remote-as 65202
-      neighbor 172.100.100.3 description dc2-leaf2b
+      neighbor 172.100.100.3 description DC2_PE22
       neighbor 172.100.100.3 maximum-routes 12000
       redistribute connected
       !
@@ -125,10 +125,10 @@ router bgp 65102
 !
 
 -----
-dc2-leaf2b
+DC2_PE22
 
 interface Ethernet6
-   description P2P_LINK_TO_dc1-leaf2b_Ethernet6
+   description P2P_LINK_TO_DC1_PE12_Ethernet6
    load-interval 1
    no switchport
    vrf CUSTOMER_VRF
@@ -141,7 +141,7 @@ router bgp 65202
       route-target export evpn 10:10
       router-id 10.255.128.16
       neighbor 172.100.100.2 remote-as 65102
-      neighbor 172.100.100.2 description dc1-leaf2b
+      neighbor 172.100.100.2 description DC1_PE12
       neighbor 172.100.100.2 maximum-routes 12000
       redistribute connected
       !
@@ -153,7 +153,7 @@ router bgp 65202
 
 multidomain 
 
-dc1-leaf2a 
+DC1_PE11 
 
 
 router bgp 65102
@@ -169,7 +169,7 @@ router bgp 65102
 
 ------
 
-dc2-leaf2a 
+DC2_PE21 
 
 router bgp 65202 
 
@@ -184,7 +184,7 @@ router bgp 65202
 
 =======================
 
-dc1-leaf2b
+DC1_PE12
 
 
 router bgp 65102
@@ -199,7 +199,7 @@ router bgp 65102
 
 ------
 
-dc2-leaf2b
+DC2_PE22
 
 router bgp 65202 
    vlan 11

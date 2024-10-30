@@ -12,16 +12,16 @@ topology:
     linux:
       image: alpine-host
   nodes:
-    dc1-leaf2a:
+    DC1_PE11:
       kind: ceos
       mgmt-ipv4: 172.16.2.103
-    dc1-leaf2b:
+    DC1_PE12:
       kind: ceos
       mgmt-ipv4: 172.16.2.104
-    dc2-leaf2a:
+    DC2_PE21:
       kind: ceos
       mgmt-ipv4: 172.16.2.113
-    dc2-leaf2b:
+    DC2_PE22:
       kind: ceos
       mgmt-ipv4: 172.16.2.114
     client1:
@@ -42,18 +42,18 @@ topology:
 
   links:
 
-    - endpoints: ["core:eth1", "dc1-leaf2a:eth2"]
-    - endpoints: ["core:eth2", "dc1-leaf2b:eth2"]
-    - endpoints: ["core:eth3", "dc2-leaf2a:eth2"]
-    - endpoints: ["core:eth4", "dc2-leaf2b:eth2"]
-    - endpoints: ["dc1-leaf2a:eth1", "dc1-leaf2b:eth1"]
-    - endpoints: ["dc1-leaf2a:eth5", "client1:eth1"]
-    - endpoints: ["dc1-leaf2a:eth6", "dc2-leaf2a:eth6"]
-    - endpoints: ["dc1-leaf2b:eth5", "client2:eth1"]
-    - endpoints: ["dc1-leaf2b:eth6", "dc2-leaf2b:eth6"]
-    - endpoints: ["dc2-leaf2a:eth1", "dc2-leaf2b:eth1"]
-    - endpoints: ["dc2-leaf2a:eth5", "client3:eth1"]
-    - endpoints: ["dc2-leaf2b:eth5", "client4:eth1"]
+    - endpoints: ["core:eth1", "DC1_PE11:eth2"]
+    - endpoints: ["core:eth2", "DC1_PE12:eth2"]
+    - endpoints: ["core:eth3", "DC2_PE21:eth2"]
+    - endpoints: ["core:eth4", "DC2_PE22:eth2"]
+    - endpoints: ["DC1_PE11:eth1", "DC1_PE12:eth1"]
+    - endpoints: ["DC1_PE11:eth5", "client1:eth1"]
+    - endpoints: ["DC1_PE11:eth6", "DC2_PE21:eth6"]
+    - endpoints: ["DC1_PE12:eth5", "client2:eth1"]
+    - endpoints: ["DC1_PE12:eth6", "DC2_PE22:eth6"]
+    - endpoints: ["DC2_PE21:eth1", "DC2_PE22:eth1"]
+    - endpoints: ["DC2_PE21:eth5", "client3:eth1"]
+    - endpoints: ["DC2_PE22:eth5", "client4:eth1"]
 
 
 mgmt:

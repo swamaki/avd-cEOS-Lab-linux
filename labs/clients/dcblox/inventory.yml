@@ -3,13 +3,13 @@ all:
   children:
     FABRIC:
       hosts:
-        dc1-leaf2a:
+        DC1_PE11:
           ansible_host: 172.16.2.103
-        dc1-leaf2b:
+        DC1_PE12:
           ansible_host: 172.16.2.104
-        dc2-leaf2a:
+        DC2_PE21:
           ansible_host: 172.16.2.113
-        dc2-leaf2b:
+        DC2_PE22:
           ansible_host: 172.16.2.114
         client1:
           ansible_host: 172.16.2.241

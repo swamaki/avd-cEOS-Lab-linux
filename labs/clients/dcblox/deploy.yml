@@ -24,8 +24,8 @@
       arista.eos.eos_config:
         # src: "./configs_layer3vrf/{{ inventory_hostname }}.cfg"
         # src: "./configs_evpn_gw/{{ inventory_hostname }}.cfg"
-        # src: "./configs_mpls_vlan/{{ inventory_hostname }}.cfg"
-        src: "./configs_mpls_bundle/{{ inventory_hostname }}.cfg"
+        # src: "./configs_mpls_bundle/{{ inventory_hostname }}.cfg"
+        src: "./configs_mpls_vlan/{{ inventory_hostname }}.cfg"
         replace: "config"
 
 - name: Backup Device configs
