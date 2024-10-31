@@ -2,7 +2,6 @@
 fabric_name: DC1_FABRIC
 
 underlay_routing_protocol: ospf
-
 overlay_routing_protocol: ibgp
 
 evpn_vlan_aware_bundles: true

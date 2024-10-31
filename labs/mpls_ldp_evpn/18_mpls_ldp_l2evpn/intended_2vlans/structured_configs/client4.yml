@@ -1,4 +1,4 @@
-hostname: client2
+hostname: client4
 is_deployed: true
 static_routes:
 - vrf: MGMT
@@ -41,7 +41,7 @@ management_interfaces:
   description: oob_management
   shutdown: false
   vrf: MGMT
-  ip_address: 172.16.2.242/24
+  ip_address: 172.16.2.244/24
   gateway: 172.16.2.1
   type: oob
 management_api_http:
@@ -50,27 +50,27 @@ management_api_http:
   enable_https: true
 port_channel_interfaces:
 - name: Port-Channel1
-  description: Portchannel_Uplinks_TO_DC1_PE11_DC1_PE12
+  description: Portchannel_Uplinks_TO_DC1_PE21_DC1_PE22
   type: routed
   shutdown: false
 - name: Port-Channel1.111
-  description: Portchannel_Uplinks_TO_DC1_PE11_DC1_PE12 - dot1q VLAN 111
+  description: Portchannel_Uplinks_TO_DC1_PE21_DC1_PE22 - dot1q VLAN 111
   type: l3dot1q
   shutdown: false
   encapsulation_dot1q_vlan: 111
-  ip_address: 10.1.11.102/24
+  ip_address: 10.1.11.104/24
   eos_cli: |
-    mac-address router 0000.0000.2222
+    mac-address router 0000.0000.4444
 ethernet_interfaces:
 - name: Ethernet1
-  description: Portchannel_Uplinks_TO_DC1_PE11
+  description: Portchannel_Uplinks_TO_DC1_PE21
   type: port-channel-member
   shutdown: false
   channel_group:
     id: 1
     mode: active
 - name: Ethernet2
-  description: Portchannel_Uplinks_TO_DC1_PE12
+  description: Portchannel_Uplinks_TO_DC1_PE22
   type: port-channel-member
   shutdown: false
   channel_group:

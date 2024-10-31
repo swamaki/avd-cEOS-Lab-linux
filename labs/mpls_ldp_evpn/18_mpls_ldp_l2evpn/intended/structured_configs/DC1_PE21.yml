@@ -144,8 +144,8 @@ ethernet_interfaces:
     description: server03_Eth1
     type: switched
     shutdown: false
-    mode: trunk
-    vlans: 110
+    # mode: trunk
+    # vlans: 110
     channel_group:
       id: 3
       mode: active
@@ -156,8 +156,8 @@ ethernet_interfaces:
     description: server04_Eth1
     type: switched
     shutdown: false
-    mode: trunk
-    vlans: 111
+    # mode: trunk
+    # vlans: 111
     channel_group:
       id: 4
       mode: active
@@ -231,7 +231,7 @@ port_channel_interfaces:
     type: switched
     shutdown: false
     mode: trunk
-    vlans: 110
+    vlans: 110,111
     esi: 0000:0000:0201:0202:0033
     rt: 02:01:02:02:00:33
     lacp_id: 0201.0202.0033
@@ -240,7 +240,7 @@ port_channel_interfaces:
     type: switched
     shutdown: false
     mode: trunk
-    vlans: 111
+    vlans: 110,111
     esi: 0000:0000:0201:0202:0044
     rt: 02:01:02:02:00:44
     lacp_id: 0201.0202.0044

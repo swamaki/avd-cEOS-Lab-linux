@@ -1,0 +1,80 @@
+
+
+
+12_avd_asym_multihoming
+
+
+PE11
+!
+interface Ethernet3
+   description server01_Eth1
+   channel-group 3 mode active
+!
+interface Ethernet4
+   description server02_Eth1
+   channel-group 4 mode active
+!
+interface Port-Channel3
+   description server01_PortChannel3
+   switchport trunk allowed vlan 110
+   switchport mode trunk
+   !
+   evpn ethernet-segment
+      identifier 0000:0000:0101:0102:0033
+      route-target import 01:01:01:02:00:33
+   lacp system-id 0101.0102.0033
+   spanning-tree portfast
+!
+interface Port-Channel4
+   description server02_PortChannel4
+   switchport trunk allowed vlan 111
+   switchport mode trunk
+   !
+   evpn ethernet-segment
+      identifier 0000:0000:0101:0102:0044
+      route-target import 01:01:01:02:00:44
+   lacp system-id 0101.0102.0044
+   spanning-tree portfast
+!
+router bgp 65101
+   address-family rt-membership
+      neighbor EVPN-OVERLAY-PEERS activate
+!
+
+PE12 
+!
+interface Ethernet3
+   description server01_Eth2
+   channel-group 3 mode active
+!
+interface Ethernet4
+   description server02_Eth2
+   channel-group 4 mode active
+!
+interface Port-Channel3
+   description server01_PortChannel3
+   switchport trunk allowed vlan 110
+   switchport mode trunk
+   !
+   evpn ethernet-segment
+      identifier 0000:0000:0101:0102:0033
+      route-target import 01:01:01:02:00:33
+   lacp system-id 0101.0102.0033
+   spanning-tree portfast
+!
+interface Port-Channel4
+   description server02_PortChannel4
+   switchport trunk allowed vlan 111
+   switchport mode trunk
+   !
+   evpn ethernet-segment
+      identifier 0000:0000:0101:0102:0044
+      route-target import 01:01:01:02:00:44
+   lacp system-id 0101.0102.0044
+   spanning-tree portfast
+!
+!
+router bgp 65102
+   address-family rt-membership
+      neighbor EVPN-OVERLAY-PEERS activate
+!

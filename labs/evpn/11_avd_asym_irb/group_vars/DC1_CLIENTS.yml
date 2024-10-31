@@ -40,6 +40,9 @@ clients:
                 shutdown: false
                 encapsulation_dot1q_vlan: 110
                 ip_address: 10.1.10.101/24
+                eos_cli: |
+                  mac-address router 0000.0000.1111
+                  
             ethernet_interfaces:
             - name: Ethernet1
               description: Portchannel_Uplinks_TO_DC1_LEAF1A
@@ -79,6 +82,8 @@ clients:
               shutdown: false
               encapsulation_dot1q_vlan: 111
               ip_address: 10.1.11.102/24
+              eos_cli: |
+                mac-address router 0000.0000.2222
 
             ethernet_interfaces:
             - name: Ethernet1
@@ -124,6 +129,8 @@ clients:
               shutdown: false
               encapsulation_dot1q_vlan: 110
               ip_address: 10.1.10.103/24
+              eos_cli: |
+                mac-address router 0000.0000.3333
 
             ethernet_interfaces:
             - name: Ethernet1
@@ -164,6 +171,8 @@ clients:
               shutdown: false
               encapsulation_dot1q_vlan: 111
               ip_address: 10.1.11.104/24
+              eos_cli: |
+                mac-address router 0000.0000.4444
 
             ethernet_interfaces:
             - name: Ethernet1

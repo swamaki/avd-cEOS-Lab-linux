@@ -59,6 +59,8 @@ port_channel_interfaces:
   shutdown: false
   encapsulation_dot1q_vlan: 113
   ip_address: 10.1.13.104/24
+  eos_cli: |
+    mac-address router 0000.0000.4444
 ethernet_interfaces:
 - name: Ethernet1
   description: Portchannel_Uplinks_TO_DC1_PE21
