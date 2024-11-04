@@ -1,0 +1,62 @@
+name: dcimplsevpn
+
+topology:
+  kinds:
+    ceos:
+      startup-config: ../../../ceos_lab_template/ceos.cfg.tpl
+      image: ceosimage:4.32.2.1F
+      # exec:
+      #   - sleep 10
+      #   - FastCli -p 15 -c 'security pki key generate rsa 4096 eAPI.key'
+      #   - FastCli -p 15 -c 'security pki certificate generate self-signed eAPI.crt key eAPI.key generate rsa 4096 validity 30000 parameters common-name eAPI'
+    linux:
+      image: alpine-host
+  nodes:
+    DC1_PE11:
+      kind: ceos
+      mgmt-ipv4: 172.16.2.103
+    DC1_PE12:
+      kind: ceos
+      mgmt-ipv4: 172.16.2.104
+    DC2_PE21:
+      kind: ceos
+      mgmt-ipv4: 172.16.2.113
+    DC2_PE22:
+      kind: ceos
+      mgmt-ipv4: 172.16.2.114
+    client1:
+      kind: ceos
+      mgmt-ipv4: 172.16.2.241
+    client2:
+      kind: ceos
+      mgmt-ipv4: 172.16.2.242
+    client3:
+      kind: ceos
+      mgmt-ipv4: 172.16.2.243
+    client4:
+      kind: ceos
+      mgmt-ipv4: 172.16.2.244
+    core:
+      kind: ceos
+      mgmt-ipv4: 172.16.2.245
+
+  links:
+
+    - endpoints: ["core:eth1", "DC1_PE11:eth2"]
+    - endpoints: ["core:eth2", "DC1_PE12:eth2"]
+    - endpoints: ["core:eth3", "DC2_PE21:eth2"]
+    - endpoints: ["core:eth4", "DC2_PE22:eth2"]
+    - endpoints: ["DC1_PE11:eth1", "DC1_PE12:eth1"]
+    - endpoints: ["DC1_PE11:eth5", "client1:eth1"]
+    - endpoints: ["DC1_PE11:eth6", "DC2_PE21:eth6"]
+    - endpoints: ["DC1_PE12:eth5", "client2:eth1"]
+    - endpoints: ["DC1_PE12:eth6", "DC2_PE22:eth6"]
+    - endpoints: ["DC2_PE21:eth1", "DC2_PE22:eth1"]
+    - endpoints: ["DC2_PE21:eth5", "client3:eth1"]
+    - endpoints: ["DC2_PE22:eth5", "client4:eth1"]
+
+
+mgmt:
+  network: ceos_clab                
+  ipv4-subnet: 172.16.2.0/24       
+  ipv6-subnet: 2001:172:16:2::/80

@@ -1,0 +1,5 @@
+hostname: client1
+mgmt_ip_address: 172.16.2.241/24
+eth1_description: DC1_PE11_Ethernet5
+eth1_ip_address: 10.1.11.101/24
+eth1_mac_address: 0000.0000.1111

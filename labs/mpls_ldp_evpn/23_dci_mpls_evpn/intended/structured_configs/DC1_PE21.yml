@@ -1,0 +1,277 @@
+static_routes:
+- vrf: MGMT
+  destination_address_prefix: 0.0.0.0/0
+  gateway: 172.16.2.1
+service_routing_protocols_model: multi-agent
+ip_routing: true
+ip_name_servers:
+- ip_address: 1.1.1.1
+  vrf: MGMT
+- ip_address: 8.8.8.8
+  vrf: MGM
+local_users:
+- name: admin
+  privilege: 15
+  role: network-admin
+  no_password: true
+- name: ansible
+  privilege: 15
+  role: network-admin
+  sha512_password: $6$7u4j1rkb3VELgcZE$EJt2Qff8kd/TapRoci0XaIZsL4tFzgq1YZBLD9c6f/knXzvcYY0NcMKndZeCv0T268knGKhOEwZAxqKjlMm920
+management_interfaces:
+- name: Management0
+  description: oob_management
+  shutdown: false
+  vrf: MGMT
+  ip_address: 172.16.2.113/24
+  gateway: 172.16.2.1
+  type: oob
+management_api_http:
+  enable_vrfs:
+  - name: MGMT
+  enable_https: true
+# AAA Authorization
+aaa_authorization:
+  exec:
+    default: local
+ntp:
+  local_interface:
+    vrf: MGMT
+    name: Management0
+  servers:
+    - name: time.google.com
+      preferred: true
+      iburst: true
+      vrf: MGMT
+spanning_tree:
+  mode: mstp
+  mst_instances:
+  - id: '0'
+    priority: 4096
+ip_igmp_snooping:
+  globally_enabled: true
+vlans:
+  - id: 111
+    name: CUSTOMER_VRF_VLAN111
+    tenant: Tenant_A
+vrfs:
+  - name: MGMT
+    ip_routing: false
+  - name: CUSTOMER_VRF
+    tenant: Tenant_A
+    ip_routing: true
+ethernet_interfaces:
+  - name: Ethernet1
+    description: P2P_LINK_TO_DC1_PE22_Ethernet1
+    type: routed
+    shutdown: false
+    ip_address: 10.1.0.2/31
+    mtu: 9214
+    isis_enable: EVPN_UNDERLAY
+    isis_metric: 50
+    isis_network_point_to_point: true
+  - name: Ethernet2
+    description: P2P_LINK_TO_CORE_Ethernet3
+    vrf: CUSTOMER_VRF
+    type: routed
+    shutdown: false
+    ip_address: 10.2.0.4/31
+  - name: Ethernet5
+    description: client3_Ethernet1
+    type: switched
+    shutdown: false
+    mode: trunk
+    vlans: 111
+    native_vlan: 111
+  - name: Ethernet6
+    description: P2P_LINK_TO_DC1_PE11_Ethernet6
+    vrf: CUSTOMER_VRF
+    type: routed
+    shutdown: false
+    ip_address: 172.100.100.1/31
+    mtu: 9214
+    isis_enable: EVPN_UNDERLAY
+    isis_metric: 50
+    isis_network_point_to_point: true
+loopback_interfaces:
+  - name: Loopback0
+    description: EVPN_Overlay_Peering
+    shutdown: false
+    ip_address: 10.255.128.15/32
+    isis_enable: EVPN_UNDERLAY
+    isis_passive: true
+  - name: Loopback10
+    description: CUSTOMER_VRF_VTEP_DIAGNOSTICS
+    shutdown: false
+    vrf: CUSTOMER_VRF
+    ip_address: 10.255.10.15/32
+vlan_interfaces:
+  - name: Vlan111
+    tenant: Tenant_A
+    description: CUSTOMER_VRF_VLAN111
+    shutdown: false
+    vrf: CUSTOMER_VRF
+    ip_address_virtual: 10.1.11.1/24
+ip_virtual_router_mac_address: 00:00:00:00:00:01
+virtual_source_nat_vrfs:
+  - name: VRF10
+    ip_address: 10.255.10.15
+route_maps:
+  - name: RM-EVPN-SOO-IN
+    sequence_numbers:
+    - sequence: 10
+      type: deny
+      match:
+      - extcommunity ECL-EVPN-SOO
+    - sequence: 20
+      type: permit
+  - name: RM-EVPN-SOO-OUT
+    sequence_numbers:
+    - sequence: 10
+      type: permit
+      match:
+      - extcommunity soo 10.255.128.15:1 additive
+ip_extcommunity_lists:
+  - name: ECL-EVPN-SOO
+    entries:
+      - type: permit
+        extcommunities: soo 10.255.128.15:1
+mpls:
+  ip: true
+  ldp:
+    router_id: interface Loopback0
+    shutdown: false
+router_bfd:
+  multihop:
+    interval: 300
+    min_rx: 300
+    multiplier: 3
+
+router_bgp:
+  as: '65202'
+  router_id: 10.255.128.15
+  distance:
+    external_routes: 20
+    internal_routes: 200
+    local_routes: 200
+  bgp:
+    default:
+      ipv4_unicast: false
+  maximum_paths:
+    paths: 4
+    ecmp: 4
+  peer_groups:
+    - name: EVPN-OVERLAY-PEERS
+      type: evpn
+      update_source: Loopback0
+      remote_as: '65202'
+      bfd: true
+      password: 7x4B4rnJhZB438m9+BrBfQ==
+      maximum_routes: 0
+      send_community: all
+    - name: EVPN-OVERLAY-CORE
+      type: evpn
+      update_source: Loopback0
+      remote_as: '65102'
+      bfd: true
+      password: 7x4B4rnJhZB438m9+BrBfQ==
+      maximum_routes: 0
+      send_community: all
+      ebgp_multihop: 15
+  address_family_ipv4:
+    peer_groups:
+    - name: EVPN-OVERLAY-PEERS
+      activate: false
+    - name: EVPN-OVERLAY-CORE
+      activate: false
+  address_family_evpn:
+    neighbor_default:
+      encapsulation: mpls
+      next_hop_self_source_interface: Loopback0
+      next_hop_self_received_evpn_routes:
+        enable: true
+        inter_domain: true
+    peer_groups:
+    - name: EVPN-OVERLAY-PEERS
+      activate: true
+      route_map_in: RM-EVPN-SOO-IN
+      route_map_out: RM-EVPN-SOO-OUT
+    - name: EVPN-OVERLAY-CORE
+      activate: true
+      domain_remote: true
+  neighbors:
+    - ip_address: 10.255.128.16
+      peer_group: EVPN-OVERLAY-PEERS
+      peer: DC1_PE22
+      description: DC1_PE22
+    - ip_address: 10.255.0.5
+      peer_group: EVPN-OVERLAY-CORE
+      peer: DC1_PE11
+      description: DC1_PE11
+  vlans:
+    - id: 111
+      tenant: Tenant_A
+      rd: 10.255.128.15:111
+      route_targets:
+        both:
+          - 111:111
+        import_export_evpn_domains:
+          - domain: remote
+            route_target: 111:111
+      redistribute_routes:
+        - learned
+      rd_evpn_domain:
+        domain: remote
+        rd: 10.255.128.15:10011
+      
+  # vlan_aware_bundles:
+  #   - name: TENANT_VRF
+  #     rd: 10.255.128.15:111
+  #     route_targets:
+  #       both:
+  #       - '111:111'
+  #       import_export_evpn_domains:
+  #         - domain: remote
+  #           route_target: '111:111'
+  #     redistribute_routes:
+  #       - learned
+  #     vlan: 111
+  #     rd_evpn_domain:
+  #       domain: remote
+  #       rd: 10.255.128.15:111
+
+  vrfs:
+    - name: CUSTOMER_VRF
+      router_id: 10.255.128.15
+      rd: 10.255.128.15:111
+      route_targets:
+        import:
+        - address_family: evpn
+          route_targets:
+          - '111:111'
+        export:
+        - address_family: evpn
+          route_targets:
+          - '111:111'
+      redistribute_routes:
+      - source_protocol: connected
+      neighbors:
+        - ip_address: 10.2.0.5
+          description: CORE_Ethernet1
+          remote_as: '65000'
+          password: 7x4B4rnJhZB438m9+BrBfQ==
+      address_family_ipv4:
+        neighbors:
+          - ip_address: 10.2.0.5
+            activate: true
+
+router_isis:
+  instance: EVPN_UNDERLAY
+  log_adjacency_changes: true
+  net: 49.0001.0001.0001.0015.00
+  router_id: 10.255.128.15
+  is_type: level-2
+  address_family:
+  - ipv4 unicast
+  isis_af_defaults:
+  - maximum-paths 2
