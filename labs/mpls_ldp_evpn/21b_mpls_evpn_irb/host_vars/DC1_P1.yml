@@ -1,0 +1,14 @@
+hostname: DC1_P1
+mgmt_ip_address: 172.16.2.11/24
+eth1_description: P2P_LINK_TO_DC1_PE11_Ethernet1
+eth1_ip_address: 172.31.255.0/31
+eth2_description: P2P_LINK_TO_DC1_PE12_Ethernet1
+eth2_ip_address: 172.31.255.4/31
+eth3_description: P2P_LINK_TO_DC1_PE21_Ethernet1
+eth3_ip_address: 172.31.255.8/31
+eth4_description: P2P_LINK_TO_DC1_PE22_Ethernet1
+eth4_ip_address: 172.31.255.12/31
+lo0_ip_address: 192.168.255.1
+isis_net_id: 49.0001.0001.0000.0001.00
+bgp_asn: 65001
+overlay_peer_asn: 65001

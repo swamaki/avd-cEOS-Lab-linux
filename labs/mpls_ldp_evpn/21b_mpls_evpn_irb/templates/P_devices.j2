@@ -1,0 +1,167 @@
+hostname: {{ hostname }}
+static_routes:
+- vrf: MGMT
+  destination_address_prefix: 0.0.0.0/0
+  gateway: 172.16.2.1
+service_routing_protocols_model: multi-agent
+ip_routing: true
+ip_name_servers:
+- ip_address: 1.1.1.1
+  vrf: MGMT
+- ip_address: 8.8.8.8
+  vrf: MGMT
+local_users:
+- name: admin
+  privilege: 15
+  role: network-admin
+  no_password: true
+- name: ansible
+  privilege: 15
+  role: network-admin
+  sha512_password: $6$7u4j1rkb3VELgcZE$EJt2Qff8kd/TapRoci0XaIZsL4tFzgq1YZBLD9c6f/knXzvcYY0NcMKndZeCv0T268knGKhOEwZAxqKjlMm920
+aaa_authorization:
+  exec:
+    default: local
+ntp:
+  local_interface:
+    vrf: MGMT
+    name: Management0
+  servers:
+    - name: time.google.com
+      preferred: true
+      iburst: true
+      vrf: MGMT
+spanning_tree:
+  mode: none
+ip_igmp_snooping:
+  globally_enabled: true
+management_interfaces:
+- name: Management0
+  description: oob_management
+  shutdown: false
+  vrf: MGMT
+  ip_address: {{ mgmt_ip_address }}
+  gateway: 172.16.2.1
+  type: oob
+management_api_http:
+  enable_vrfs:
+  - name: MGMT
+  enable_https: true
+# AAA Authorization
+vrfs:
+  - name: MGMT
+    ip_routing: false
+loopback_interfaces:
+  - name: Loopback0
+    description: EVPN_Overlay_Peering
+    shutdown: false
+    ip_address: {{ lo0_ip_address }}/32
+    isis_enable: EVPN_UNDERLAY
+    isis_passive: true
+ethernet_interfaces:
+  - name: Ethernet1
+    description: {{ eth1_description }}
+    type: routed
+    shutdown: false
+    ip_address: {{ eth1_ip_address }}
+    mtu: 9214
+    isis_enable: EVPN_UNDERLAY
+    isis_metric: 50
+    isis_network_point_to_point: true
+  - name: Ethernet2
+    description: {{ eth2_description }}
+    type: routed
+    shutdown: false
+    ip_address: {{ eth2_ip_address }}
+    mtu: 9214
+    isis_enable: EVPN_UNDERLAY
+    isis_metric: 50
+    isis_network_point_to_point: true
+  - name: Ethernet3
+    description: {{ eth3_description }}
+    type: routed
+    shutdown: false
+    ip_address: {{ eth3_ip_address }}
+    mtu: 9214
+    isis_enable: EVPN_UNDERLAY
+    isis_metric: 50
+    isis_network_point_to_point: true
+  - name: Ethernet4
+    description: {{ eth4_description }}
+    type: routed
+    shutdown: false
+    ip_address: {{ eth4_ip_address }}
+    mtu: 9214
+    isis_enable: EVPN_UNDERLAY
+    isis_metric: 50
+    isis_network_point_to_point: true
+router_isis:
+  instance: EVPN_UNDERLAY
+  log_adjacency_changes: true
+  net: {{ isis_net_id }}
+  router_id: {{ lo0_ip_address }}
+  is_type: level-2
+  address_family:
+  - ipv4 unicast
+  isis_af_defaults:
+  - maximum-paths 2
+
+mpls:
+  ip: true
+  ldp:
+    router_id: interface Loopback0
+    shutdown: false
+router_bfd:
+  multihop:
+    interval: 300
+    min_rx: 300
+    multiplier: 3
+router_bgp:
+  as: {{ bgp_asn }} 
+  router_id: {{ lo0_ip_address }}
+  bgp_cluster_id: {{ lo0_ip_address }}
+  distance:
+    external_routes: 20
+    internal_routes: 200
+    local_routes: 200
+  bgp:
+    default:
+      ipv4_unicast: false
+  maximum_paths:
+    paths: 4
+    ecmp: 4
+  peer_groups:
+    - name: EVPN-OVERLAY-PEERS
+      type: evpn
+      update_source: Loopback0
+      remote_as: {{ overlay_peer_asn }}
+      bfd: true
+      password: $1c$G8BQN0ezkiJOX2cuAYpsEA==
+      maximum_routes: 0
+      send_community: all
+      route_reflector_client: true
+  address_family_ipv4:
+    peer_groups:
+    - name: EVPN-OVERLAY-PEERS
+      activate: false
+  address_family_evpn:
+    neighbor_default:
+      encapsulation: mpls
+    peer_groups:
+    - name: EVPN-OVERLAY-PEERS
+      activate: true
+      route_map_in: RM-EVPN-SOO-IN
+      route_map_out: RM-EVPN-SOO-OUT
+  neighbors:
+    - ip_address: 192.168.255.3
+      peer_group: EVPN-OVERLAY-PEERS
+      description: DC1_PE11
+    - ip_address: 192.168.255.4
+      peer_group: EVPN-OVERLAY-PEERS
+      description: DC1_PE12
+    - ip_address: 192.168.255.5
+      peer_group: EVPN-OVERLAY-PEERS
+      description: DC1_PE21
+    - ip_address: 192.168.255.6
+      peer_group: EVPN-OVERLAY-PEERS
+      description: DC1_PE22
