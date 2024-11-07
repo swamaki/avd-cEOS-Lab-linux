@@ -1,0 +1,40 @@
+client4
+
+
+conf t
+!
+interface Ethernet1
+   ip address 10.4.11.104/24
+!
+no ip route 0.0.0.0/0 10.1.11.1
+ip route 0.0.0.0/0 10.4.11.1
+!
+monitor connectivity
+   no shutdown
+   !
+   host eth1_default_gw
+      ip 10.4.11.1
+end
+
+
+
+DC1_PE22
+
+conf t
+interface Vlan111
+   ip address virtual 10.4.11.1/24
+!
+end
+
+=====================================
+
+show vlan configured-ports
+show arp remote vlan 111
+sh arp vrf TENANT_VRF
+
+sh ip bgp neighbors  10.2.0.1 advertised-routes vrf TENANT_VRF 
+sh ip bgp neighbors  10.2.0.3 advertised-routes vrf TENANT_VRF
+sh ip bgp neighbors  10.2.0.5 advertised-routes vrf TENANT_VRF
+sh ip bgp neighbors  10.2.0.7 advertised-routes vrf TENANT_VRF
+show tunnel fib 
+

@@ -1,0 +1,2 @@
+hostname: core
+mgmt_ip_address: 172.16.2.245/24

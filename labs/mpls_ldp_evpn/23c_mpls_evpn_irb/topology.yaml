@@ -1,0 +1,47 @@
+name: 23cevpnirbmpls
+
+topology:
+  kinds:
+    ceos:
+      startup-config: ../../../ceos_lab_template/ceos.cfg.tpl
+      image: ceosimage:4.32.2.1F
+      # exec:
+      #   - sleep 10
+      #   - FastCli -p 15 -c 'security pki key generate rsa 4096 eAPI.key'
+      #   - FastCli -p 15 -c 'security pki certificate generate self-signed eAPI.crt key eAPI.key generate rsa 4096 validity 30000 parameters common-name eAPI'
+    linux:
+      image: alpine-host
+  nodes:
+    PE1:
+      kind: ceos
+      mgmt-ipv4: 172.16.2.103
+    PE2:
+      kind: ceos
+      mgmt-ipv4: 172.16.2.104
+    Host1:
+      kind: ceos
+      mgmt-ipv4: 172.16.2.241
+    Host2:
+      kind: ceos
+      mgmt-ipv4: 172.16.2.242
+    Host3:
+      kind: ceos
+      mgmt-ipv4: 172.16.2.243
+    core:
+      kind: ceos
+      mgmt-ipv4: 172.16.2.245
+
+  links:
+
+    - endpoints: ["core:eth1", "PE1:eth3"]
+    - endpoints: ["core:eth2", "PE2:eth3"]
+    - endpoints: ["PE1:eth1", "PE2:eth1"]
+    - endpoints: ["PE1:eth5", "Host1:eth1"]
+    - endpoints: ["PE1:eth6", "Host2:eth1"]
+    - endpoints: ["PE2:eth5", "Host3:eth1"]
+
+
+mgmt:
+  network: ceos_clab                
+  ipv4-subnet: 172.16.2.0/24       
+  ipv6-subnet: 2001:172:16:2::/80
