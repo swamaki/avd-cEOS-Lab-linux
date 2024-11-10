@@ -1,0 +1,198 @@
+---
+
+type: clients
+
+node_type_keys:
+  - key: clients
+    type: clients
+    connected_endpoints: false
+    mlag_support: false
+    underlay_router: false
+    uplink_type: port-channel
+
+clients:
+  node_groups:
+    - group: DC2_LEAF1_CLIENTS
+      uplink_switches:
+            - dc2-leaf1a
+            - dc2-leaf1b
+      uplink_switch_interfaces:
+            - Ethernet5
+            - Ethernet5
+      nodes:
+        - name: dc2-client1
+          id: 11
+          mgmt_ip: 172.16.2.241/24
+          structured_config:
+            ip_routing: true
+            static_routes:
+            - vrf: default
+              destination_address_prefix: 0.0.0.0/0
+              gateway: 10.1.10.1
+            port_channel_interfaces:
+            - name: Port-Channel1
+              description: Portchannel_Uplinks_TO_dc2-leaf1a_dc2-leaf1b
+              type: switched
+              shutdown: false
+              mode: trunk
+              vlans: 110
+            ethernet_interfaces:
+            - name: Ethernet1
+              description: Portchannel_Uplinks_TO_dc2-leaf1a
+              type: port-channel-member
+              shutdown: false
+              channel_group:
+                id: 1
+                mode: active
+            - name: Ethernet2
+              description: Portchannel_Uplinks_TO_dc2-leaf1b
+              type: port-channel-member
+              shutdown: false
+              channel_group:
+                id: 1
+                mode: active
+            vlan_interfaces:
+            - name: Vlan110
+              description: VRF_RED_VLAN_110
+              shutdown: false 
+              ip_address: 10.1.10.111/24
+            vlans:
+            - id: 110
+              name: VRF_RED_VLAN_110
+            spanning_tree:
+              mode: mstp
+
+        - name: dc2-client2
+          id: 12
+          mgmt_ip: 172.16.2.242/24
+          structured_config:
+            ip_routing: true
+            static_routes:
+            - vrf: default
+              destination_address_prefix: 0.0.0.0/0
+              gateway: 10.1.11.1
+            port_channel_interfaces:
+            - name: Port-Channel1
+              description: Portchannel_Uplinks_TO_dc2-leaf1a_dc2-leaf1b
+              type: switched
+              shutdown: false
+              mode: trunk
+              vlans: 111
+            ethernet_interfaces:
+            - name: Ethernet1
+              description: Portchannel_Uplinks_TO_dc2-leaf1a
+              type: port-channel-member
+              shutdown: false
+              channel_group:
+                id: 1
+                mode: active
+            - name: Ethernet2
+              description: Portchannel_Uplinks_TO_dc2-leaf1b
+              type: port-channel-member
+              shutdown: false
+              channel_group:
+                id: 1
+                mode: active
+            vlan_interfaces:
+            - name: Vlan111
+              description: VRF_BLUE_VLAN_111
+              shutdown: false 
+              ip_address: 10.1.11.112/24
+            vlans:
+            - id: 111
+              name: VRF_BLUE_VLAN_111
+            spanning_tree:
+              mode: mstp
+
+
+    - group: DC2_LEAF2_CLIENTS
+      uplink_switches:
+            - dc2-leaf2a
+            - dc2-leaf2b
+      uplink_switch_interfaces:
+            - Ethernet5
+            - Ethernet5
+      nodes:
+        - name: dc2-client3
+          id: 13
+          mgmt_ip: 172.16.2.243/24
+          structured_config:
+            ip_routing: true
+            static_routes:
+            - vrf: default
+              destination_address_prefix: 0.0.0.0/0
+              gateway: 10.1.12.1
+            port_channel_interfaces:
+            - name: Port-Channel1
+              description: Portchannel_Uplinks_TO_dc2-leaf2a_dc2-leaf2b
+              type: switched
+              shutdown: false
+              mode: trunk
+              vlans: 112
+            ethernet_interfaces:
+            - name: Ethernet1
+              description: Portchannel_Uplinks_TO_dc2-leaf2a
+              type: port-channel-member
+              shutdown: false
+              channel_group:
+                id: 1
+                mode: active
+            - name: Ethernet2
+              description: Portchannel_Uplinks_TO_dc2-leaf2b
+              type: port-channel-member
+              shutdown: false
+              channel_group:
+                id: 1
+                mode: active
+            vlan_interfaces:
+            - name: Vlan112
+              description: VRF_RED_VLAN_112
+              shutdown: false 
+              ip_address: 10.1.12.113/24
+            vlans:
+            - id: 112
+              name: VRF_RED_VLAN_112
+            spanning_tree:
+              mode: mstp
+
+        - name: dc2-client4
+          id: 14
+          mgmt_ip: 172.16.2.244/24
+          structured_config:
+            ip_routing: true
+            static_routes:
+            - vrf: default
+              destination_address_prefix: 0.0.0.0/0
+              gateway: 10.1.13.1
+            port_channel_interfaces:
+            - name: Port-Channel1
+              description: Portchannel_Uplinks_TO_dc2-leaf2a_dc2-leaf2b
+              type: switched
+              shutdown: false
+              mode: trunk
+              vlans: 113
+            ethernet_interfaces:
+            - name: Ethernet1
+              description: Portchannel_Uplinks_TO_dc2-leaf2a
+              type: port-channel-member
+              shutdown: false
+              channel_group:
+                id: 1
+                mode: active
+            - name: Ethernet2
+              description: Portchannel_Uplinks_TO_dc2-leaf2b
+              type: port-channel-member
+              shutdown: false
+              channel_group:
+                id: 1
+                mode: active
+            vlan_interfaces:
+            - name: Vlan113
+              description: VRF_BLUE_VLAN_113
+              shutdown: false 
+              ip_address: 10.1.13.114/24
+            vlans:
+            - id: 113              
+              name: VRF_BLUE_VLAN_113
+            spanning_tree:
+              mode: mstp

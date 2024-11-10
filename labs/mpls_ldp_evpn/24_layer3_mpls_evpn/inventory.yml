@@ -1,0 +1,17 @@
+---
+all:
+  children:
+    FABRIC:
+      hosts:
+        PE1:
+          ansible_host: 172.16.2.103
+        PE2:
+          ansible_host: 172.16.2.104
+        Host1:
+          ansible_host: 172.16.2.241
+        Host2:
+          ansible_host: 172.16.2.242
+        Host3:
+          ansible_host: 172.16.2.243
+        core:
+          ansible_host: 172.16.2.245

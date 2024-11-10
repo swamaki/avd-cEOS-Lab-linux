@@ -11,14 +11,14 @@ tenants:
           loopback: 10
           loopback_ip_range: 10.255.10.0/24
         svis:
-          - id: 110
-            name: VRF_RED_VLAN_110
+          - id: 111
+            name: VRF_RED_VLAN_111
             enabled: true
-            ip_address_virtual: 10.1.10.1/24
-          - id: 112
-            name: VRF_RED_VLAN_112
+            ip_address_virtual: 10.1.11.1/24
+          - id: 113
+            name: VRF_RED_VLAN_113
             enabled: true
-            ip_address_virtual: 10.1.12.1/24
+            ip_address_virtual: 10.1.13.1/24
       
       - name: BLUE
         vrf_vni: 20
@@ -26,11 +26,11 @@ tenants:
           loopback: 20
           loopback_ip_range: 10.255.20.0/24
         svis:
-          - id: 111
-            name: VRF_BLUE_VLAN_111
+          - id: 112
+            name: VRF_BLUE_VLAN_112
             enabled: true
-            ip_address_virtual: 10.1.11.1/24
-          - id: 113
-            name: VRF_BLUE_VLAN_113
+            ip_address_virtual: 10.1.12.1/24
+          - id: 114
+            name: VRF_BLUE_VLAN_114
             enabled: true
-            ip_address_virtual: 10.1.13.1/24
+            ip_address_virtual: 10.1.14.1/24
