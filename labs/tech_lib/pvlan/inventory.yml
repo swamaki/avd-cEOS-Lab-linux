@@ -1,0 +1,36 @@
+---
+all:
+  children:
+    FABRIC:
+      hosts:
+        spine1:
+          ansible_host: 172.16.2.11
+        spine2:
+          ansible_host: 172.16.2.12
+        leaf1:
+          ansible_host: 172.16.2.101
+        leaf2:
+          ansible_host: 172.16.2.102
+        leaf3:
+          ansible_host: 172.16.2.103
+        host1:
+          ansible_host: 172.16.2.241
+        host2:
+          ansible_host: 172.16.2.242
+        host3:
+          ansible_host: 172.16.2.243
+        host4:
+          ansible_host: 172.16.2.244
+        host5:
+          ansible_host: 172.16.2.245
+        host6:
+          ansible_host: 172.16.2.246
+        host7:
+          ansible_host: 172.16.2.247
+        host8:
+          ansible_host: 172.16.2.248
+        host9:
+          ansible_host: 172.16.2.249
+        firewall:
+          ansible_host: 172.16.2.250
+

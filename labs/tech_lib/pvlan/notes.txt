@@ -1,0 +1,46 @@
+ping 10.0.10.1
+ping 10.0.10.2
+ping 10.0.30.3
+ping 10.0.10.4
+ping 10.0.10.5
+ping 10.0.30.6
+ping 10.0.10.7
+ping 10.0.10.8
+ping 10.0.30.9
+
+
+host1
+- can ping host[369]
+- cannot ping host[24578]
+
+host2
+- can ping host[3569]
+- cannot ping host[1478]
+
+host3
+- can ping host[124578]
+- cannot ping host[69]
+
+host4
+- can ping host[369]
+- cannot ping host[12578]
+
+host5
+- can ping host[2369]
+- cannot ping host[1478]
+
+host6
+- can ping host[124578]
+- cannot ping host[39]
+
+host7
+- can ping host[369]
+- cannot ping host[12458]
+
+host8
+- can ping host[369]
+- cannot ping host[12457]
+
+host9
+- can ping host[124578]
+- cannot ping host[36]

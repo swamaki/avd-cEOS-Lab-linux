@@ -6,14 +6,12 @@ help: ## Display help message
 deploy: ## Complete AVD & cEOS-Lab Deployment
 	@echo -e "\n############### \e[1;30;42mStarting cEOS-Lab topology\e[0m ###############\n"
 	@sudo containerlab deploy -t topology.yaml
+	
 	@echo -e "\n############### \e[1;30;42mGenerating and deploying switch configuration\e[0m ###############\n"
 	@ansible-playbook deploy.yml --tags deploy --flush-cache
 
 	@echo -e "\n############### \e[1;30;42mBacking up switch configuration to ./backup\e[0m ###############\n"
 	@ansible-playbook deploy.yml --tags backup --flush-cache
-
-	## @echo -e "\n############### \e[1;30;42mConfiguring client nodes\e[0m ###############\n"
-	## @bash host_l3_config/l3_build.sh
 
 	@echo -e "\n############### \e[1;30;42mcEOS-Lab Topology\e[0m ###############\n"
 	@sudo containerlab inspect -t topology.yaml
